@@ -38,3 +38,15 @@
   }
 </style>
 ```
+
+- 禁止鼠标点击事件
+
+```html
+<style>
+  .disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.6;
+  }
+</style>
+```
