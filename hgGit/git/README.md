@@ -4,13 +4,15 @@
 
 **Window安装**
 
-*http://git-scm.com/download/win*](http://git-scm.com/download/win)*下载Git客户端软件，和普通软件安装方式一样。
+[win下git安装](http://git-scm.com/download/win)
+
+ 下载Git客户端软件，和普通软件安装方式一样。
 
 **Linux安装**
 
-CentOS发行版：`sudo yum install git`
+- CentOS发行版：`sudo yum install git`
 
-Ubuntu发行版：`sudo apt-get install git`
+- Ubuntu发行版：`sudo apt-get install git`
 
 **Mac安装**
 
@@ -18,13 +20,14 @@ Ubuntu发行版：`sudo apt-get install git`
 
 ## Git工作原理
 
-首先，了解Git管理文件的4种状态，分别为<u>未追踪</u>（untracked）、<u>已提交</u>（committed）、<u>已修改</u>（modified）和<u>已暂存</u>（staged），由此引入 Git 项目的3个工作区域的概念：**Git 仓库**、**工作目录**以及**暂存区域**。
+首先，了解Git管理文件的4种状态，分别为<u>未追踪</u>（untracked）、<u>已提交</u>（committed）、<u>已修改</u>（modified）和<u>已暂存</u>（staged），由此引入 Git 项目的3个工作区域的概念：
+**Git 仓库**、**工作目录**以及**暂存区域**。
 
 - **Git仓库**目录是Git用来保存项目的元数据和对象数据库的地方。这是Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。
 - **工作目录**是对项目的某个版本独立提取出来的内容。这些从Git仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。
 - **暂存区域**是一个文件，保存了下次将提交的文件列表信息，一般在Git仓库目录中。有时候也被称作“索引”（Index），不过一般说法还是叫暂存区域。
 
-​         ![image007](../images\image007.png)                     
+​![image007](../images/image007.png)
 
 **基本的Git工作流程如下：**
 

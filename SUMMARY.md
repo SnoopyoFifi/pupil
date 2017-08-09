@@ -27,6 +27,7 @@
     * [Shell&Vi&SSH](hgGit/Shell&Vi&SSH/README.md)
     * [Hg](hgGit/hg/README.md)
     * [Git](hgGit/git/README.md)
+    * [Hg-Git](hgGit/Hg-Git/README.md)
 * [Sass&Less](sassLess/README.md)
     * [Sass](sassLess/sass/README.md)
         * [grammer](sassLess/sass/grammar.md)

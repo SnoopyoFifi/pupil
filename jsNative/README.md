@@ -1,2 +1,3 @@
 # JsNative
 
+[API](API.md)
