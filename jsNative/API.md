@@ -341,3 +341,7 @@
 ```js
   document.getElementById('co')
 ```
+
+
+## AJAX 封装
+
