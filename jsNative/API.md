@@ -345,7 +345,16 @@
 
 ## AJAX 封装
 
+> 什么是`ajax`
+
+- ajax：一种请求数据的方式，不需要刷新整个页面； 
+- ajax的技术核心是: XMLHttpRequest 对象； 
+- ajax 请求过程：创建 XMLHttpRequest 对象、连接服务器、发送请求、接收响应数据；
+
+> `ajax` 封装函数
+
 ```js
+  // ajax 封装函数调用
   ajax({
     url: "./TestXHR.aspx",   
     type: "POST",                    
@@ -354,7 +363,7 @@
     success: function (response, xml) {
         // 此处放成功后执行的代码
     },
-    fail: function (status) {
+    error: function (status) {
         // 此处放失败后执行的代码
     }
   });
@@ -379,7 +388,7 @@
               if (status >= 200 && status < 300) {
                   options.success && options.success(xhr.responseText, xhr.responseXML);
               } else {
-                  options.fail && options.fail(status);
+                  options.error && options.error(status);
               }
           }
       }
@@ -407,7 +416,68 @@
   }
 ```
 
+> `ajax`请求步骤
+
+- **创建**
+
+   - IE7 及其以上原生支持`XHR`对象，可直接使用：var oAJAX = new XMLHttpRequest();
+   - IE6 及其之前的版本中，`XHR`对象是通过`XSXML`库中的`ActiveX`对象实现的，可使用： var oAjax = new ActiveXObject('Microsoft.XMLHTTP');
+
+- **连接和发送**
+
+   - `open()`函数的三个参数： 请求方式、请求地址、是否异步请求；
+   - `GET`请求方式是通过`URL`参数将数据提交到服务器的，`POST`则是通过将数据作为`send`的参数提交到服务器；
+   - `POST`请求中，在发送数据之前，要设置表单提交的内容类型；
+   - 提交到服务器的参数要经过 `encodeURIComponent()`方式进行编码，实际上在参数列表'key=value'的形式中，`key`和`value`都需要进行编码，因为会包含特殊字符。每次请求的时候都会在参数列表中拼入一个'v=xx'的字符串，这样是为了拒绝缓存，每次都直接请求到服务器上。
+
+> 拓展：
+   - `encodeURI()` ：用于整个 URI 的编码，不会对本身属于 URI 的特殊字符进行编码，如冒号、正斜杠、问号和井号；其对应的解码函数 `decodeURI()`；
+   - `encodeURIComponent() `：用于对 URI 中的某一部分进行编码，会对它发现的任何非标准字符进行编码；其对应的解码函数 `decodeURIComponent()`；
+
+- **接收**
+   
+   - 接收到响应后，响应的数据会自动填充`XHR`对象，相关属性如下：
+     + responseText：响应返回的主体内容，为字符串类型； 
+     + responseXML：如果响应的内容类型是 "text/xml" 或 "application/xml"，这个属性中将保存着相应的xml 数据，是 XML 对应的 document 类型； 
+     + status：响应的HTTP状态码； 
+     + statusText：HTTP状态的说明
+   
+   - XHR对象的readyState属性表示请求/响应过程的当前活动阶段，这个属性的值如下
+      - 0-未初始化，尚未调用open()方法； 
+      - 1-启动，调用了open()方法，未调用send()方法； 
+      - 2-发送，已经调用了send()方法，未接收到响应； 
+      - 3-接收，已经接收到部分响应数据； 
+      - 4-完成，已经接收到全部响应数据； 
+      - 只要 `readyState` 的值变化，就会调用 `readystatechange` 事件，(其实为了逻辑上通顺，可以把`readystatechange`放到`send`之后，因为`send`时请求服务器，会进行网络通信，需要时间，在`send`之后指定`readystatechange`事件处理程序也是可以的，我一般都是这样用，但为了规范和跨浏览器兼容性，还是在`open`之前进行指定吧)。
+
+   - 在`readystatechange`事件中，先判断响应是否接收完成，然后判断服务器是否成功处理请求，`xhr.status` 是状态码，状态码以2开头的都是成功，304表示从缓存中获取，上面的代码在每次请求的时候都加入了随机数，所以不会从缓存中取值，故该状态不需判断。
+
+- **注意**：`ajax` 请求是不能跨域的！
+
+> jsonp原理及其组成
+
+- JSONP(JSON with Padding) 是一种跨域请求方式。
+
+- 主要原理是利用了script 标签可以跨域请求的特点，由其 src 属性发送请求到服务器，服务器返回 js 代码，网页端接受响应，然后就直接执行了，这和通过 script 标签引用外部文件的原理是一样的。
+
+- JSONP由两部分组成：回调函数和数据，回调函数一般是由网页端控制，作为参数发往服务器端，服务器端把该函数和数据拼成字符串返回。
+
+> `jsonp` 跨域函数封装
+
 ```js
+  // jsonp封装函数调用
+  jsonp({
+    url: 'http://www.baidu.com',
+    callback: 'callback', // 回调函数的名称前后端需一致
+    data: {id: '1000120'},
+    success: function(json){
+      alert('jsonp_ok');
+    },
+    error: function(){
+      alert('error');
+    },
+    time: 10000    
+  })
   function jsonp(options) {
     options = options || {};
     if (!options.url || !options.callback) {
@@ -438,7 +508,7 @@
         oS.timer = setTimeout(function () {
             window[callbackName] = null;
             oHead.removeChild(oS);
-            options.fail && options.fail({ message: "超时" });
+            options.error && options.error({ message: "超时" });
         }, time);
     }
   };
@@ -447,11 +517,20 @@
   function formatParams(data) {
     var arr = [];
     for (var name in data) {
-        arr.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[i]));
+        arr.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
     }
     return arr.join('&');
   }
 ```
+
+> 封装函数几点说明
+
+- 因为 script 标签的 src 属性只在第一次设置的时候起作用，导致 script 标签没法重用，所以每次完成操作之后要移除；
+
+- JSONP这种请求方式中，参数依旧需要编码；
+
+- 如果不设置超时，就无法得知此次请求是成功还是失败。
+
 
 ## 常用表单验证正则表达式
 
