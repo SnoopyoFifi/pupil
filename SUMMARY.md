@@ -73,6 +73,7 @@
     * [书签站点](others/bookmark/README.md)
     * [chrome](others/chrome/README.md)
 * [Python](python/README.md)
+    * [shell](python/shell/README.md)
 * [Php](php/README.md)
 * [Java](java/README.md)
 
