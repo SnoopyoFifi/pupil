@@ -48,9 +48,9 @@
 配置用户的意义在于记录开发者信息，以便在版本控制记录开发者的操作行为，如lion于2016-08-24解决了一个bug。
 
 ```
-git config--global user.name "自已的名字"
+git config --global user.name "自已的名字"
 
-git config--global user.email "自已的邮箱地址"
+git config --global user.email "自已的邮箱地址"
 
 --global 配置当前用户所有仓库
 ```
@@ -250,14 +250,14 @@ Git 要求共享仓库是一个以`.git`结尾的目录。
 > 将自已开发的项目同步到这个目录中，其它开发者就可以共享你开发的项目了。
 
 1. 进入到`yike`目录
-2. `gitpush ../repo.git master` 
+2. `git push ../repo.git master` 
 
 这样便把`yike`中的项目同步进了`repo.git`中。
 
 **5. 从共享仓库里取出内容**
 
 1. 新创建一个目录（模拟另一个开发者）
-2. `gitclone ./repo.git demo`
+2. `git clone ./repo.git demo`
 
 通过`repo.git`共享仓库，我们轻松得到了一个`yike`的副本
 
@@ -301,7 +301,7 @@ Git 要求共享仓库是一个以`.git`结尾的目录。
 
 远程地址特别长，我们可以给他起一个别名
 
-`git remote add origingit@github.com:Botue/repo.git`
+`git remote add origin git@github.com:Botue/repo.git`
 
 > 这样origin就代表` git@github.com:Botue/repo.git`
 

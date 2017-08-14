@@ -16,7 +16,7 @@
     * [目录结构](gitbook/directoryStructure/README.md)
         * [基本目录结构](gitbook/directoryStructure/basicStructure.md)
         * [SUMMARY](gitbook/directoryStructure/summary.md)
-        * [book](gitbook/directoryStructure/bookJson.md)
+        * [bookjson](gitbook/directoryStructure/bookJson.md)
     * [常用命令](gitbook/commonCommands/README.md)
     * [常用插件](gitbook/commonPlugins/README.md)
     * [生成pdf](gitbook/pdf/README.md)
@@ -73,7 +73,6 @@
     * [书签站点](others/bookmark/README.md)
     * [chrome](others/chrome/README.md)
 * [Python](python/README.md)
-    * [shell](python/shell/README.md)
 * [Php](php/README.md)
 * [Java](java/README.md)
 

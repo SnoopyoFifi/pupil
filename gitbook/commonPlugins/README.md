@@ -55,7 +55,8 @@
 
 使用 `Prism.js` 为语法添加高亮显示，需要将 `highlight` 插件去掉。该插件自带的主题样式较少，可以再安装 `prism-themes`插件，里面多提供了几种样式，具体的样式可以参考 [这里](https://github.com/PrismJS/prism-themes)，在设置样式时要注意设置 css 文件名，而不是样式名。
 
-[Prism 插件地址](https://plugins.gitbook.com/plugin/prism)    [prism-themes 插件地址](https://plugins.gitbook.com/plugin/prism-themes)
+- [Prism 插件地址](https://plugins.gitbook.com/plugin/prism)   
+- [prism-themes 插件地址](https://plugins.gitbook.com/plugin/prism-themes)
 
 ```
 {
@@ -88,8 +89,8 @@ pre[class*="language-"] {
 
 > 支持emoji表情
 
-[emoij表情列表](http://www.emoji-cheat-sheet.com/)
-[插件地址](https://plugins.gitbook.com/plugin/advanced-emoji)
+- [emoij表情列表](http://www.emoji-cheat-sheet.com/)
+- [插件地址](https://plugins.gitbook.com/plugin/advanced-emoji)
 
 ```
 "plugins": [
@@ -106,7 +107,7 @@ pre[class*="language-"] {
 
 > 添加github图标， url链接到github上
 
-[插件地址](https://plugins.gitbook.com/plugin/github)
+- [插件地址](https://plugins.gitbook.com/plugin/github)
 
 ```json
 "plugins": [
@@ -123,7 +124,7 @@ pre[class*="language-"] {
 
 > 添加项目在 github 上的 star，watch，fork情况
 
-[插件地址](https://plugins.gitbook.com/plugin/github-buttons)
+- [插件地址](https://plugins.gitbook.com/plugin/github-buttons)
 
 ```
 {
@@ -146,7 +147,7 @@ pre[class*="language-"] {
 
 ## Ace Plugin
 
-[插件地址](https://plugins.gitbook.com/plugin/ace)
+- [插件地址](https://plugins.gitbook.com/plugin/ace)
 
 使 GitBook 支持ace 。默认情况下，line-height 为 1，会使代码显得比较挤，而作者好像没提供修改行高的选项，如果需要修改行高，可以到 `node_modules -> github-plugin-ace -> assets -> ace.js` 中加入下面两行代码 (30 行左右的位置)：
 
@@ -183,7 +184,7 @@ int main(){ printf("Hello World!"); return 1; } {%endace%}
 
 > 为文字加上底色
 
-[插件地址](https://plugins.gitbook.com/plugin/emphasize)
+- [插件地址](https://plugins.gitbook.com/plugin/emphasize)
 
 ```
 "plugins": [
@@ -220,21 +221,11 @@ This text is {% em color="#ff0000" %}highlighted with a custom color!{% endem %}
 ]
 ```
 
-使用示例:
-```
-When {% math %}a \ne 0{% endmath %}, there are two solutions to {% math %}(ax^2 + bx + c = 0){% endmath %} and they are {% math %}x = {-b \pm \sqrt{b^2-4ac} \over 2a}.{% endmath %}
-
-$$ \int_{-\infty}^\infty g(x) dx $$
-
-$$ 1 \over 3 $$
-```
-
-
 ## Include Codeblock
 
 使用代码块的格式显示所包含文件的内容. 该文件必须存在。插件提供了一些配置，可以区插件官网查看。如果同时使用 ace 和本插件，本插件要在 ace 插件前面加载。
 
-[插件地址](https://plugins.gitbook.com/plugin/include-codeblock)
+- [插件地址](https://plugins.gitbook.com/plugin/include-codeblock)
 
 ```
 {
@@ -251,14 +242,13 @@ $$ 1 \over 3 $$
 }
 ```
 
-```
 ## Splitter
 
 使侧边栏的宽度可以自由调节
 
 ![gitbook-splitter-demo](gitbook-splitter-demo.gif)
 
-[插件地址](https://plugins.gitbook.com/plugin/splitter)
+- [插件地址](https://plugins.gitbook.com/plugin/splitter)
 
 ```
 "plugins": [
@@ -270,7 +260,7 @@ $$ 1 \over 3 $$
 
 > 支持渲染[Mermaid](https://github.com/knsv/mermaid)图表
 
-[插件地址](https://plugins.gitbook.com/plugin/mermaid)
+- [插件地址](https://plugins.gitbook.com/plugin/mermaid)
 
 ```
 "plugins": [
@@ -311,7 +301,7 @@ sharing-plus: `npm install gitbook-plugin-sharing-plus@0.0.2`
 
 > 为页面添加页脚
 
-[插件地址](https://plugins.gitbook.com/plugin/tbfed-pagefooter)
+- [插件地址](https://plugins.gitbook.com/plugin/tbfed-pagefooter)
 
 ```
 "plugins": [
@@ -330,7 +320,7 @@ sharing-plus: `npm install gitbook-plugin-sharing-plus@0.0.2`
 
 > 使左侧的章节目录可以折叠
 
-[插件地址](https://plugins.gitbook.com/plugin/expandable-chapters-small)
+- [插件地址](https://plugins.gitbook.com/plugin/expandable-chapters-small)
 
 ```
 plugins: ["expandable-chapters-small"]
@@ -340,7 +330,7 @@ plugins: ["expandable-chapters-small"]
 
 > 将页面分块显示，标签的 tag 最好是使用 b 标签，如果使用 h1-h6 可能会和其他插件冲突。
 
-[插件地址](https://plugins.gitbook.com/plugin/sectionx)
+- [插件地址](https://plugins.gitbook.com/plugin/sectionx)
 
 ```
 {
@@ -364,7 +354,7 @@ Insert markdown content here (you should start with h3 if you use heading).
 
 > Google 统计
 
-[插件地址](https://plugins.gitbook.com/plugin/ga)
+- [插件地址](https://plugins.gitbook.com/plugin/ga)
 
 ```
 "plugins": [
@@ -381,7 +371,7 @@ Insert markdown content here (you should start with h3 if you use heading).
 
 > 百度统计
 
-[插件地址](https://plugins.gitbook.com/plugin/3-ba)
+- [插件地址](https://plugins.gitbook.com/plugin/3-ba)
 
 ```
 {
@@ -398,7 +388,7 @@ Insert markdown content here (you should start with h3 if you use heading).
 
 > 打赏插件
 
-[插件地址](https://plugins.gitbook.com/plugin/donate)
+- [插件地址](https://plugins.gitbook.com/plugin/donate)
 
 ```
 "plugins": [
@@ -420,7 +410,7 @@ Insert markdown content here (you should start with h3 if you use heading).
 
 > 使用Video.js 播放本地视频
 
-[插件地址](https://plugins.gitbook.com/plugin/local-video)
+- [插件地址](https://plugins.gitbook.com/plugin/local-video)
 
 ```
 "plugins": [ "local-video" ]
@@ -451,13 +441,13 @@ poster="https://zhangjikai.com/resource/poster.jpg" data-setup='{"aspectRatio":"
 }
 ```
 
-````
+```
 {% raw %}
 
 To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
 
 {% endraw %}
-````
+```
 
 
 
@@ -465,7 +455,7 @@ To view this video please enable JavaScript, and consider upgrading to a web bro
 
 > 自动生成本页的目录结构。另外 GitBook 在处理重复的标题时有些问题，所以尽量不适用重复的标题。
 
- [插件地址](https://plugins.gitbook.com/plugin/simple-page-toc)
+- [插件地址](https://plugins.gitbook.com/plugin/simple-page-toc)
 
 ```
 {
@@ -487,7 +477,7 @@ To view this video please enable JavaScript, and consider upgrading to a web bro
 
 > 添加 Github 风格的锚点样式
 
-[插件地址](https://plugins.gitbook.com/plugin/anchors)
+- [插件地址](https://plugins.gitbook.com/plugin/anchors)
 
 ```
 "plugins" : [ "anchors" ]
@@ -508,7 +498,7 @@ To view this video please enable JavaScript, and consider upgrading to a web bro
 ## h2
 ```
 
-[插件地址](https://plugins.gitbook.com/plugin/anchor-navigation-ex)
+- [插件地址](https://plugins.gitbook.com/plugin/anchor-navigation-ex)
 
 ```
 {
@@ -531,7 +521,7 @@ To view this video please enable JavaScript, and consider upgrading to a web bro
 
 > 如果将 GitBook 的源文件保存到github或者其他的仓库上，使用该插件可以链接到当前页的源文件上。
 
-[插件地址](https://plugins.gitbook.com/plugin/edit-link)
+- [插件地址](https://plugins.gitbook.com/plugin/edit-link)
 
 ```
 "plugins": ["edit-link"],
@@ -547,7 +537,7 @@ To view this video please enable JavaScript, and consider upgrading to a web bro
 
 > 生成sitemap
 
-[插件地址](https://plugins.gitbook.com/plugin/sitemap-general)
+- [插件地址](https://plugins.gitbook.com/plugin/sitemap-general)
 
 ```
 {
@@ -564,7 +554,7 @@ To view this video please enable JavaScript, and consider upgrading to a web bro
 
 > 更改网站的 favicon.ico
 
-[插件地址](https://plugins.gitbook.com/plugin/favicon)
+- [插件地址](https://plugins.gitbook.com/plugin/favicon)
 
 ```
 {
@@ -597,7 +587,7 @@ input[type=checkbox]{
 }
 ```
 
-[插件地址](https://plugins.gitbook.com/plugin/todo)
+- [插件地址](https://plugins.gitbook.com/plugin/todo)
 
 ```
 "plugins": ["todo"]
