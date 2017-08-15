@@ -41,7 +41,7 @@
     * [CSS3](h5c3/CSS3.md)
 * [JsNative](jsNative/README.md)
     * [API](jsNative/API.md)
-* [CodeSnippet](codeSnippet/README.md)
+    * [CodeSnippet](jsNative/codeSnippet.md)
 * [ES6](es6/README.md)
     * [introduce](es6/introduce/README.md)
     * [grammar](es6/grammar/README.md)
