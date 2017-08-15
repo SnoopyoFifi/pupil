@@ -66,7 +66,7 @@
 * [Node](node/README.md)
     * [npm](node/npm/README.md)
     * [packagejson](node/packagejson/README.md)
-    * [instruction](node/instruction/README.md)
+    * [modules](node/modules/README.md)
 * [Grunt&Webpack](gruntWebpack/README.md)
 * [InterviewQuestion](interviewQuestion/README.md)
 * [Others](others/README.md)
