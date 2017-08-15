@@ -1,11 +1,13 @@
 # API
 
 ## `classList` & `cssText`
+
 - `classList`
 
 > 用于对`DOM`元素的`css类`进行增、删、改操作
 
 > 包含的方法有：
+
 ```js
 {
   length: {number}, /* # of class on this element */
@@ -29,8 +31,8 @@
 
 > 注意：
 
-- 优点： 当批量操作样式时，`cssText`只需要一次重绘操作，提高了页面渲染性能；
-- 缺点： 使用它会覆盖之前的样式。
+   优点： 当批量操作样式时，`cssText`只需要一次重绘操作，提高了页面渲染性能；
+   缺点： 使用它会覆盖之前的样式。
 
 > 可以考虑使用叠加的方式以保留原有的样式：
 
@@ -115,6 +117,7 @@
 - `Array.forEach()`
 
 > `.forEach()` 方法能够方便的遍历数组里的每个元素，可以在回调函数里对每个元素进行操作。
+
 > `.forEach()`方法没有返回值，不需要在回调函数里写`return`。
 
 ```js
@@ -354,6 +357,7 @@
 > `ajax` 封装函数
 
 ```js
+
   // ajax 封装函数调用
   ajax({
     url: "./TestXHR.aspx",   
@@ -414,6 +418,7 @@
     arr.push(("v=" + Math.random()).replace(".",""));
     return arr.join("&");
   }
+
 ```
 
 > `ajax`请求步骤
@@ -431,6 +436,7 @@
    - 提交到服务器的参数要经过 `encodeURIComponent()`方式进行编码，实际上在参数列表'key=value'的形式中，`key`和`value`都需要进行编码，因为会包含特殊字符。每次请求的时候都会在参数列表中拼入一个'v=xx'的字符串，这样是为了拒绝缓存，每次都直接请求到服务器上。
 
 > 拓展：
+
    - `encodeURI()` ：用于整个 URI 的编码，不会对本身属于 URI 的特殊字符进行编码，如冒号、正斜杠、问号和井号；其对应的解码函数 `decodeURI()`；
    - `encodeURIComponent() `：用于对 URI 中的某一部分进行编码，会对它发现的任何非标准字符进行编码；其对应的解码函数 `decodeURIComponent()`；
 
@@ -443,12 +449,12 @@
      + statusText：HTTP状态的说明
    
    - XHR对象的readyState属性表示请求/响应过程的当前活动阶段，这个属性的值如下
-      - 0-未初始化，尚未调用open()方法； 
-      - 1-启动，调用了open()方法，未调用send()方法； 
-      - 2-发送，已经调用了send()方法，未接收到响应； 
-      - 3-接收，已经接收到部分响应数据； 
-      - 4-完成，已经接收到全部响应数据； 
-      - 只要 `readyState` 的值变化，就会调用 `readystatechange` 事件，(其实为了逻辑上通顺，可以把`readystatechange`放到`send`之后，因为`send`时请求服务器，会进行网络通信，需要时间，在`send`之后指定`readystatechange`事件处理程序也是可以的，我一般都是这样用，但为了规范和跨浏览器兼容性，还是在`open`之前进行指定吧)。
+     - 0-未初始化，尚未调用open()方法； 
+     - 1-启动，调用了open()方法，未调用send()方法； 
+     - 2-发送，已经调用了send()方法，未接收到响应； 
+     - 3-接收，已经接收到部分响应数据； 
+     - 4-完成，已经接收到全部响应数据； 
+     - 只要 `readyState` 的值变化，就会调用 `readystatechange` 事件，(其实为了逻辑上通顺，可以把`readystatechange`放到`send`之后，因为`send`时请求服务器，会进行网络通信，需要时间，在`send` 之后指定`readystatechange`事件处理程序也是可以的，我一般都是这样用，但为了规范和跨浏览器兼容性，还是在`open`之前进行指定吧)。
 
    - 在`readystatechange`事件中，先判断响应是否接收完成，然后判断服务器是否成功处理请求，`xhr.status` 是状态码，状态码以2开头的都是成功，304表示从缓存中获取，上面的代码在每次请求的时候都加入了随机数，所以不会从缓存中取值，故该状态不需判断。
 
@@ -531,182 +537,4 @@
 
 - 如果不设置超时，就无法得知此次请求是成功还是失败。
 
-
-## 常用表单验证正则表达式
-
-[正则表达式说明](http://caibaojian.com/javascript-zhengze.html)
-
-> 用户名正则
-
-```js
-//用户名正则，4到16位（字母，数字，下划线，减号）
-var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
-//输出 true
-console.log(uPattern.test("caibaojian"));
-
-```
-
-> 密码强度正则
-
-```js
-//密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符
-var pPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/;
-//输出 true
-console.log("=="+pPattern.test("caibaojian#"));
-
-```
-
-> 整数正则
-
-```js
-//正整数正则
-var posPattern = /^\d+$/;
-//负整数正则
-var negPattern = /^-\d+$/;
-//整数正则
-var intPattern = /^-?\d+$/;
-//输出 true
-console.log(posPattern.test("42"));
-//输出 true
-console.log(negPattern.test("-42"));
-//输出 true
-console.log(intPattern.test("-42"));
-
-```
-
-> 数字正则
-
-可以是整数也可以是浮点数
-
-```js
-//正数正则
-var posPattern = /^\d*\.?\d+$/;
-//负数正则
-var negPattern = /^-\d*\.?\d+$/;
-//数字正则
-var numPattern = /^-?\d*\.?\d+$/;
-console.log(posPattern.test("42.2"));
-console.log(negPattern.test("-42.2"));
-console.log(numPattern.test("-42.2"));
-
-```
-
-> Email正则
-
-```js
-//Email正则
-var ePattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-//输出 true
-console.log(ePattern.test("99154507@qq.com"));
-
-```
-
-> 手机号码正则
-
-```js
-//手机号正则
-var mPattern = /^1[34578]\d{9}$/; //http://caibaojian.com/regexp-example.html
-//输出 true
-console.log(mPattern.test("15507621888"));
-
-```
-
-> 身份证号正则
-
-```js
-//身份证号（18位）正则
-var cP = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
-//输出 true
-console.log(cP.test("11010519880605371X"));
-
-```
-
->  URL正则
-
-```js
-//URL正则
-var urlP= /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-//输出 true
-console.log(urlP.test("http://caibaojian.com"));
-
-```
-
-> IPv4地址正则
-
-```js
-//ipv4地址正则
-var ipP = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-//输出 true
-console.log(ipP.test("115.28.47.26"));
-
-```
-
-> 十六进制颜色正则
-
-```js
-//RGB Hex颜色正则
-var cPattern = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
-//输出 true
-console.log(cPattern.test("#b8b8b8"));
-
-```
-
-> 日期正则 
-
-```js
-//日期正则，简单判定,未做月份及日期的判定
-var dP1 = /^\d{4}(\-)\d{1,2}\1\d{1,2}$/;
-//输出 true
-console.log(dP1.test("2017-05-11"));
-//输出 true
-console.log(dP1.test("2017-15-11"));
-//日期正则，复杂判定
-var dP2 = /^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/;
-//输出 true
-console.log(dP2.test("2017-02-11"));
-//输出 false
-console.log(dP2.test("2017-15-11"));
-//输出 false
-console.log(dP2.test("2017-02-29"));
-
-```
-
-> QQ号码正则 
-
-```js
-//QQ号正则，5至11位
-var qqPattern = /^[1-9][0-9]{4,10}$/;
-//输出 true
-console.log(qqPattern.test("65974040"));
-
-```
-
-> 微信号正则
-
-```js
-//微信号正则，6至20位，以字母开头，字母，数字，减号，下划线
-var wxPattern = /^[a-zA-Z]([-_a-zA-Z0-9]{5,19})+$/;
-//输出 true
-console.log(wxPattern.test("caibaojian_com"));
-
-```
-
-> 车牌号正则
-
-```js
-//车牌号正则
-var cPattern = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
-//输出 true
-console.log(cPattern.test("粤B39006"));
-
-```
-
-> 包含中文正则
-
-```js
-//包含中文正则
-var cnPattern = /[\u4E00-\u9FA5]/;
-//输出 true
-console.log(cnPattern.test("蔡宝坚"));
-```
 
