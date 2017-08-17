@@ -1,19 +1,16 @@
 # npm
 
-## 简介
+## 什么是 `npm`
 
-`npm`有两层含义。一层含义是Node的开放式模块登记和管理系统，网址为[npmjs.org](http://npmjs.org/)。另一层含义是Node默认的模块管理器，是一个命令行下的软件，用来安装和管理Node模块。
+- `npm` 是 Node 的开放式模块登记和管理系统，网址为[npmjs.org](http://npmjs.org/)；
+- `npm` 是 Node 默认的模块管理器，是一个命令行下的软件，用来安装和管理Node模块。
 
-`npm`不需要单独安装。在安装Node的时候，会连带一起安装`npm`。但是，Node附带的`npm`可能不是最新版本，最好用下面的命令，更新到最新版本。
+## `npm` 安装 
 
-```
-$ npm install npm@latest -g
+> `npm`不需要单独安装。在安装Node的时候，会连带一起安装`npm`。
 
-```
-
-上面的命令中，`@latest`表示最新版本，`-g`表示全局安装。所以，命令的主干是`npm install npm`，也就是使用`npm`安装自己。之所以可以这样，是因为`npm`本身与Node的其他模块没有区别。
-
-然后，运行下面的命令，查看各种信息。
+- 更新`npm`： `npm install npm@latest -g`
+- 查看基本信息：
 
 ```
 # 查看 npm 命令列表
@@ -30,20 +27,24 @@ $ npm config list -l
 
 ```
 
-## npm init
+## 生成 `package.json` 文件： `npm init`
 
-`npm init`用来初始化生成一个新的`package.json`文件。它会向用户提问一系列问题，如果你觉得不用修改默认配置，一路回车就可以了。
+- 直接生成 `package.json`
 
-如果使用了`-f`（代表force）、`-y`（代表yes），则跳过提问阶段，直接生成一个新的`package.json`文件。
+> 使用`-f`（代表force）、`-y`（代表yes），则跳过提问阶段，直接生成`package.json`文件。
 
 ```
 $ npm init -y
+或
+$ npm init -f 
 
 ```
 
-## npm set
+## 设置环境变量：`npm set`
 
-`npm set`用来设置环境变量。
+- 为 `npm init` 设置默认值：
+
+> 将预设值自动写入`package.json`中（这些信息会存放在用户主目录的` ~/.npmrc`文件），项目有不同的值时，可用 `npm config` 设置。
 
 ```
 $ npm set init-author-name 'Your name'
@@ -53,42 +54,49 @@ $ npm set init-license 'MIT'
 
 ```
 
-上面命令等于为`npm init`设置了默认值，以后执行`npm init`的时候，`package.json`的作者姓名、邮件、主页、许可证字段就会自动写入预设的值。这些信息会存放在用户主目录的` ~/.npmrc`文件，使得用户不用每个项目都输入。如果某个项目有不同的设置，可以针对该项目运行`npm config`。
+- 记录模块的确切版本
+
+> 添加模块，设置`package.json`记录模块的确切版本，而不是可选范围。
 
 ```
 $ npm set save-exact true
 
 ```
 
-上面命令设置加入模块时，`package.json`将记录模块的确切版本，而不是一个可选的版本范围。
 
 ## npm config
+
+- 设置模块的全局安装目录：
 
 ```
 $ npm config set prefix $dir
 
 ```
 
-上面的命令将指定的`$dir`目录，设为模块的全局安装目录。如果当前有这个目录的写权限，那么运行`npm install`的时候，就不再需要`sudo`命令授权了。
+- 更改版本升级限定：
+
+> 使得`npm install --save`和`npm install --save-dev`安装新模块时，允许的版本范围从克拉符号（`^`）改成波浪号（`~`），即从允许小版本升级，变成只允许补丁包的升级。
 
 ```
+
 $ npm config set save-prefix ~
 
 ```
 
-上面的命令使得`npm install --save`和`npm install --save-dev`安装新模块时，允许的版本范围从克拉符号（`^`）改成波浪号（`~`），即从允许小版本升级，变成只允许补丁包的升级。
+- 更改`package.json`的字段默认值
+
+> 使用`npm init`时，生成的`package.json`文件的字段默认值。
 
 ```
-$ npm config set init.author.name $name
-$ npm config set init.author.email $email
+  npm config set init.author.name $name
+  npm config set init.author.email $email
 
 ```
 
-上面命令指定使用`npm init`时，生成的`package.json`文件的字段默认值。
 
-## npm info
+## 查看模块的具体信息 ： `npm info`
 
-`npm info`命令可以查看每个模块的具体信息。比如，查看underscore模块的信息。
+> 比如，查看underscore模块的信息。
 
 ```
 $ npm info underscore
@@ -113,7 +121,7 @@ $ npm info underscore
 
 ```
 
-上面命令返回一个JavaScript对象，包含了underscore模块的详细信息。这个对象的每个成员，都可以直接从info命令查询。
+> 上面命令返回一个JavaScript对象，包含了underscore模块的详细信息。这个对象的每个成员，都可以直接从info命令查询。
 
 ```
 $ npm info underscore description
@@ -127,16 +135,16 @@ $ npm info underscore version
 
 ```
 
-## npm search
+## 搜索 `npm` 仓库：`npm search`
 
-`npm search`命令用于搜索npm仓库，它后面可以跟字符串，也可以跟正则表达式。
+> `npm search`命令用于搜索npm仓库，它后面可以跟字符串，也可以跟正则表达式。
 
 ```
 $ npm search <搜索词>
 
 ```
 
-下面是一个例子。
+> 下面是一个例子。
 
 ```
 $ npm search node-gyp
@@ -148,36 +156,40 @@ $ npm search node-gyp
 
 ```
 
-## npm list
+## 查看安装的模块： `npm list`
 
-`npm list`命令以树型结构列出当前项目安装的所有模块，以及它们依赖的模块。
+- 查看当前项目安装的模块
 
 ```
 $ npm list
 
 ```
 
-加上global参数，会列出全局安装的模块。
+- 全局安装的模块
 
 ```
 $ npm list -global
 
 ```
 
-`npm list`命令也可以列出单个模块。
+- 列出单个模块
 
 ```
 $ npm list underscore
 
 ```
 
-## npm install
+## 安装模块： `npm install`
 
 ### 基本用法
 
-Node模块采用`npm install`命令安装。
+- 全局安装
 
-每个模块可以“全局安装”，也可以“本地安装”。“全局安装”指的是将一个模块安装到系统目录中，各个项目都可以调用。一般来说，全局安装只适用于工具模块，比如`eslint`和`gulp`。“本地安装”指的是将一个模块下载到当前项目的`node_modules`子目录，然后只有在项目目录之中，才能调用这个模块。
+> 指的是将一个模块安装到系统目录中，各个项目都可以调用。一般来说，全局安装只适用于工具模块，比如`eslint`和`gulp`。
+
+- 本地安装
+
+> 指的是将一个模块下载到当前项目的`node_modules`子目录，然后只有在项目目录之中，才能调用这个模块。
 
 ```
 # 本地安装
@@ -189,7 +201,7 @@ $ sudo npm install -g <package name>
 
 ```
 
-`npm install`也支持直接输入Github代码库地址。
+- `npm install`也支持直接输入Github代码库地址
 
 ```
 $ npm install git://github.com/package/path.git
@@ -197,16 +209,18 @@ $ npm install git://github.com/package/path.git#0.1.0
 
 ```
 
-安装之前，`npm install`会先检查，`node_modules`目录之中是否已经存在指定模块。如果存在，就不再重新安装了，即使远程仓库已经有了一个新版本，也是如此。
+- 重新安装
 
-如果你希望，一个模块不管是否安装过，npm 都要强制重新安装，可以使用`-f`或`--force`参数。
+> 安装之前，`npm install`会先检查，`node_modules`目录之中是否已经存在指定模块。如果存在，就不再重新安装了，即使远程仓库已经有了一个新版本，也是如此。
+
+> 强制重新安装某个模块，可以使用`-f`或`--force`参数。
 
 ```
 $ npm install <packageName> --force
 
 ```
 
-如果你希望，所有模块都要强制重新安装，那就删除`node_modules`目录，重新执行`npm install`。
+> 强制重新安装所有模块，先删除`node_modules`目录，重新执行`npm install`。
 
 ```
 $ rm -rf node_modules
@@ -216,7 +230,7 @@ $ npm install
 
 ### 安装不同版本
 
-install命令总是安装模块的最新版本，如果要安装模块的特定版本，可以在模块名后面加上@和版本号。
+- 安装模块的特定版本
 
 ```
 $ npm install sax@latest
@@ -225,17 +239,21 @@ $ npm install sax@">=0.1.0 <0.2.0"
 
 ```
 
-如果使用`--save-exact`参数，会在package.json文件指定安装模块的确切版本。
+- 安装确切版本
+
+> 如果使用`--save-exact`参数，会在package.json文件指定安装模块的确切版本。
 
 ```
 $ npm install readable-stream --save --save-exact
-
 ```
 
-install命令可以使用不同参数，指定所安装的模块属于哪一种性质的依赖关系，即出现在packages.json文件的哪一项中。
+- 安装在不同的环境中
 
-- –save：模块名将被添加到dependencies，可以简化为参数`-S`。
-- –save-dev: 模块名将被添加到devDependencies，可以简化为参数`-D`。
+> install命令可以使用不同参数，指定所安装的模块属于哪一种性质的依赖关系，即出现在packages.json文件的哪一项中。
+
+** –save：模块名将被添加到dependencies，可以简化为参数`-S`。**
+
+** –save-dev: 模块名将被添加到devDependencies，可以简化为参数`-D`。**
 
 ```
 $ npm install sax --save
@@ -246,7 +264,7 @@ $ npm install node-tap -D
 
 ```
 
-如果要安装beta版本的模块，需要使用下面的命令。
+- 安装beta版本
 
 ```
 # 安装最新的beta版
@@ -257,7 +275,7 @@ $ npm install <module-name>@1.3.1-beta.3
 
 ```
 
-`npm install`默认会安装`dependencies`字段和`devDependencies`字段中的所有模块，如果使用`--production`参数，可以只安装`dependencies`字段的模块。
+- 只安装`dependencies`字段的模块
 
 ```
 $ npm install --production
@@ -266,7 +284,7 @@ $ NODE_ENV=production npm install
 
 ```
 
-一旦安装了某个模块，就可以在代码中用`require`命令加载这个模块。
+- 加载某个模块
 
 ```
 var backbone = require('backbone')
@@ -276,34 +294,38 @@ console.log(backbone.VERSION)
 
 ## 避免系统权限
 
-默认情况下，Npm全局模块都安装在系统目录（比如`/usr/local/lib/`），普通用户没有写入权限，需要用到`sudo`命令。这不是很方便，我们可以在没有root权限的情况下，安装全局模块。
+- 更改安装全局模块的权限
 
-首先，在主目录下新建配置文件`.npmrc`，然后在该文件中将`prefix`变量定义到主目录下面。
+> 默认情况下，Npm全局模块都安装在系统目录（比如`/usr/local/lib/`），普通用户没有写入权限，需要用到`sudo`命令。这不是很方便，我们可以在没有root权限的情况下，安装全局模块。
+
+1.在主目录下新建配置文件`.npmrc`，然后在该文件中将`prefix`变量定义到主目录下面。
 
 ```
 prefix = /home/yourUsername/npm
 
 ```
 
-然后在主目录下新建`npm`子目录。
+2.在主目录下新建`npm`子目录。
 
 ```
 $ mkdir ~/npm
 
 ```
 
-此后，全局安装的模块都会安装在这个子目录中，npm也会到`~/npm/bin`目录去寻找命令。
+> 此后，全局安装的模块都会安装在这个子目录中，npm也会到`~/npm/bin`目录去寻找命令。
 
-最后，将这个路径在`.bash_profile`文件（或`.bashrc`文件）中加入PATH变量。
+3.将这个路径在`.bash_profile`文件（或`.bashrc`文件）中加入PATH变量。
 
 ```
 export PATH=~/npm/bin:$PATH
 
 ```
 
-## npm update，npm uninstall
+## 模块更新、卸载： `npm update`、`npm uninstall`
 
-`npm update`命令可以更新本地安装的模块。
+- 更新模块
+
+> 先到远程仓库查询最新版本，然后查询本地版本。如果本地版本不存在，或者远程版本较新，就会安装。
 
 ```
 # 升级当前项目的指定模块
@@ -314,9 +336,9 @@ $ npm update -global [package name]
 
 ```
 
-它会先到远程仓库查询最新版本，然后查询本地版本。如果本地版本不存在，或者远程版本较新，就会安装。
+- 更新模块版本号
 
-使用`-S`或`--save`参数，可以在安装的时候更新`package.json`里面模块的版本号。
+> 使用`-S`或`--save`参数，可以在安装的时候更新`package.json`里面模块的版本号。
 
 ```
 // 更新之前的package.json
@@ -331,16 +353,17 @@ dependencies: {
 
 ```
 
-注意，从npm v2.6.1 开始，`npm update`只更新顶层模块，而不更新依赖的依赖，以前版本是递归更新的。如果想取到老版本的效果，要使用下面的命令。
+**注意**：从npm v2.6.1 开始，`npm update`只更新顶层模块，而不更新依赖的依赖，以前版本是递归更新的。如果想取到老版本的效果，要使用下面的命令。
 
 ```
 $ npm --depth 9999 update
 
 ```
 
-`npm uninstall`命令，卸载已安装的模块。
+- 卸载模块
 
 ```
+# 卸载当前项目指定的模块
 $ npm uninstall [package name]
 
 # 卸载全局模块
@@ -348,7 +371,9 @@ $ npm uninstall [package name] -global
 
 ```
 
-## npm run
+## 执行脚本文件： `npm run`
+
+[我为何放弃Gulp与Grunt，转投npm scripts（中）](http://www.infoq.com/cn/news/2016/02/gulp-grunt-npm-scripts-part2)
 
 `npm`不仅可以用于模块管理，还可以用于执行脚本。`package.json`文件有一个`scripts`字段，可以用于指定脚本命令，供`npm`直接调用。
 
@@ -835,7 +860,7 @@ scripts字段可以使用一些内部变量，主要是package.json的各种字�
 
 ### 通配符
 
-npm的通配符的规则如下。
+> npm的通配符的规则：
 
 - `*` 匹配0个或多个字符
 - `?` 匹配1个字符
@@ -847,61 +872,78 @@ npm的通配符的规则如下。
 - `@(pattern|pat*|pat?erN)` 只匹配给定模式之一
 - `**` 如果出现在路径部分，表示0个或多个子目录。
 
-## npm link
+## 使用开发中的模块： `npm link`
 
-开发NPM模块的时候，有时我们会希望，边开发边试用，比如本地调试的时候，`require('myModule')`会自动加载本机开发中的模块。Node规定，使用一个模块时，需要将其安装到全局的或项目的`node_modules`目录之中。对于开发中的模块，解决方法就是在全局的`node_modules`目录之中，生成一个符号链接，指向模块的本地目录。
+- 使用开发中的模块关键点
 
-`npm link`就能起到这个作用，会自动建立这个符号链接。
+> 开发NPM模块的时候，有时我们会希望，边开发边试用，比如本地调试的时候，`require('myModule')`会自动加载本机开发中的模块。Node规定，使用一个模块时，需要将其安装到全局的或项目的`node_modules`目录之中。对于开发中的模块，解决方法就是在全局的`node_modules`目录之中，生成一个符号链接，指向模块的本地目录。
 
-请设想这样一个场景，你开发了一个模块`myModule`，目录为`src/myModule`，你自己的项目`myProject`要用到这个模块，项目目录为`src/myProject`。首先，在模块目录（`src/myModule`）下运行`npm link`命令。
+**`npm link`就能起到这个作用，会自动建立这个符号链接。**
+
+- 场景：
+
+> 请设想这样一个场景，你开发了一个模块`myModule`，目录为`src/myModule`，你自己的项目`myProject`要用到这个模块，项目目录为`src/myProject`。
+
+- 解决方案：
+
+1.全局调用
+
+> 在模块目录（`src/myModule`）下运行`npm link`命令。
 
 ```
 src/myModule$ npm link
 
 ```
 
-上面的命令会在NPM的全局模块目录内，生成一个符号链接文件，该文件的名字就是`package.json`文件中指定的模块名。
+> 上面的命令会在NPM的全局模块目录内，生成一个符号链接文件，该文件的名字就是`package.json`文件中指定的模块名。这个时候，已经可以全局调用`myModule`模块了。
 
 ```
 /path/to/global/node_modules/myModule -> src/myModule
 
 ```
 
-这个时候，已经可以全局调用`myModule`模块了。但是，如果我们要让这个模块安装在项目内，还要进行下面的步骤。
+2.项目内使用
 
-切换到项目目录，再次运行`npm link`命令，并指定模块名。
+> 要让这个模块安装在项目内，还要进行下面的步骤。
+
+> 切换到项目目录，再次运行`npm link`命令，并指定模块名。
 
 ```
 src/myProject$ npm link myModule
 
 ```
 
-上面命令等同于生成了本地模块的符号链接。
+> 上面命令等同于生成了本地模块的符号链接。
 
 ```
 src/myProject/node_modules/myModule -> /path/to/global/node_modules/myModule
 
 ```
 
-然后，就可以在你的项目中，加载该模块了。
+> 然后，就可以在你的项目中，加载该模块了。
 
 ```
 var myModule = require('myModule');
 
 ```
 
-这样一来，`myModule`的任何变化，都可以直接反映在`myProject`项目之中。但是，这样也出现了风险，任何在`myProject`目录中对`myModule`的修改，都会反映到模块的源码中。
 
-如果你的项目不再需要该模块，可以在项目目录内使用`npm unlink`命令，删除符号链接。
+- 带来的问题
+
+> 这样一来，`myModule`的任何变化，都可以直接反映在`myProject`项目之中。但是，这样也出现了风险，任何在`myProject`目录中对`myModule`的修改，都会反映到模块的源码中。
+
+- 删除符号链接
+
+> 如果项目不再需要该模块，可以在项目目录内使用`npm unlink`命令，删除符号链接。
 
 ```
 src/myProject$ npm unlink myModule
 
 ```
 
-## npm bin
+## 显示可执行脚本目录:  `npm bin`
 
-`npm bin`命令显示相对于当前目录的，Node模块的可执行脚本所在的目录（即`.bin`目录）。
+> `npm bin`命令显示相对于当前目录的，Node模块的可执行脚本所在的目录（即`.bin`目录）。
 
 ```
 # 项目根目录下执行
@@ -910,9 +952,9 @@ $ npm bin
 
 ```
 
-## npm adduser
+## 注册`npm`用户： `npm adduser`
 
-`npm adduser`用于在npmjs.com注册一个用户。
+> `npm adduser`用于在npmjs.com注册一个用户。
 
 ```
 $ npm adduser
@@ -922,51 +964,57 @@ Email: YOUR_EMAIL@domain.com
 
 ```
 
-## npm publish
+## 发布模块：`npm publish`
 
-`npm publish`用于将当前模块发布到`npmjs.com`。执行之前，需要向`npmjs.com`申请用户名。
+- 向`npmjs.com`申请用户名。
 
 ```
 $ npm adduser
 
 ```
 
-如果已经注册过，就使用下面的命令登录。
+- 如果已经注册过，就使用下面的命令登录。
 
 ```
 $ npm login
 
 ```
 
-登录以后，就可以使用`npm publish`命令发布。
+- 登录以后，就可以使用`npm publish`命令发布。
 
 ```
 $ npm publish
 
 ```
 
-如果当前模块是一个beta版，比如`1.3.1-beta.3`，那么发布的时候需要使用`tag`参数，将其发布到指定标签，默认的发布标签是`latest`。
+- 发布`beta`版
+
+> 如果当前模块是一个beta版，比如`1.3.1-beta.3`，那么发布的时候需要使用`tag`参数，将其发布到指定标签，默认的发布标签是`latest`。 
 
 ```
 $ npm publish --tag beta
 
 ```
 
-如果发布私有模块，模块初始化的时候，需要加上`scope`参数。只有npm的付费用户才能发布私有模块。
+- 发布私有模块
+
+> 如果发布私有模块，模块初始化的时候，需要加上`scope`参数。只有npm的付费用户才能发布私有模块。
 
 ```
 $ npm init --scope=<yourscope>
 
 ```
 
-如果你的模块是用ES6写的，那么发布的时候，最好转成ES5。首先，需要安装Babel。
+- 发布ES6模块
+
+>  如果你的模块是用ES6写的，那么发布的时候，最好转成ES5。首先，需要安装Babel。
 
 ```
 $ npm install --save-dev babel-cli@6 babel-preset-es2015@6
 
 ```
 
-然后，在`package.json`里面写入`build`脚本。
+> 然后，在`package.json`里面写入`build`脚本。
 
 ```
 "scripts": {
@@ -976,7 +1024,7 @@ $ npm install --save-dev babel-cli@6 babel-preset-es2015@6
 
 ```
 
-运行上面的脚本，会将`source`目录里面的ES6源码文件，转为`distribution`目录里面的ES5源码文件。然后，在项目根目录下面创建两个文件`.npmignore`和`.gitignore`，分别写入以下内容。
+> 运行上面的脚本，会将`source`目录里面的ES6源码文件，转为`distribution`目录里面的ES5源码文件。然后，在项目根目录下面创建两个文件`.npmignore`和`.gitignore`，分别写入以下内容。
 
 ```
 // .npmignore
@@ -988,20 +1036,18 @@ distribution
 
 ```
 
-## npm deprecate
-
-如果想废弃某个版本的模块，可以使用`npm deprecate`命令。
+## 废弃某个版本的模块： `npm deprecate`
 
 ```
 $ npm deprecate my-thing@"< 0.2.3" "critical bug fixed in v0.2.3"
 
 ```
 
-运行上面的命令以后，小于`0.2.3`版本的模块的`package.json`都会写入一行警告，用户安装这些版本时，这行警告就会在命令行显示。
+> 运行上面的命令以后，小于`0.2.3`版本的模块的`package.json`都会写入一行警告，用户安装这些版本时，这行警告就会在命令行显示。
 
-## npm owner
+## 管理模块的维护者： `npm owner`
 
-模块的维护者可以发布新版本。`npm owner`命令用于管理模块的维护者。
+> 模块的维护者可以发布新版本。`npm owner`命令用于管理模块的维护者。
 
 ```
 # 列出指定模块的维护者
@@ -1017,9 +1063,9 @@ $ npm owner rm <user> <package name>
 
 ## 其他命令
 
-### npm home，npm repo
+### 打开模块主页及其仓库：  `npm home`、`npm repo`
 
-`npm home`命令可以打开一个模块的主页，`npm repo`命令则是打开一个模块的代码仓库。
+> `npm home`命令可以打开一个模块的主页，`npm repo`命令则是打开一个模块的代码仓库。
 
 ```
 $ npm home $package
@@ -1027,37 +1073,33 @@ $ npm repo $package
 
 ```
 
-这两个命令不需要模块先安装。
+### 检查模块是否有新版本： `npm outdated`
 
-### npm outdated
-
-`npm outdated`命令检查当前项目所依赖的模块，是否已经有新版本。
+> `npm outdated`命令检查当前项目所依赖的模块，是否已经有新版本。
 
 ```
 $ npm outdated
 
 ```
 
-它会输出当前版本（current version）、应当安装的版本（wanted version）和最新发布的版本（latest version）。
+> 会输出当前版本（current version）、应当安装的版本（wanted version）和最新发布的版本（latest version）。
 
-### npm prune
+### 检查没有使用的模块 ：`npm prune`
 
-`npm prune`检查当前项目的`node_modules`目录中，是否有`package.json`里面没有提到的模块，然后将所有这些模块输出在命令行。
+> `npm prune`检查当前项目的`node_modules`目录中，是否有`package.json`里面没有提到的模块，然后将所有这些模块输出在命令行。
 
 ```
 $ npm prune
 
 ```
 
-### npm shrinkwrap
-
-`npm shrinkwrap`的作用是锁定当前项目的依赖模块的版本。
+### 锁定模块版本： `npm shrinkwrap`
 
 ```
 $ npm shrinkwrap
 
 ```
 
-运行该命令后，会在当前项目的根目录下生成一个`npm-shrinkwrap.json`文件，内容是`node_modules`目录下所有已经安装的模块，以及它们的精确版本。
+> 运行该命令后，会在当前项目的根目录下生成一个`npm-shrinkwrap.json`文件，内容是`node_modules`目录下所有已经安装的模块，以及它们的精确版本。
 
-下次运行`npm install`命令时，`npm`发现当前目录下有`npm-shrinkwrap.json`文件，就会只安装里面提到的模块，且版本也会保持一致。
+> 下次运行`npm install`命令时，`npm`发现当前目录下有`npm-shrinkwrap.json`文件，就会只安装里面提到的模块，且版本也会保持一致。
