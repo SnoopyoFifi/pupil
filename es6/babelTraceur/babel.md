@@ -1,6 +1,24 @@
 # babel
 
-## Babel的安装和使用：
+- 安装
+
+  ​
+
+  > 全局安装
+
+
+```
+$ npm i -g babel
+```
+
+> 本地安装
+
+```
+$ npm i --save-dev babel-cli babel-preset-env
+```
+
+
+
 1. 安装好nodejs和npm。
 
 2. 安装Babel:
