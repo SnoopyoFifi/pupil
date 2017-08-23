@@ -53,7 +53,21 @@
     .catch(error => console.log(error))
 ```
 
+> 栗子二：(`Promise`实例新建后立即执行)
 
+```js
+  let promise = new Promise(function(resolve, reject){
+    console.log('Promise');
+    resolve();
+  })
+  promise.then(function(){
+    console.log('Resolve');
+  })
+  console.log('Hi!')
+  // Promise
+  // Hi!
+  // Resolve
+```
 
 **说明**：
 - `Promise`构造函数创建实例对象`promise`；
@@ -61,10 +75,11 @@
 - `resolve`函数的作用是，将`Promise`对象的状态从`Pending`变为`Resolved`，在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；
 - `reject`函数的作用是，将`Promise`对象的状态从`Pending`变为`Reject`，在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去；
 - 实例生成后，可以用`then`方法分别指定`Resolve`状态和`Reject`状态的回调函数(即resolve和reject)；
+- 提倡使用写法二；
 - 如果调用`resolve`和`reject`函数时带有参数，那么该参数会被传递给回调函数；
 - 且`reject`函数的参数通常是`Error`对象的实例；`resolve`函数的参数除了正常的值外，可能是另一个`Promise`实例(栗子一)；
 - `catch`方法是.then(null,rejection)的别名(都是定义在原型对象上的)，用来指定发生错误的回调函数；
-- 提倡使用写法二。
+- `Promise`新建后就会立即执行，随后执行当前脚本所有同步任务，最后才会执行then方法的指定的回调函数(栗子二)；
 
 ## 应用
 
