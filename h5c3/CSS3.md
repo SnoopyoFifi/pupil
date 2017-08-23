@@ -1,5 +1,13 @@
 # CSS3
 
+- box-shadow 
+
+`box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);`
+
+**参数说明**：
+
+
+
 - 美化具有placeholder属性的Input输入框
 
 ```html
