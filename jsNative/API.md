@@ -331,6 +331,68 @@
 
 ```
 
+## 获取对象的类型名称
+
+- `typeof`
+
+```js
+  typeof {};
+  typeof [];
+  typeof new Date();
+```
+
+- `instanceof`
+
+```js
+  [] instanceof Array;
+
+  function isArray(arr){
+    return arr instanceof Array;
+  }
+```
+
+- `constructor`
+
+```js
+  function isArray(arr){
+    return typeof arr == "object" && arr.constructor == Array;
+  }
+```
+
+- `js` 内置对象
+```js
+  var snoopy = new Set();
+  function getType(obj){
+    return Object.prototype.toString.call(obj).match(/\[object (.*?)\]/)[1];
+  }
+  getType(snoopy); //"Set"
+
+```
+
+- 检测各种对象类型
+
+```js
+  var is = {
+    types: ["Array", "Boolean", "Date", "Number", "Object", "RegExp", "String", "Window", "HTMLDocument", "Set", "Map"]
+  };
+  for(var i = 0, c; c = is.types[i++];){
+    is[c] = (function(type){
+      return function(obj){
+        // 返回boolean
+         return Object.prototype.toString.call(obj) == "[object "+ type +"]";
+         
+        // 返回类型
+        //  return Object.prototype.toString.call(obj).match(/\[object (.*?)\]/)[1];
+      }
+    })(c)
+  }
+  
+  console.log(is.Array([]));
+  console.log(is.RegExp(/reg/ig));
+  console.log(is.Date(new Date));
+  console.log(is.Set(new Set));
+```
+
 ## 事件委托
 
 >  事件委托 应用场景：

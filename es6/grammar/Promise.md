@@ -1,5 +1,133 @@
 # Promise对象
 
+## 背景
+
+> 单线程
+
+- js 执行环境是"单线程"的，一次执行一件任务，多任务要排队，前面一个任务完成，再执行后面的任务；
+- "单线程"，当某段js代码长时间运行，页面就卡在这里，其他任务无法执行，就会出现浏览器无响应(假死)，如`Ajax`请求返回结果。
+
+> 同步和异步
+
+- js 将任务的执行模式分为：同步和异步
+- 同步往往用于一些简单、快速、不涉及IO读写的操作
+- 异步操作流程：
+   - 异步操作将每个任务分成两段；
+   - 第一段代码包含对外部数据的请求；
+   - 第二段代码被写成一个回调函数，包含了对外部数据的处理；
+   - 第一段执行完，不是立马执行第二段代码，而是将程序的执行权交给第二个任务；
+   - 等到第一个任务的请求的外部数据返回了，再由系统通知执行其第二段代码。
+  
+> "异步模式"编程方法
+
+- 回调函数
+
+> 回调函数是异步编程最基本的方法
+
+```js
+function f1(callback) {
+  // f1 的代码
+
+  // f1 执行完成后，调用回调函数
+  callback();
+}
+
+f1(f2)
+```
+
+- 事件监听
+
+> 采用事件驱动模式
+
+```js
+function f1(){
+  setTimeout(function () {
+    // f1的任务代码
+    f1.trigger('done');
+  }, 1000);
+}
+f1.on('done', f2);
+```
+
+- 观察者模式
+
+```js
+jQuery.subscribe("done", f2);
+
+function f1(){
+  setTimeout(function () {
+    // f1的任务代码
+    jQuery.publish("done");
+  }, 1000);
+}
+
+```
+
+> 异步操作流程控制
+
+- 串行执行：通过编写一个流程控制函数，来控制异步任务，将任务逐个执行；
+
+```js
+var items = [ 1, 2, 3, 4, 5, 6 ];
+var results = [];
+function series(item) {
+  if(item) {
+    async( item, function(result) {
+      results.push(result);
+      return series(items.shift());
+    });
+  } else {
+    return final(results);
+  }
+}
+series(items.shift());
+```
+
+- 并行执行：将所有异步任务同时执行；
+
+```js
+var items = [ 1, 2, 3, 4, 5, 6 ];
+var results = [];
+
+items.forEach(function(item) {
+  async(item, function(result){
+    results.push(result);
+    if(results.length == items.length) {
+      final(results);
+    }
+  })
+});
+```
+
+- 串行和并行结合：通过设置门槛，每次最多执行n个异步任务，已避免了过分占用系统资源。
+
+```js
+var items = [ 1, 2, 3, 4, 5, 6 ];
+var results = [];
+var running = 0;
+var limit = 2;
+
+function launcher() {
+  while(running < limit && items.length > 0) {
+    var item = items.shift();
+    async(item, function(result) {
+      results.push(result);
+      running--;
+      if(items.length > 0) {
+        launcher();
+      } else if(running == 0) {
+        final(results);
+      }
+    });
+    running++;
+  }
+}
+
+launcher();
+```
+
+
+
 ## 什么是`Promise`
 
 ```js
@@ -8,9 +136,14 @@
   })
 ```
 
-- `Promise`对象是用来处理异步请求的构造函数，从它可以获取异步操作的消息。
+- `Promise`运行机制：
 
-- `Promise`提供统一的`API`，各种异步操作都可以使用同样的方法进行处理。
+  - `Promise`对象是用来处理异步请求的构造函数，从它可以获取异步操作的消息。
+  - `Promise`起到代理作用，充当异步操作与回调函数之间的中介。
+  - `Promise`提供统一的`API`，各种异步操作都可以使用同样的方法进行处理。
+  - 使得程序具备正常的同步运行的流程，回调函数不必再一层层嵌套。
+  - `Promise`的思想是，每个异步任务立即返回一个`Promise`对象，由于是立刻返回，固可采用同步操作的流程。
+  - 同时其`then`方法，允许指定回调函数，在异步任务完成后调用。
 
 - `Promise`对象特点：
   + 三种状态：`Pending`(进行中)、`Fulfilled`(已成功)、`Rejected`(已失败)， 只有异步结果可以改变其状态。
@@ -20,6 +153,29 @@
   + 一旦新建其实例对象，就立即执行无法取消；
   + 如果不设置回调函数，外部无法获取其内部抛出的错误；
   + 其处于`Pending`状态时，无法确定异步操作是刚刚开始还是即将完成。
+
+- 与传统写法比较：
+
+```js
+// 传统写法
+step1(function (value1) {
+  step2(value1, function(value2) {
+    step3(value2, function(value3) {
+      step4(value3, function(value4) {
+        // ...
+      });
+    });
+  });
+});
+
+// Promises的写法
+(new Promise(step1))
+  .then(step2)
+  .then(step3)
+  .then(step4);
+
+(new Promise(f1)).then(f2);
+```
 
 ## 用法
 
@@ -69,6 +225,36 @@
   // Resolve
 ```
 
+> 栗子三：(使用`then`方法添加回调函数，不同的写法有些细微的差别)
+
+```js
+
+  // exapmle 1:
+  doSomething()
+  .then(function(){
+    return doSomethingElse();
+  })
+  .then(finalHandler);
+
+  // example 2:
+  doSomething()
+  .then(function(){
+    doSomethingElse();
+  })
+  .then(finalHandler);
+
+  // example 3:
+  doSomething()
+  .then(doSomethingElse());
+  .then(finalHandler);
+
+  // example 4:
+  doSomething()
+  .then(doSomethingElse)
+  .then(finalHandler);
+  
+```
+
 **说明**：
 - `Promise`构造函数创建实例对象`promise`；
 - 创建实例对象时，构造函数传入一个回调函数，该回调函数接受两个参数`resolve`、`reject`；
@@ -80,133 +266,100 @@
 - 且`reject`函数的参数通常是`Error`对象的实例；`resolve`函数的参数除了正常的值外，可能是另一个`Promise`实例(栗子一)；
 - `catch`方法是.then(null,rejection)的别名(都是定义在原型对象上的)，用来指定发生错误的回调函数；
 - `Promise`新建后就会立即执行，随后执行当前脚本所有同步任务，最后才会执行then方法的指定的回调函数(栗子二)；
+- `finalHandler`回调函数的参数：example1、exapmle3是doSomethingElse函数的运行结果；example3是`undefined`;example4是doSomething函数的的返回结果。
 
 ## 应用
 
 ### `Ajax`操作
 
-> `Ajax`操作是典型的异步操作
+- 加载图片
+
+> 可以把图片的加载写成一个`Promise`对象
+
+```js
+  var preloadImage = function(path){
+    return new Promise(function(resolve, reject){
+      var image = new Image();
+      image.onload = resolve;
+      image.onerror = reject;
+      image.src = path;
+    })
+  }
+```
+
+- `Ajax`操作是典型的异步操作
+
+> 使用`Promise`对象，改写`Ajax`封装函数
 
 ```js
 
-  // ajax 封装函数调用
-  ajax({
-    url: "./TestXHR.aspx",   
-    type: "POST",                    
-    data: { name: "super", age: 20 },  
-    dataType: "json",
-    success: function (response, xml) {
-        // 此处放成功后执行的代码
-    },
-    error: function (status) {
-        // 此处放失败后执行的代码
+// 普通Ajax封装
+function search(term, onload, onerror) {
+  var xhr, results, url;
+  url = 'http://example.com/search?q=' + term;
+
+  xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+
+  xhr.onload = function (e) {
+    if (this.status === 200) {
+      results = JSON.parse(this.responseText);
+      onload(results);
     }
+  };
+  xhr.onerror = function (e) {
+    onerror(e);
+  };
+
+  xhr.send();
+}
+
+search("Hello World", console.log, console.error);
+
+// 使用 `Promise` 封装`Ajax`
+function search(term) {
+  var url = 'http://example.com/search?q=' + term;
+  var xhr = new XMLHttpRequest();
+  var result;
+
+  var p = new Promise(function (resolve, reject) {
+    xhr.open('GET', url, true);
+    xhr.onload = function (e) {
+      if (this.status === 200) {
+        result = JSON.parse(this.responseText);
+        resolve(result);
+      }
+    };
+    xhr.onerror = function (e) {
+      reject(e);
+    };
+    xhr.send();
   });
-  function ajax(options) {
-    options = options || {};
-    options.type = (options.type || "GET").toUpperCase();
-    options.dataType = options.dataType || "json";
-    var params = formatParams(options.data),
-        xhr;
 
-      //创建 - 非IE6 - 第一步
-      if (window.XMLHttpRequest) {
-        xhr = new XMLHttpRequest();
-      } else { //IE6及其以下版本浏览器
-        xhr = new ActiveXObject('Microsoft.XMLHTTP');
+  return p;
+}
+
+search("Hello World").then(console.log, console.error);
+
+// Ajax加载图片
+function imgLoad(url) {
+  return new Promise(function(resolve, reject) {
+    var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.responseType = 'blob';
+    request.onload = function() {
+      if (request.status === 200) {
+        resolve(request.response);
+      } else {
+        reject(new Error('图片加载失败：' + request.statusText));
       }
-
-      //接收 - 第三步
-      xhr.onreadystatechange = function () {
-          if (xhr.readyState == 4) {
-              var status = xhr.status;
-              if (status >= 200 && status < 300) {
-                  options.success && options.success(xhr.responseText, xhr.responseXML);
-              } else {
-                  options.error && options.error(status);
-              }
-          }
-      }
-
-      //连接 和 发送 - 第二步
-      if (options.type == "GET") {
-          xhr.open("GET", options.url + "?" + params, true);
-          xhr.send(null);
-      } else if (options.type == "POST") {
-          xhr.open("POST", options.url, true);
-          //设置表单提交时的内容类型
-          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-          xhr.send(params);
-      }
-  }
-
-  //格式化参数
-  function formatParams(data) {
-    var arr = [];
-    for (var name in data) {
-        arr.push(encodeURIComponent(name) + "=" + encodeURIComponent(data[name]));
-    }
-    arr.push(("v=" + Math.random()).replace(".",""));
-    return arr.join("&");
-  }
-
-
-
-  // 用Promise对象改写
-  
-  function ajax(options) {
-    options = options || {};
-    options.type = (options.type || "GET").toUpperCase();
-    options.dataType = "json";
-    var params = formatParams(options.data),
-        xhr;
-
-    var p = new Promise(function(resolve, reject){
-      
-      //创建 - 非IE6 - 第一步
-      if (window.XMLHttpRequest) {
-        xhr = new XMLHttpRequest();
-      } else { //IE6及其以下版本浏览器
-        xhr = new ActiveXObject('Microsoft.XMLHTTP');
-      }
-
-      //接收 - 第三步
-      xhr.onreadystatechange = function () {
-          if (xhr.readyState == 4) {
-              var status = xhr.status;
-              if (status >= 200 && status < 300) {
-                  var result = JSON.parse(this.responseText);
-                  resovle(result);
-              } else {
-                  reject(new Error(this.statusText));
-              }
-          }
-      }
-
-      //连接 和 发送 - 第二步
-      if (options.type == "GET") {
-          xhr.open("GET", options.url + "?" + params, true);
-          xhr.send(null);
-      } else if (options.type == "POST") {
-          xhr.open("POST", options.url, true);
-          //设置表单提交时的内容类型
-          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-          xhr.send(params);
-      }
-    });
-    return p;
-  }
-
-  ajax({
-    url: "./TestXHR.aspx",   
-    type: "POST",                    
-    data: { name: "super", age: 20 },  
-    dataType: "json"
-  }).then(function(result){
-    console.log('Content:'+ result);
-  }).catch(function(error){
-    console.error('出错了', error);
-  })
+    };
+    request.onerror = function() {
+      reject(new Error('发生网络错误'));
+    };
+    request.send();
+  });
+}
 
 ```
 
