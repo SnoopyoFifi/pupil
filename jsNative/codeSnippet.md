@@ -20,6 +20,133 @@ function strlen(str){
 }
 ```
 
+## 解析`URL`各部分
+
+```js
+function parseURL(url) {
+    var a =  document.createElement('a');
+    a.href = url;
+    return {
+        source: url,
+        protocol: a.protocol.replace(':',''),
+        host: a.hostname,
+        port: a.port,
+        query: a.search,
+        params: (function(){
+            var ret = {},
+                seg = a.search.replace(/^\?/,'').split('&'),
+                len = seg.length, i = 0, s;
+            for (;i<len;i++) {
+                if (!seg[i]) { continue; }
+                s = seg[i].split('=');
+                ret[s[0]] = s[1];
+            }
+            return ret;
+        })(),
+        file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])[1],
+        hash: a.hash.replace('#',''),
+        path: a.pathname.replace(/^([^\/])/,'/$1'),
+        relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])[1],
+        segments: a.pathname.replace(/^\//,'').split('/')
+    };
+}
+```
+
+## 操作`URL`
+
+> 以`https://www.google.co.jp/search?page=1&q=fwef&sourceid=chrome&ie=UTF-8`为例
+
+```js
+  function getReq (){
+      var url = location.search;    // ?q=fwef&sourceid=chrome&ie=UTF-8
+      var theRequest = new Object();
+      if(url.indexOf("?") != -1) { 
+          var str = url.substr(1) ; // q=fwef&sourceid=chrome&ie=UTF-8
+          strs = str.split("&");    // ["q=fwe", "sourceid=chrome", "ie=UTF-8"]
+          for(var i = 0; i < strs.length; i ++) {
+              theRequest[strs[i].split("=")[0]] = strs[i].split("=")[1]; 
+          }
+      }
+      return theRequest;  // {q: "fwef", sourceid: "chrome", ie: "UTF-8"}
+  };
+
+  function spliceUrl(val, req, _type) {  // 1, getReq(), 1
+    var reqStr = '';
+    if(_type == 1){req['page']= val;}  // req: {q: "fwef", sourceid: "chrome", ie: "UTF-8", page: 1}
+    if(_type == 2){req['page']=1;req['page_size']=val;}
+    if(_type == 3){req['page']=1;req['keyword']=val;}
+    for(var key in req){
+        reqStr += (key + '=' + req[key] + '&');  // 'q=fwef&sourceid=chrome&ie=UTF-8&page=1&'
+    }
+    reqStr = ('?' + reqStr).slice(0, -1); // '?q=fwef&sourceid=chrome&ie=UTF-8&page=1'
+    return location.href = location.origin + location.pathname + reqStr; // https://www.google.co.jp/search?q=fwef&sourceid=chrome&ie=UTF-8&page=1
+  };
+```
+
+## 搜索功能
+
+> 结合上面 操作`URL` 使用
+
+```js
+function search () {
+  var _type = 3;
+  var val =$("#searching").val();
+  var req = getReq();
+  spliceUrl(val, req, _type);
+};
+// 搜索按钮
+$("#search").on('click',function () {
+  search();
+});
+
+// 搜索框获取焦点、按下`enter`键
+$("#searching").focus(function(){
+ $(document).keydown(function(event) {
+    if (event.keyCode == 13) {
+      search();
+    }
+  })
+
+// 原生写法
+  // document.querySelector("html").addEventListener('keydown', function(e){
+  //     if(e.keyCode==13){
+  //        search();
+  //     }
+  // })
+})
+
+// 搜索框失去焦点、接触事件键盘按下事件
+$("#searching").blur(function(){
+  $(document).off("keydown")
+})
+
+```
+
+## `placeholder` 显示隐藏
+
+```js
+
+  function setPlaceholder(){
+      var arrplace = {
+          "#searching": "请输入关键字"
+      };
+      function placeholder(id){
+          $(id).focus(function(){
+              if(!!!$(this).prop("readonly")){
+                  $(this).prop("placeholder", "")
+              }
+          });
+          $(id).blur(function(){
+              $(this).prop("placeholder", arrplace[id])
+          });
+      }
+      for(var k in arrplace) {
+          placeholder(k);
+      }
+  }
+  setPlaceholder();
+```
+
 
 
 ##  阻止事件冒泡和浏览器的默认行为
@@ -33,10 +160,10 @@ function stopBubble(e) {
   // 如果提供了事件对象，则是一个非IE浏览器
     if (e && e.stopPropagation) {
       // 因此它支持w3c的stopPropagation()方法
-    e.stopPropagation();
+      e.stopPropagation();
     } else {
         // 否则，使用IE的方式
-    window.event.canceBubble = true;
+      window.event.canceBubble = true;
     }
 }
 ```
@@ -54,7 +181,7 @@ function stopDefault(e) {
 }
 ```
 
-## 绑定事件兼容性封装 
+## 事件绑定兼容性封装 
 
 ```js
 window.onload = function(){
@@ -348,7 +475,7 @@ console.log(cnPattern.test("蔡宝坚"));
 
 
 
-## placeholder 显示隐藏
+## `placeholder` 显示隐藏
 
 ```js
 
