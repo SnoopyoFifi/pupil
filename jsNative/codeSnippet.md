@@ -122,6 +122,36 @@ $("#searching").blur(function(){
 
 ```
 
+## 操作`cookie`
+
+```js
+var handleCookie = {
+    setCookie: function(name,value){
+      var Days = 30;
+      var exp = new Date();
+      exp.setTime(exp.getTime() + Days*24*60*60*1000);
+      document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+    },
+    getCookie: function (name) {
+      var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+      if(arr=document.cookie.match(reg)){
+          return unescape(arr[2]);
+      } else {
+        return null;
+      }
+    },
+    delCookie: function(){
+      var exp = new Date();
+      exp.setTime(exp.getTime() - 1);
+      var cval=getCookie(name);
+      if(cval!=null){
+          document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+      }
+    }
+```
+
+
+
 ## `placeholder` 显示隐藏
 
 ```js
@@ -152,7 +182,7 @@ $("#searching").blur(function(){
 ##  阻止事件冒泡和浏览器的默认行为
 
 1. 事件冒泡&事件捕获
-![冒泡&捕获](images/jsEvent.jpg)
+  ![冒泡&捕获](images/jsEvent.jpg)
 
 2. 阻止事件冒泡，使成为捕获事件触发机制
 ```js
@@ -470,41 +500,6 @@ console.log(cPattern.test("粤B39006"));
 var cnPattern = /[\u4E00-\u9FA5]/;
 //输出 true
 console.log(cnPattern.test("蔡宝坚"));
-```
-
-
-
-
-## `placeholder` 显示隐藏
-
-```js
-
-  //  控制 `placeholder` 显示隐藏
-  function showplacehodler() {
-      var arrplace = {
-          "#searching": "请输入关键字",
-          "#email": "请输入邮箱",
-          "#password": "请输入密码",
-      };
-
-      function placeholder(id) {
-          $(id).focus(function () {
-              if (!!!$(this).prop("readonly")) {
-                  $(this).prop("placeholder", "")
-              }
-          });
-          $(id).blur(function () {
-              $(this).prop("placeholder", arrplace[id])
-          });
-      }
-
-      for (var k in arrplace) {
-          placeholder(k);
-      }
-  }
-
-  showplacehodler();
-  
 ```
 
 ## 表单验证 

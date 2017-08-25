@@ -130,6 +130,8 @@ launcher();
 
 ## 什么是`Promise`
 
+![promise](../images/promise.png)
+
 ```js
   var promise = new Promise(function(resolve, reject){
     // ...
