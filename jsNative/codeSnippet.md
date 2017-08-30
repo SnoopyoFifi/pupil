@@ -205,7 +205,7 @@ function stopDefault(e) {
   if(e && e.preventDefault) {
         e.preventDefault();
   } else {
-        wondow.event.returnValue = false;
+        window.event.returnValue = false;
   }
   return false;
 }
@@ -220,7 +220,7 @@ window.onload = function(){
     addHandler: function(element, type, handler){
       // 若浏览器支持 `addEventListener`， 则使用 `addEventListener` 来添加事件
       if(element.addEventListener){
-        element.addEventListener(type, hanlder, false);
+        element.addEventListener(type, handler, false);
       } else if (element.attachEvent) {
       // 否则使用 `attachEvent` ，事件类型前需加 `on`
         element.attachEvent('on' + type, handler);
