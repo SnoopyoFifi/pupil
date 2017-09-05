@@ -14,6 +14,8 @@
               0 -5px 5px -5px pink,    /*顶部阴影*/
               0 5px  5px -5px yellow,  /*底部阴影*/
               5px 0 5px -5px red;      /*右边阴影*/
+
+  box-shadow: inset 0 3px #2f4351;
 ```
 
 - **参数说明**：
@@ -94,7 +96,8 @@
   transition: all .2s ease 2s;  /*所有属性都执行过渡*/
 
   transition: opacity .2s linear .2s, /*透明度执行过渡*/
-              top .1s linear .2s;     /*top值执行过渡*/
+              top .1s linear .2s,     /*top值执行过渡*/
+              transform .3s;
 
 ```
 
