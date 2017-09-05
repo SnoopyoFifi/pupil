@@ -287,6 +287,33 @@
   <div class="demo_box play-state">鼠标移过来我就停，移走就运动，好听话哦！</div>    
   ```
 
+## 伪元素
+
+- 常见伪类：`:hover、:link、:active、:target、:not()、:focus`
+
+- 常见伪元素：`::first-letter、::first-line、::before、::after、::section`
+
+### `::before & ::after`
+
+> `content` 属性，必须有值，至少为空，用来定义插入的内容。其值可取下列值：
+
+- `string`：使用引号包一段字符串，将会向元素内容中添加字符串。
+  
+- `attr()`：通过`attr()`调用当前元素的属性，比如: `attr(data)`获取自定义属性`data-*`的值
+
+- `url()/uri()`：
+
+- `counter()`
+
+
+### `::section`
+
+### 
+
+
+
+
+
 
 - 美化具有placeholder属性的Input输入框
 
