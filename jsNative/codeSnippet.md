@@ -148,9 +148,14 @@ var handleCookie = {
           document.cookie= name + "="+cval+";expires="+exp.toGMTString();
       }
     }
+  }
 ```
 
+## `Array`通过原型扩展方法
 
+```js
+ 
+```
 
 ## `placeholder` 显示隐藏
 
@@ -321,6 +326,7 @@ EventUtil.removeHandler(需要删除事件的标签, "需要删除的事件", "�
 > 用户名正则
 
 ```js
+
 //用户名正则，4到16位（字母，数字，下划线，减号）
 var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
 //输出 true
