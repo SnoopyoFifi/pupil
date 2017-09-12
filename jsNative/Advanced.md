@@ -1052,3 +1052,6 @@ JavaScript 中的函数既可以被当作普通函数执行，也可以作为对
 - 引用标明出处
 
 [javascript_this](http://www.cnblogs.com/isaboy/p/javascript_this.html)
+
+
+
