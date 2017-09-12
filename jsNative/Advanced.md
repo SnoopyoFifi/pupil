@@ -2,9 +2,35 @@
 
 ## 闭包
 
+```js
+  // 创建一个闭包
+function makeCounter() {
+  let k = 0;
+
+  return function() {
+    return ++k;
+  };
+}
+
+const counter = makeCounter();
+
+console.log(counter());  // 1
+console.log(counter());  // 2
+
+```
+
+> `makeCounter` 这个函数的代码块，在返回的函数中，对局部变量 `k` ，进行了引用，导致局部变量无法在函数执行结束后，被系统回收掉，从而产生了闭包。
+而这个闭包的作用就是，`保留住` 了局部变量，使内层函数调用时，可以重复使用该变量；而不同于全局变量，该变量只能在函数内部被引用。
+
 - 什么是闭包
 
-> 闭包就是一个具有封闭的对外不公开的包裹结构或空间
+> 闭包就是一个具有封闭的对外不公开的包裹结构或空间；
+可以保留局部变量不被释放的代码块，被称为一个闭包；
+换句话说，闭包其实就是创造出了一些函数私有的 "持久化变量" 。
+
+- 闭包的创造条件是
+ 
+> 存在内、外两层函数；内层函数对外层函数的局部变量进行了引用
 
 - 闭包要解决的问题
 
@@ -913,3 +939,116 @@ e.initUIEvent("click", true, true, window, 1);
 
 
 
+
+
+## `this` 的指向
+
+- JavaScript `this` 决策树 (非严格模式)
+
+![JavaScript this 决策树](./images/JavaScript this决策树.jpg)
+
+js中 `this` 在运行期进行绑定，这是js中的 `this` 关键字具备多重含义的本质原因。
+
+`this` 指向可能是： 全局对象、当前对象或者任意对象，这取决于函数的调用方式。
+
+函数的调用方式有：作为对象方法调用、作为函数调用、作为构造函数调用、使用 `apply` 和 `call` 调用。
+
+- 举个栗子
+
+```js
+
+// this 指向方法调用对象
+  var point = { 
+   x : 0, 
+   y : 0, 
+   moveTo : function(x, y) { 
+       this.x = this.x + x; 
+       this.y = this.y + y; 
+       } 
+   };
+  //决策树解释：point.moveTo(1,1)函数不是new进行调用，进入否决策，
+  //是用dot(.)进行调用，则指向.moveTo之前的调用对象，即point
+  point.moveTo(1,1); //this 绑定到当前对象,即point对象
+
+// this 指向全局对象
+  function func(x) { 
+    this.x = x; 
+  } 
+  func(5); //this是全局对象window，x为全局变量
+  //决策树解析：func()函数是用new进行调用的么？为否，进入func()函数是用dot进行调用的么？为否，则 this指向全局对象window
+  x;//x => 5
+
+// this指向全局对象
+  var point = { 
+    x : 0, 
+    y : 0, 
+    moveTo : function(x, y) { 
+       // 内部函数
+      var moveX = function(x) { 
+        this.x = x;//this 指向什么？window
+      }; 
+      // 内部函数
+      var moveY = function(y) { 
+        this.y = y;//this 指向什么？window
+      }; 
+      moveX(x); 
+      moveY(y); 
+    } 
+  }; 
+  point.moveTo(1,1); 
+  point.x; //=>0 
+  point.y; //=>0 
+  x; //=>1 
+  y; //=>1
+
+// this 指向new关键字创建的实例对象
+  function Point(x,y){ 
+    this.x = x; // this ?
+    this.y = y; // this ?
+  }
+  var np=new Point(1,1);
+  np.x;//1
+  var p=Point(2,2);
+  p.x;//error, p是一个空对象undefined
+  window.x;//2
+
+// apply 强制改变 this 指向
+  function Point(x, y){ 
+    this.x = x; 
+    this.y = y; 
+    this.moveTo = function(x, y){ 
+      this.x = x; 
+      this.y = y; 
+    } 
+  } 
+
+  var p1 = new Point(0, 0); 
+  var p2 = {x: 0, y: 0}; 
+  p1.moveTo.apply(p2, [10, 10]);//apply实际上为p2.moveTo(10,10)
+  p2.x//10
+
+
+```
+
+- 函数的执行过程
+
+JavaScript 中的函数既可以被当作普通函数执行，也可以作为对象的方法执行，这是导致 this 含义如此丰富的主要原因。
+
+一个函数被执行时，会创建一个执行环境（ExecutionContext），函数的所有的行为均发生在此执行环境中，构建该执行环境时，JavaScript 首先会创建 arguments变量，其中包含调用函数时传入的参数。
+
+接下来创建作用域链。
+
+然后初始化变量，首先初始化函数的形参表，值为 arguments变量中对应的值，如果 arguments变量中没有对应值，则该形参初始化为 undefined。
+
+如果该函数中含有内部函数，则初始化这些内部函数。
+
+如果没有，继续初始化该函数内定义的局部变量，需要注意的是此时这些变量初始化为 undefined，其赋值操作在执行环境（ExecutionContext）创建成功后，函数执行时才会执行，这点对于理解 JavaScript 中的变量作用域非常重要。
+
+最后为 this变量赋值，如前所述，会根据函数调用方式的不同，赋给 this全局对象，当前对象等。
+
+至此函数的执行环境（ExecutionContext）创建成功，函数开始逐行执行，所需变量均从之前构建好的执行环境（ExecutionContext）中读取。
+
+
+- 引用标明出处
+
+[javascript_this](http://www.cnblogs.com/isaboy/p/javascript_this.html)
