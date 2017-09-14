@@ -72,11 +72,11 @@
 
 > hg 各种命令及其之间的联系
 
-![command&relations](../images/800px-Mercurial_commandd_and_their_relations.png)
+![command&relations](./images/800px-Mercurial_commandd_and_their_relations.png)
 
 > hg 使用指导
 
-![hg-tutorial](../images/hg_tutorial.jpg)
+![hg-tutorial](./images/hg_tutorial.jpg)
 
 
 

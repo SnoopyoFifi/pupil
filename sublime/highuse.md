@@ -7,7 +7,7 @@
 1. 安装配置node.js环境
 
 - 在node.js的安装根目录新建两个文件夹：node_cache 和 node_global
-![node 配置](../images/node-config.jpg)
+![node 配置](./images/node-config.jpg)
 - 然后在cmd里分别执行命令：
 ```
   npm config set prefix "D:\Node.js\node_global"
@@ -45,4 +45,4 @@
 
 新建一个demo.js文件，随便写点js代码按快捷键`Ctrl+B`或者`F7`测试一下：
 
-![node 配置](../images/js-test.jpg)
+![node 配置](./images/js-test.jpg)
