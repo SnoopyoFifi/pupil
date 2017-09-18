@@ -2,62 +2,127 @@
 
 ## Git安装
 
-**Window安装**
+- Window安装
+  + [win下git安装](http://git-scm.com/download/win)
 
-[win下git安装](http://git-scm.com/download/win)
+- Linux安装
+  + CentOS发行版：`sudo yum install git`
 
- 下载Git客户端软件，和普通软件安装方式一样。
+  + Ubuntu发行版：`sudo apt-get install git`
 
-**Linux安装**
+- Mac安装
 
-- CentOS发行版：`sudo yum install git`
-
-- Ubuntu发行版：`sudo apt-get install git`
-
-**Mac安装**
-
-打开Terminal直接输入git命令，会自动提示，按提示引导安装即可。
+  + 打开Terminal直接输入git命令，会自动提示，按提示引导安装即可。
 
 ## Git工作原理
 
-首先，了解Git管理文件的4种状态，分别为<u>未追踪</u>（untracked）、<u>已提交</u>（committed）、<u>已修改</u>（modified）和<u>已暂存</u>（staged），由此引入 Git 项目的3个工作区域的概念：
-**Git 仓库**、**工作目录** 以及 **暂存区域**。
+- Git管理文件的4种状态
+  + <u>未追踪</u>（untracked）
+  + <u>已提交</u>（committed）
+  + <u>已修改</u>（modified）
+  + <u>已暂存</u>（staged）
 
-- **Git仓库** 目录是Git用来保存项目的元数据和对象数据库的地方。这是Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。
-- **工作目录** 是对项目的某个版本独立提取出来的内容。这些从Git仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。
-- **暂存区域** 是一个文件，保存了下次将提交的文件列表信息，一般在Git仓库目录中。有时候也被称作“索引”（Index），不过一般说法还是叫暂存区域。
+- Git项目的3个工作区域
+  + **Git 仓库** : `.git`目录是Git用来保存项目的元数据和对象数据库的地方。这是Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。
+  + **工作目录** : 工作目录是对项目的某个版本独立提取出来的内容。这些从Git仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。
+  + **暂存区域** : 暂存区域是一个文件，保存了下次将提交的文件列表信息，一般在Git仓库目录中。有时候也被称作“索引”（Index），不过一般说法还是叫暂存区域。
 
 ​![image007](./images/image007.png)
 
-**基本的Git工作流程如下：**
+- Git项目的2个仓库
+  + **Git本地仓库** : Git本地仓库指的是开发者计算机中的仓库。
+  + **[Git远程仓库](https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8)** : Git远程仓库是指托管在网络上的项目仓库。
 
-1. 在工作目录中修改文件。
-2. 暂存文件，将文件的快照放入暂存区域。
-3. 提交文件，找到暂存区域的文件，将快照永久性存储到Git仓库目录。
-
-## Git本地仓库
-
-> Git本地仓库指的是开发者计算机中的仓库。
+- 基本的Git工作流程如下
+  + 在工作目录中新增、删除、修改文件。
+  + 暂存文件，将文件的快照放入暂存区域。
+  + 提交文件，找到暂存区域的文件，将快照永久性存储到Git仓库目录。
 
 ###  Git基础
 
-> 命令行方式：任意目录（建议开发根目录）右键 `>` Git Bash Here
+- 使用前配置
 
-**1. 配置用户**
+  - `git config`
 
-配置用户的意义在于记录开发者信息，以便在版本控制记录开发者的操作行为，如lion于2016-08-24解决了一个bug。
+    ```
+    Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为的配置变量。
+    ```
 
-```
-git config --global user.name "自已的名字"
+    变量存储在三个不同的位置: 
 
-git config --global user.email "自已的邮箱地址"
+    - `/etc/gitconfig` 文件: 包含系统上每一个用户及他们仓库的通用配置。 如果使用带有 `--system` 选项的 `git config` 时，它会从此文件读写配置变量。
+    - `~/.gitconfig` 或 `~/.config/git/config` 文件：只针对当前用户。 可以传递 `--global` 选项让 Git 读写此文件。
+    - 当前使用仓库的 Git 目录中的 `config` 文件（就是 `.git/config`）：针对该仓库。
 
---global 配置当前用户所有仓库
-```
+    > 想针对特定项目使用不同的用户名称与邮件地址时，可以在那个项目目录下运行没有 `--global` 选项的命令来配置。
 
-**注意**：配置用户只需要执行1次，可以重复使用。
+    ​	
 
-**2. 初始化仓库**
+  - 配置用户信息
+
+    ```
+    git config --global user.name "自已的名字"
+
+    git config --global user.email "自已的邮箱地址"
+
+    --global 配置当前用户所有仓库
+    ```
+
+  -  Git别名
+    ​
+
+    ```
+    git config --global alias.co checkout
+
+    git config --global alias.br branch
+
+    git config --global alias.ci commit
+
+    git config --global alias.st status
+    ```
+
+  - 检查配置信息
+
+    ```
+    // 列出所有 Git 当时能找到的配置
+    git config --list
+
+    // 来检查 Git 的某一项配置
+    git config user.name
+    ```
+
+- `.gitignore` 忽略某些文件
+
+  > 要养成一开始就设置好 `.gitignore` 文件的习惯，以免将来误提交这类无用的文件。
+
+  ```
+  # 此为注释 – 将被 Git 忽略
+  # 忽略所有 .a 结尾的文件
+  *.a
+  # 但 lib.a 除外
+  !lib.a
+  # 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO
+  /TODO
+  # 忽略 build/ 目录下的所有文件
+  build/
+  # 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
+  doc/*.txt
+  # ignore all .txt files in the doc/ directory
+  doc/**/*.txt
+  ```
+
+  - 所有空行或者以注释符号 `＃` 开头的行都会被 Git 忽略。
+  - 可以使用标准的 glob 模式(指 shell 所使用的简化了的正则表达式)匹配。
+    - 星号（`*`）匹配零个或多个任意字符；
+    - `[abc]`匹配任何一个列在方括号中的字符；
+    - 问号（`?`）只匹配一个任意字符；
+    - 如果在方括号中使用短划线分隔两个字符，表示所有在这两个字符范围内的都可以匹配（比如 `[0-9]` 表示匹配所有 0 到 9 的数字）。
+  - 匹配模式最后跟反斜杠（`/`）说明要忽略的是目录。
+  - 要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号（`!`）取反。
+
+- ​
+
+- 初始化仓库
 
 想要利用git进行版本控制，需要将现有项目初始化为一个仓库，或者将一个已有的使用git进行版本控制的仓库克隆到本地。
 
@@ -229,6 +294,73 @@ git init
 
  ![image026](.\images\image031.jpg)
 
+
+### git 本地分支与远程分支
+
+> github上已经有master分支 和dev分支
+
+- 在本地
+
+git checkout -b dev 新建并切换到本地dev分支
+
+git pull origin dev 本地分支与远程分支相关联
+
+- 在本地新建分支并推送到远程
+
+git checkout -b test
+
+git push origin test   这样远程仓库中也就创建了一个test分支
+
+
+1. 克隆代码
+  git clone https://github.com/master-dev.git  
+>  这个git路径是无效的，示例而已
+
+2. 查看所有分支
+  git branch --all  
+> 默认只有master分支，所以会看到如下两个分支
+> master[本地主分支] origin/master[远程主分支]
+> 新克隆下来的代码默认master和origin/master是关联的，也就是他们的代码保持同步
+
+3. 创建本地新的dev分支
+  git branch dev  # 创建本地分支
+
+git branch  # 查看分支
+> 这是会看到master和dev，而且master上会有一个星号
+> 这个时候dev是一个本地分支，远程仓库不知道它的存在
+> 本地分支可以不同步到远程仓库，我们可以在dev开发，然后merge到master，使用master同步代码，当然也可以同步
+
+4. 发布dev分支
+  发布dev分支指的是同步dev分支的代码到远程服务器
+  git push origin dev:dev  
+> 这样远程仓库也有一个dev分支了
+
+5. 在dev分支开发代码
+  git checkout dev  # 切换到dev分支进行开发
+> 开发代码之后，我们有两个选择
+> 第一个：如果功能开发完成了，可以合并主分支
+
+git checkout master  # 切换到主分支
+git merge dev  # 把dev分支的更改和master合并
+git push  # 提交主分支代码远程
+git checkout dev  # 切换到dev远程分支
+git push  # 提交dev分支到远程
+> 第二个：如果功能没有完成，可以直接推送
+
+git push  # 提交到dev远程分支
+> 注意：在分支切换之前最好先commit全部的改变，除非你真的知道自己在做什么
+
+6. 删除分支
+
+git push origin :dev  # 删除远程dev分支，危险命令哦
+
+> 下面两条是删除本地分支
+
+git checkout master  # 切换到master分支
+
+git branch -d dev  # 删除本地dev分
+
+
 ### Git远程（共享）仓库
 
 **1. 场景**：通过上面学习我们可以很好的管理本地版本控制了，可是如果我们下班回到家里突然来了灵感觉得有部分代码可以优化，如果能接着公司电脑上的代码继续写该有多好呀！另一种情形，假设项目比较大，不同的功能模块由不同的开发人员完成，不同模块儿之间又难免会依赖关系，这时如果我们的代码互相合并（融合）该有多好呀！所有模块开发完毕后，需要整合到一起，要能做到准确无误该有多好呀！
@@ -268,7 +400,7 @@ Git 要求共享仓库是一个以`.git`结尾的目录。
 - `cd demo`
 - `git push ../repo.git master`
 
- 
+
 
 **7.在360仓库从repo.git获取共享的内容**
 
@@ -378,7 +510,7 @@ gitLab也是一个可以通过Web界面管理仓库的网站程序，我们可�
 
 ![image043](.\images\image043.png)
 
- 
+
 ### 冲突解决
 
 假如两个开发同时改到同一文件的同一段内容会发生什么事情呢？
