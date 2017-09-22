@@ -81,7 +81,7 @@
 * [React](react/README.md)
 
 -----
-* [InterviewQuestion](interviewQuestion/README.md)
+* [Interview](interview/README.md)
 * [Gitbook](gitbook/README.md)
     * [安装](gitbook/install/README.md)
     * [目录结构](gitbook/directoryStructure/README.md)

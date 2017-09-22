@@ -38,7 +38,7 @@
 
 ## Record
 
-[InterviewQuestion](interviewQuestion/README.md)
+[Interview](interview/README.md)
 
 [Gitbook](gitbook/README.md)
 
