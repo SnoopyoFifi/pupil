@@ -12,11 +12,11 @@
 
 ## Tools
 
-[Hg&Git](hgGit/README.md)
+[VersionControl](VersionControl/README.md)
 
-[Sass&Less&Stylus&PostCSS](sassLessStylusPostCSS/README.md)
+[Precompile](Precompile/README.md)
 
-[Grunt&Gulp&Webpack](gruntGulpWebpack/README.md)
+[Automation](Automation/README.md)
 
 ## Base
 
