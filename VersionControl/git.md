@@ -133,8 +133,6 @@
 
     ​
 
-
-
 - `Git` 的使用
 
   - 初始化仓库 `git init`
@@ -404,3 +402,34 @@
 - git remote 可以查看已添加的远程主机
 - git remote show “主机名称”可以查看远程主机的信息
 
+
+## 补充
+
+  - 免密提交、拉取
+   > git pull push 不用输入用户名和密码的方法 免输密码
+  
+   1. 在计算机的安装盘下找到 '用户' 这个文件夹打开。
+
+   2. 找到'用户' 文件夹下面有个和你计算机的名字一样的文件夹。
+
+   3. 新建'.gitconfig' 文件
+
+   4. 用编辑器打开新建文件，输入:
+    
+    [user]
+      name = SnoopyoFifi
+      email = wsmm1111@sina.cn
+    [core]
+      autocrlf = true
+      excludesfile = C:\\Users\\admin\\Documents\\gitignore_global.txt
+    [push]
+      default = simple
+    [alias]
+      st = status
+      co = checkout
+      ci = commit
+      br = branch
+    [credential]
+      helper = store
+
+   5.保存后，随意打开一个项目，pull 或者 push 一次，下次就不需要输入密码了。
