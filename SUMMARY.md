@@ -98,6 +98,8 @@
     * [Introduce](vue/Introduce.md)
     * [API](vue/API.md)
     * [Practice](vue/Practice.md)
+* [wx](wx/README.md)
+    * [JS-SDK](wx/JS-SDK.md)
 * [Angular](angular/README.md)
 * [React](react/README.md)
 

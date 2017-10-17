@@ -32,6 +32,8 @@
 
 [Vue](vue/README.md)
 
+[wx](wx/README.md)
+
 [Angular](angular/README.md)
 
 [React](react/README.md)
