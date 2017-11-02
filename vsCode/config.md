@@ -1,6 +1,6 @@
 # 常用配置
 
-# 基本配置
+## 基本配置
 
 ![这里写图片描述](http://img.blog.csdn.net/20170223212332364?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY3JwZXI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
@@ -8,7 +8,7 @@
 
 ------
 
-# 快捷键自定义（Ctrl+K Ctrl + S）
+## 快捷键自定义（Ctrl+K Ctrl + S）
 
 ![这里写图片描述](http://img.blog.csdn.net/20170223213149376?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY3JwZXI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
@@ -20,7 +20,7 @@
 
 ------
 
-# 代码片段
+## 代码片段
 
 进入代码片段自定义有两种方式： 
 \1. 【菜单栏->文件->首选项->用户代码片段】 
@@ -31,7 +31,7 @@ VSCODE的代码片段支持30多种编程语言，所以也免了代码片命名
 这里就选择一个sass的说下，内部有这么一段注释嗯
 
 ```
-{
+  {
     /*
      // Place your snippets for Sass here. Each snippet is defined under a snippet name and has a prefix, body and 
      // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
@@ -45,7 +45,7 @@ VSCODE的代码片段支持30多种编程语言，所以也免了代码片命名
         ],
         "description": "Log output to console"
     }
-*/
+   */
     "utf-8": {
         "prefix": "utf-8",
         "body": [
@@ -75,7 +75,7 @@ VSCODE的代码片段支持30多种编程语言，所以也免了代码片命名
         "description": "移除a的下划线"
     }
 
-}123456789101112131415161718192021222324252627282930313233343536373839404142434445
+  }
 ```
 
 直接给效果图再来解释比较好理解 
@@ -85,16 +85,8 @@ VSCODE的代码片段支持30多种编程语言，所以也免了代码片命名
 
 - `prefix`: 是触发snippet的简写
 
-- ```
-  body
-  ```
+- body: 是展开的代码片段
 
-  : 是展开的代码片段
-
-   
-
-  ​
-
-  - 1,2表示占位符，用于用户展开代码片段所需要替换的，也可以写成`${1:label}`键值对的方式
+- 1,2表示占位符，用于用户展开代码片段所需要替换的，也可以写成`${1:label}`键值对的方式
 
 - `description` : 用户你在输出snippet之前，方便自己识别的注释，而不用强行记忆那些简写的
