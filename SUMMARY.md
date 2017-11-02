@@ -1,4 +1,5 @@
 # Summary
+
 * [Introduction](README.md)
 
 -----
@@ -70,6 +71,8 @@
     * [introduce](es6/introduce.md)
     * [let&const](es6/let&const.md)
     * [Arrows函数](es6/Arrows.md)
+    * [模板字符串](es6/TplStr.md)
+    * [不定参数&默认参数](es6/Varargs&Default.md)
     * [变量的解构赋值](es6/deconstruction.md)
     * [数据类型扩展](es6/datatypeExpand.md)
     * [数据结构新增](es6/dataStructure.md)
