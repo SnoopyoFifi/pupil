@@ -303,6 +303,10 @@
     export PATH=~/npm/bin:$PATH
 
 ## `npm update`、`npm uninstall`
+  - 查看更新的模块
+    ```
+    npm outdated
+    ```
 
   - 更新模块
 
@@ -342,6 +346,8 @@
     ```
     # 卸载当前项目指定的模块
     $ npm uninstall [package name]
+    加 --save 标记表示卸载当前目录中的包，并更新package.json 中的 dependencies 
+    加 --save-dev 标记表示卸载当前目录中的包，并更新package.json 中的 devDependencies
 
     # 卸载全局模块
     $ npm uninstall [package name] -global
