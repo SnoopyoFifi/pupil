@@ -131,6 +131,6 @@
    ```
 
 
+23. Typescript
 
-
-  
+[Typescript](http://www.interoperabilitybridges.com/media/155452/typescript_support_for_sublime_text.zip)
