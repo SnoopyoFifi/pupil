@@ -13,7 +13,7 @@
 3. 等待`package control` 安装完成，使用`Ctrl+Shift+P` 打开命令面板， 输入`pc` 出现`Package Control` 等待片刻，就可以搜索各种插件进行安装了。
 
 4. 补充：
-     
+
      - 删除插件：`Ctrl+Shift+P`调出命令面板，输入`remove`，调出`Remove Package`选项并回车，选择要删除的插件；
-     
+
      - 更新插件：`Ctrl+Shift+P`调出命令面板，`upgrade package`。

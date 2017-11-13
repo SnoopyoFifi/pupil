@@ -164,15 +164,14 @@
     - 全局安装的模块
 
       ```
-      $ npm list -global
-
+      $ npm list -global  显示详细
+      $ npm list -g --depth 0  显示模块名称
       ```
 
     - 列出单个模块
 
       ```
       $ npm list underscore
-
       ```
 
 ## `npm install`
