@@ -100,10 +100,13 @@
     * [Introduce](vue/Introduce.md)
     * [API](vue/API.md)
     * [Practice](vue/Practice.md)
+* [Angular](angular/README.md)
+    * [Introduce](angular/introduce.md)
+    * [Core](angular/core/README.md)
+        * [Template Syntax](angular/core/tplSyntax.md)
+* [React](react/README.md)
 * [wx](wx/README.md)
     * [JS-SDK](wx/JS-SDK.md)
-* [Angular](angular/README.md)
-* [React](react/README.md)
 
 -----
 * [Interview](interview/README.md)
