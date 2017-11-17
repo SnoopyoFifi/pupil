@@ -24,3 +24,14 @@
     "highlight_modified_tabs": true,
 }
 ```
+
+
+
+```js
+    // 打开关闭侧边栏
+    {"keys": ["ctrl+k"], "command": "toggle_side_bar"},
+    // 快速跳至行尾
+    {"keys":["alt+\\"], "command":"move_to", "args":{"to":"eol"}},
+    // 快速调制行首
+    {"keys":["alt+/"], "command":"move_to", "args":{"to":"bol"} 
+```
