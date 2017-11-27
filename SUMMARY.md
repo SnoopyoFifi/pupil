@@ -108,6 +108,8 @@
     * [Introduce](angular/introduce.md)
     * [Core](angular/core/README.md)
         * [Template Syntax](angular/core/tplSyntax.md)
+        * [Lifecycle Hooks](angular/core/lifeHooks.md)
+        * [Component Interaction](angular/core/componentInteraction.md)
 * [React](react/README.md)
 * [wx](wx/README.md)
     * [JS-SDK](wx/JS-SDK.md)
