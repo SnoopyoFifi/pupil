@@ -145,7 +145,8 @@ launcher();
   - `Promise`提供统一的`API`，各种异步操作都可以使用同样的方法进行处理。
   - 使得程序具备正常的同步运行的流程，回调函数不必再一层层嵌套。
   - `Promise`的思想是，每个异步任务立即返回一个`Promise`对象，由于是立刻返回，固可采用同步操作的流程。
-  - 同时其`then`方法，允许指定回调函数，在异步任务完成后调用。
+  - 同时其`then`方法，允许指定回调函数，在异步任务完成后调用，`then`方法能够获取到`resolve`及`reject`回调函数传入的值。
+  - 首先使用`new Promise`方法创建`promise`对象；再使用`.then`或`.catch`添加`promise`对象的处理函数。
 
 - `Promise`对象特点：
   + 三种状态：`Pending`(进行中)、`Fulfilled`(已成功)、`Rejected`(已失败)， 只有异步结果可以改变其状态。
@@ -270,6 +271,72 @@ step1(function (value1) {
 - `Promise`新建后就会立即执行，随后执行当前脚本所有同步任务，最后才会执行then方法的指定的回调函数(栗子二)；
 - `finalHandler`回调函数的参数：example1、exapmle3是doSomethingElse函数的运行结果；example3是`undefined`;example4是doSomething函数的的返回结果。
 
+
+## 实战
+> 介绍`Promise`提供的各种方法以及如何进行错误处理
+
+- 静态方法：`Promise.resolve`和`Promise.reject`
+  
+```js
+  // Promise.resolve
+  Promise.resolve(42).then(function(value){
+    console.log(value);
+  })
+
+  // 将`thenable`对象转换为`promise`对象
+  var promise = Promise.resolve($.ajax('json/comment.json')); // promise对象
+  promise.then(function(value){
+    console.log(value);
+  });
+
+  // Promise.reject
+  Promise.reject(new Error("BOOM!")).catch(function(error){
+    console.log(error);
+  })
+
+```
+**说明**：
+- `Promise.resolve(42)` 是 `new Promise( function(resolve){resolve(42)} );`的语法糖。
+- `Promise.resolve(value)` 的返回值也是一个`promise`对象，所以可以对其返回值进行`.then`调用。
+- `Promise.resolve`方法可以将 `thenable`对象(其是一个具有`.then`方法的对象，如：$.ajax()的返回值)转化为`promise`对象。
+- 可以认为`Promise.resolve`方法的作用就是将传递给它的参数填充到`promise`对象后并返回这个`promise`对象。
+- `Promise.reject`与`Promise.resolve`不同之处在于`promise`内部调用的函数是`reject`而不是`resolve`。
+
+-  `promise chain`
+- 什么是`promise chain`
+```js
+  function taskA(){
+    console.log("Task A");
+  }
+  function taskB(){
+    console.log("Task B");
+  }
+  function onRejected(error){
+    console.log("Catch Error: A or B", error);
+  }
+  function finalTask(){
+    console.log("Final Task");
+  }
+
+  var promise = Promise.resolve();
+  promise
+    .then(taskA)
+    .then(taskB)
+    .catch(onRejected)
+    .then(finalTask);
+```
+**说明**：
+- 上述代码的执行流程，如下图：
+  ![Promise-chain](./images/Promise-chain.png);
+- `then` 注册`onFulfilled`时的回调函数；`catch`注册`onRejected`时的回调函数。
+- `TaskA`或`TaskB`在发生异常时或者返回了一个`Rejected`状态的`promise`对象时，就会调用`onRejected`方法。
+- 在`onRejected`和`Final Task`后面没有`catch`处理，出现异常，不会被捕获。
+- 若`TaskA`中出现异常，流程将是`TaskA -> onRejected -> Final Task`，而不会执行`TaskB`。
+
+- `promise chain`中如何传递参数
+
+
+
 ## 应用
 
 ### `Ajax`操作
@@ -365,3 +432,47 @@ function imgLoad(url) {
 
 ```
 
+- 创建`XHR`的`Promise`对象
+
+> 创建一个用`Promise`把`XHR`处理包装起来的名为`getURL`的函数
+  
+```js
+  function getURL(URL) {
+    return new Promise(function(resolve, reject){
+      var req = new XMLHttpRequest();
+      req.open("GET", URL, true);
+      req.onload = function(){
+        if(req.status == 200) {
+          resolve(req.responseText);
+        } else {
+          reject(new Error(req.statusText));
+        }
+      };
+      req.onerror = function(){
+        reject(new Error(req.statusText));
+      };
+      req.send();
+    });
+  }
+
+  // 运行示例
+  // resolve
+  var URL = "http://httpbin.org/get";
+  getURL(URL)
+    .then(function onFulfilled(value){
+      console.log(value);  
+    })
+    .catch(function onRejected(error){
+      console.error(error);  
+    })
+
+  // reject
+  var URL = "http://httpbin.org/status/500";
+  getURL(URL)
+    .then(function onFulfilled(value) {
+      console.log(value);  
+    })
+    .catch(function onRejected(error) {
+      console.error(error);  
+    })
+```
