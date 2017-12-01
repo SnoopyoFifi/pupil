@@ -61,8 +61,107 @@ var c = fun(0).fun(1); c.fun(2); c.fun(3);
 
 
 ## 数组去重
+- [数组去重](http://www.jb51.net/article/118657.htm)
 
 ```js
+  // 方法一：
+  // 外层循环元素，内层循环比较值，相同则跳过
+  Array.prototype.distinct = function() {
+    var arr = this,
+        result = [],
+        i, j,
+        len = arr.length;
+    for(i = 0; i < len; i++) {
+      for(j = i + 1; j < len; j++) {
+        if(arr[i] === arr[j]) {
+          j = ++i;
+        }
+      }
+      result.push(arr[i]);
+    }
+    return result;
+  };
   
+  // 方法二
+  // 外层循环元素，内城循环比较值，相同则删除
+  Array.prototype.distinct = function() {
+    var arr = this,
+        i, j,
+        len = arr.length;
+    for(i = 0; i < len; i++) {
+      for(j = i + 1; j < len; j++) {
+        if(arr[i] == arr[j]) {
+          arr.splice(j, 1);
+          len--;
+          j--;
+        }
+      }
+    }
+    return arr;
+  };
+
+  // 方法三：
+  // 利用对象的属性不能相同的特点
+  Array.prototype.distinct = function() {
+    var arr = this,
+        i,
+        obj = {},
+        result = [],
+        len = arr.length;
+    for(i = 0; i < len; i++) {
+      if(!obj[arr[i]]){
+        obj[arr[i]] = 1;
+        result.push(arr[i]);
+      }
+    }
+    return result;
+  };
+
+  // 数组递归去重
+  // 运用递归去重，先排序，从最后开始比较，相同则删除
+  Array.prototype.distinct = function() {
+    var arr = this,
+        len = arr.length;
+    arr.sort(function(a, b){
+      return a - b;
+    });
+    function loop(index) {
+      if(index >= 1) {
+        if(arr[index] === arr[index-1]) {
+          arr.splice(index, 1);
+        }
+        loop(index - 1);+
+      }
+    }
+    loop(len - 1);
+    return arr;
+  };
+
+
+  // 方法五
+  // 利用indexOf以及forEach
+  Array.prototype.distinct = function() {
+    var arr = this,
+        result = [],
+        len = arr.length;
+    arr.forEach(function(v, i, arr) {
+      var bool = arr.indexOf(v, i+1);
+      if(bool === -1) {
+        result.push(v);
+      }
+    })
+    return result;
+  }
+
+  // 方法五
+  // 利用ES6的Set成员的唯一性
+  function dedupe(array) {
+    return Array.from(new Set(array));
+  }
+
+  // 拓展运算符(...)
+  [...new Set(arr)]
 ```
+
+## `TCP`传输的三次握手四次挥手策略
 

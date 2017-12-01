@@ -138,6 +138,7 @@
 * [Python](python/README.md)
     * [Shell](python/shell.md)
     * [Grammar](python/grammar.md)
+    * [PyVsJs](python/PyVsJs.md)
 * [Php](php/README.md)
 * [Java](java/README.md)
 

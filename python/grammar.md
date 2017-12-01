@@ -2,7 +2,7 @@
 
 > 一张图让你学会Python
 
-![pic-py](../images/pic-py.png)
+![pic-py](./images/pic-py.png)
 
 
 ## 注释
@@ -43,7 +43,7 @@
 
 - 变量类型
 
-![py-tpye](../images/py-type.png)
+![py-tpye](./images/py-type.png)
 
 - `type`
 
@@ -73,7 +73,7 @@
 
 > 2.驼峰命名法
 
-![tuofen](../images/tuofen.jpg)
+![tuofen](./images/tuofen.jpg)
 
    - 上图分别为: 小驼峰和大驼峰式命名法；
 
