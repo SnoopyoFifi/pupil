@@ -1,11 +1,11 @@
 # Precompile
 
-[Sass](Sass/README.md)
+- [Sass](Sass/README.md)
 
-[Less](Less/README.md)
+- [Less](Less/README.md)
 
-[Stylus](Stylus/README.md)
+- [Stylus](Stylus/README.md)
 
-[PostCSS](PostCSS/README.md)
+- [PostCSS](PostCSS/README.md)
 
 

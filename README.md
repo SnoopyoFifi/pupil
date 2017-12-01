@@ -2,13 +2,13 @@
 
 ## Editor
 
-[Sublime](sublime/README.md)
+[Sublime](codeEditor/sublime/README.md)
 
-[vsCode](vsCode/README.md)
+[vsCode](codeEditor/vsCode/README.md)
 
-[Atom](Atom/README.md)
+[Atom](codeEditor/Atom/README.md)
 
-[webStorm](webStorm/README.md)
+[webStorm](codeEditor/webStorm/README.md)
 
 ## Tools
 
@@ -28,11 +28,11 @@
 
 [H5&C3](h5c3/README.md)
 
+[wx](wx/README.md)
+
 ## Frame
 
 [Vue](vue/README.md)
-
-[wx](wx/README.md)
 
 [Angular](angular/README.md)
 
@@ -48,11 +48,11 @@
 
 ## Backend
 
-[Node](node/README.md)
+[Node](backend/node/README.md)
 
-[Python](python/README.md)
+[Python](backend/python/README.md)
 
-[Php](php/README.md)
+[Php](backend/php/README.md)
 
-[Java](java/README.md)
+[Java](backend/java/README.md)
 

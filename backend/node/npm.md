@@ -1,5 +1,23 @@
 # npm
 
+## 更改`npm`全局模块和 `cache`默认安装位置
+
+  - 先配置`npm`的全局模块(`node_global`)的存放路径以及缓存(`global_cache`)的路径
+    + 在D:\Program Files\nodejs下建立"node_global"及"node_cache"两个文件夹
+    ![global&cache.png](./images/global&cache.png)
+  - 在`DOS（cmder）`窗口中执行：
+    + `npm config set cache "D:\Program Files\nodejs\node_cache"`
+    + `npm config set prefix "D:\Program Files\nodejs\node_global"`
+  - 如果无法修改，找到"D:\Program Files\nodejs\node_modules\npm\.npmrc"文件，做如下更改
+    + prefix = D:\Program Files\nodejs\node_global
+    + cache = D:\Program Files\nodejs\node_cache
+  - 更改全局模块环境变量
+    + NODE_PATH ： "D:\Program Files\nodejs\node_global\node_modules;"
+    + PATH ："D:\Program Files\nodejs\node_global;"
+    + 注意：node的全局变量在安装时记得勾选。
+    ![node环境变量配置](./images/node环境变量配置.png)
+
+
 ## `npm init`
   - 什么是 `npm`
 
