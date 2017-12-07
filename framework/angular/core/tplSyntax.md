@@ -1,6 +1,5 @@
 # Template Syntax
 
-
 - attribute & property
   `HTML attribute value` 指定了初始值；`DOM value property` 是当前值。
   模板绑定是通过property和事件来工作的，而不是attribute

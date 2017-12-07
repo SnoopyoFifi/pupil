@@ -1,7 +1,6 @@
 # 常用插件介绍
 
 ## 必备插件
-
   - [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag): 匹配标签，关闭对应的标签。很实用【HTML/XML】
   - [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag) : sublime和webstorm也有这个内置功能，改变标签的时候同时改动开闭合标签；【HTML/XML】
   - [beautify](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify) : 良好的拓展性，可以格式化`JSON|JS|HTML|CSS|SCSS`,比内置格式化好用
@@ -33,7 +32,6 @@
 
 ## 框架实用插件
   - Angular 2+ && Typescript 2+
-  
     - [Angular Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template): 对于用ng2+开发的小伙伴，这又是一个必备插件，定义跳转，补全，信息提示等。。。
     - [JSON to TS](https://marketplace.visualstudio.com/items?itemName=MariusAlchimavicius.json-to-ts):有了这个来声明和后台协商的对接接口简直不能再方便了【`typescript interface`】。。。
     - [move-imports](https://marketplace.visualstudio.com/items?itemName=asvetliakov.move-imports): 虽然不能说完美无BUG，但是至少常规的迁移[ `js, jsx, ts, tsx`]是可以同步改动的，值得安装
@@ -51,7 +49,6 @@
     - [Ionic 3 snippets](https://marketplace.visualstudio.com/items?itemName=siteslave.ionic3-snippets): ionic3的代码片段
 
   - Vue
-
     - [Vue TypeScript Snippets](https://marketplace.visualstudio.com/items?itemName=ducksoupdev.Vue2):我发现我偏爱`ts`，vue的ts代码片段。。作者在最近的`vueconf`也提出了`v2.4`将会引入ts来规范开发
     - [VueHelper](https://marketplace.visualstudio.com/items?itemName=oysun.vuehelper):国人写的一个针对`vue2,router,vuex`的代码提示，涵盖了大部分的API，投入了很多精力啊，赞一个
     - [vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur):语法高亮及智能提示
@@ -59,15 +56,12 @@
     - [Vue VSCode Snippets](https://marketplace.visualstudio.com/items?itemName=sdras.vue-vscode-snippets): 很全面的vue代码片段
 
   - React
-
     - [React-Native/React/Redux snippets for es6/es7](https://marketplace.visualstudio.com/items?itemName=EQuimper.react-native-react-redux):这个是比较重量级的插件，而且作者更新很勤快
     - [Typescript React/Redux Snippets](https://marketplace.visualstudio.com/items?itemName=abotteram.typescript-react-snippets)：`ts`语法的`react`代码片段
     - [Useful React Snippets](https://marketplace.visualstudio.com/items?itemName=igorming.useful-react-snippets): React的snippet
 
 ##  其他
-
   - **nginx**
-
     > nginx非常适合做前端的服务层，好处太多，反向代理避免跨域,负载均衡
 
     - [nginx.conf](https://marketplace.visualstudio.com/items?itemName=shanoor.vscode-nginx):高亮`nginx`的配置文件，可能以后的版本会引入`.conf`的语法高亮而不需要安装此插件
