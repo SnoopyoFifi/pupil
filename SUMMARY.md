@@ -91,6 +91,11 @@
     * [TypeScript](grammar/typeScript/README.md)
         * [introduce](grammar/typeScript/introduce.md)
         * [基础类型](grammar/typeScript/basicType.md)
+        * [接口](grammar/typeScript/interface.md)
+        * [类](grammar/typeScript/classes.md)
+        * [泛型](grammar/typescript/genericity.md)
+        * [注解](grammar/typescript/annotation.md)
+        * [模块](grammar/typescript/module.md)
         * [装饰器](grammar/typeScript/decorator.md)
 
 -----
