@@ -1,11 +1,6 @@
 # Template Syntax
 
-- attribute & property
-  `HTML attribute value` 指定了初始值；`DOM value property` 是当前值。
-  模板绑定是通过property和事件来工作的，而不是attribute
-  在angular中，attribute是用来初始化元素和指令的状态的。
-  当进行数据绑定时，只是在与元素和指令的property和事件沾边，而与attribute毫无关系了。
-
+![TemplateSyntax](../images/TemplateSyntax.png)
 - 数据绑定的三种方式
 
 	![数据绑定的三种方式](../images/数据绑定的方式.png)
@@ -29,7 +24,7 @@
 	+ 目标属性必须被显式的标记为输入或输出。
 	+ 可以通过装饰器(`@Input()、@Output()`)，或者通过元数据数组`@Component({inputs: ['hero'],outputs: ['deleteRequest'],})`来指定输入、输出属性。
 	+ 从目标指令的角度来看，输入属性通常接收数据值，而输出属性暴露事件生产者。
-		![输入与输出属性](../images/输入与输出属性.png)
+	![输入与输出属性](../images/输入与输出属性.png)
 
 
 - 模板表达式操作符
