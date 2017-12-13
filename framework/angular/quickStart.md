@@ -13,6 +13,12 @@
     // ng serve --host 0.0.0.0 --port 4201
   ```
 
+
+  > 生成一个包含[路由模块]的`angular`项目
+  ```
+    ng new router --routing
+  ```
+  
 ## 生成组件、指令、管道和服务
 
   ```
@@ -59,6 +65,7 @@
     ng g component new-module/new-component
 
   ```
+
 
 ## 删除、更新`Angular CLI`
 
