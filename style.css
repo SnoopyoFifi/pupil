@@ -4337,14 +4337,29 @@ a:hover {
 
 .book .book-summary .exc-trigger:before {
     content: "\f193" !important;
-
-	transition: all .3s !important;
 }
 
 .book .book-summary .expanded.active > a .exc-trigger:before {
     content: "\f29b" !important;
 }
 
-.book .book-summary .expanded:hover .exc-trigger:before {
-	transform: scale(1.1) !important;
+/*.book {
+
+	-webkit-user-select: none; !important 
+
+	-khtml-user-select: none; !important
+
+	-moz-user-select: none;  !important 
+
+	-ms-user-select: none;  !important
+
+}
+*/
+/* webkit, opera, IE9 */
+::selection { 
+	background: hotpink; !important
+}
+/* mozilla firefox */
+::-moz-selection { 
+	background: hotpink; !important
 }
