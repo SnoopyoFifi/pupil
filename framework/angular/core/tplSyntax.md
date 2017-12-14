@@ -1,4 +1,4 @@
-# Template Syntax
+# 模板语法
 
 ![TemplateSyntax](../images/TemplateSyntax.png)
 - 数据绑定的三种方式

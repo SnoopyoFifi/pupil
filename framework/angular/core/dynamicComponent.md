@@ -1,2 +1,2 @@
-# Dynamic Component
+# 动态组件
 

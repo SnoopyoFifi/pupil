@@ -18,6 +18,11 @@
   ```
     ng new router --routing
   ```
+
+  > 生成一个使用scss预编译的`angular`项目
+  ```
+    ng new myProject --style=scss
+  ```
   
 ## 生成组件、指令、管道和服务
 

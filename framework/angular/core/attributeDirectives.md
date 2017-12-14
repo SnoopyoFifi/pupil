@@ -1,2 +1,2 @@
-# Attribute Directives
+# 属性型指令
 

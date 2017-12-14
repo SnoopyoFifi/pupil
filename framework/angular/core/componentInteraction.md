@@ -1,4 +1,4 @@
-# Component Interaction
+# 组件交互
 
 - 通过输入型绑定把数据从父组件传到子组件
 	- 输入型属性通常带`@Input装饰器`。
