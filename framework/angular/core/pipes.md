@@ -1,9 +1,9 @@
 # 管道
 - 常见的管道
   ```typescript
-      <p>{{birthday | date:'yyyy-MM-dd HH:mm:ss' | lowercase | uppercase}}</p>  // 日期，大写，小写
-      <p>{{pi | number:'2.1-4'}}</p>  // 数字
-      <p>{{pi | async}}</p>  // 处理异步流
+      <p>\{\{birthday | date:'yyyy-MM-dd HH:mm:ss' | lowercase | uppercase\}\}</p>  // 日期，大写，小写
+      <p>\{\{pi | number:'2.1-4'\}\}</p>  // 数字
+      <p>\{\{pi | async\}\}</p>  // 处理异步流
   ```
 
 - 自定义管道 
@@ -26,5 +26,5 @@
     }
     
     // 自定义管道的使用
-    <p>自定义管道{{size | multiple: 2}}</p>
+    <p>自定义管道\{\{size | multiple: 2\}\}</p>
   ```

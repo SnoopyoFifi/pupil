@@ -59,7 +59,7 @@
 
     <!-- 使用组件实例的属性 -->
     <div [ngClass]="{bordered: isBordered}">
-      {{ isBordered ? "ON" : "OFF" }}
+       \{\{ isBordered ? "ON" : "OFF"\}\} 
     </div>
 
     <!-- 样式包含'-' -->
