@@ -66,6 +66,7 @@
           }
         }
       ```
+    
     + 常见场景
       - 分离 应用程序和第三方入口
 
@@ -144,53 +145,53 @@
       npm i --save-dev ts-loader
       ```
 
-      - 安装完成后，再配置相应的规则，指定文件使用对应的规则。
+    - 安装完成后，再配置相应的规则，指定文件使用对应的规则。
 
-        ```
-        module.exports = {
-          module: {
-            rules: [
-              { test: /\.css$/, use: 'css-loader' },
-              { test: /\.ts$/, use: 'ts-loader' }
-            ]
-          }
-        }
-        ```
-
-        ​
-
-      - 可在配置中指定多个`loader`
-
-        ```js
+      ```
+      module.exports = {
         module: {
           rules: [
-            {
-              test: /\.css$/,
-              use: [
-                { loader: 'style-loader' },
-                {
-                  loader: 'css-loader',
-                  options: {
-                    modules: true
-                  }
-                }
-              ]
-            }
+            { test: /\.css$/, use: 'css-loader' },
+            { test: /\.ts$/, use: 'ts-loader' }
           ]
         }
-        ```
+      }
+      ```
 
-        ​
+      ​
 
-      - 也可使用`内联`或者`CLI`的方式使用`loader`
+    - 可在配置中指定多个`loader`
 
-        ```
-        import Styles from 'style-loader!css-loader?modules!./styles.css';
-        // 可以在 `import` 语句或任何等效于 "import" 的方式中指定 loader。使用 `!` 将资源中的 loader 分开。分开的每个部分都相对于当前目录解析。
+      ```js
+      module: {
+        rules: [
+          {
+            test: /\.css$/,
+            use: [
+              { loader: 'style-loader' },
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: true
+                }
+              }
+            ]
+          }
+        ]
+      }
+      ```
 
-        webpack --module-bind jade-loader --module-bind 'css=style-loader!css-loader'
-        // 这会对 .jade 文件使用 jade-loader，对 .css 文件使用 style-loader 和 css-loader。
-        ```
+      ​
+
+    - 也可使用`内联`或者`CLI`的方式使用`loader`
+
+      ```
+      import Styles from 'style-loader!css-loader?modules!./styles.css';
+      // 可以在 `import` 语句或任何等效于 "import" 的方式中指定 loader。使用 `!` 将资源中的 loader 分开。分开的每个部分都相对于当前目录解析。
+
+      webpack --module-bind jade-loader --module-bind 'css=style-loader!css-loader'
+      // 这会对 .jade 文件使用 jade-loader，对 .css 文件使用 style-loader 和 css-loader。
+      ```
 
         ​
 
