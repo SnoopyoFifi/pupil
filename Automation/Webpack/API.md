@@ -12,7 +12,7 @@
   - `webpack`支持的模块方式
     - 默认支持 commonjs/AMD/UMD/ES6模块；
     - 不支持`ES6`关键字和函数（用`loader`来处理）。
-  
+
   ![what-is-webpack](../images/what-is-webpack.png)
 
 ## 安装
@@ -59,30 +59,28 @@
 
     + 对象语法
       ```js
-        const config = {
-          entry: {
-            app: './src/app.js',
-            vendors: './src/vendors.js'
-          }
-        }       
-      ```
-
-    + 常见场景
-
-      - 分离 应用程序和第三方入口
-
-        ```js
-        const config = {
+         const config = {
           entry: {
             app: './src/app.js',
             vendors: './src/vendors.js'
           }
         }
+      ```
+    + 常见场景
+      - 分离 应用程序和第三方入口
+
+        ```js
+          const config = {
+            entry: {
+              app: './src/app.js',
+              vendors: './src/vendors.js'
+            }
+          }
         ```
 
-        - 多页面应用程序
+      - 多页面应用程序
 
-          ```js
+        ```js
           const config = {
             entry: {
               pageOne: './src/pageOne/index.js',
@@ -90,10 +88,7 @@
               pageThree: './src/pageThree/index.js'
             }
           }
-          ```
-
-          ​
-
+        ```
   - 输出(Output)
 
     > 配置`output`选项可以控制`webpack`如何向硬盘写入编译文件。即使存在多个入口起点，也只可指定一个输出配置。
@@ -236,7 +231,6 @@
 
 ## 相关配置
   - `package.json`
-
     ```json
 
       {
@@ -281,7 +275,6 @@
 
 
   - `webpack.config.js`
-
     ```js
       {
         var path = require('path');
@@ -404,14 +397,12 @@
           }
             config.plugins.push(new HtmlWebpackPlugin(conf));
         });
-
-
         //按文件名来获取入口文件（即需要生成的模板文件数量）
         function getEntry(globPath) {
             var files = glob.sync(globPath);
             var entries = {},
                 entry, dirname, basename, pathname, extname;
-
+    
             for (var i = 0; i < files.length; i++) {
                 entry = files[i];
                 dirname = path.dirname(entry);
@@ -426,18 +417,17 @@
     ```
 
 ## 说明
-  - webpack 功能
+  - `webpack` 功能
 
   > 给一个入口，根据入口解读对应的依赖关系，并将文件打包（压缩、合并、混淆等）成一个js文件（包含了其他静态资源）
 
-  - webpack 打包形成的代码
+  - `webpack` 打包形成的代码
 
-    - webpack基于node，读取文件，并分析依赖关系，最终生成新的目标文件。
-    
+    - `webpack`基于node，读取文件，并分析依赖关系，最终生成新的目标文件。
+
     - 自执行函数，将各个模块代码作为数组元素的参数传递，并执行；
-    
 
-    ```js
+
       (fn(modules){
         // 先执行模块2
         module[1].call(
@@ -445,17 +435,19 @@
           // 给对象的属性赋值
         )
       })([fn(){模块1}, fn(){模块2}])
-    ```
 
-  - webpack 属性
+  - `webpack` 属性
 
-    - entry入口{}：默认main属性
+    - `entry`入口{}: 默认`main`属性
 
-    - output出口{}：path：产出目录（最好使用绝对路径）；filename：产出js文件
+    - `output`出口{}
+      + `path`: 产出目录（最好使用绝对路径）
+      + `filename`: 产出js文件
 
-    - module模块：loaders[]：一堆loader对象{test:/\.css$/, loader:''}
+    - `module`模块
+      + `loaders`[]: 一堆`loader`对象`{test:/\.css$/, loader:''}`
 
-    - plugins插件[]: new xxx的插件对象
+    - `plugins`插件[]: new xxx的插件对象
 
     - ! 表示分隔、 ? 表示参数
 
