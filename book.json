@@ -51,7 +51,8 @@
         "todo@^0.1.3",
         "3-ba@^0.9.0",
         "anchor-navigation-ex",
-        "copy-code-button"
+        "copy-code-button",
+        "book-summary-scroll-position-saver"
     ],
     "pluginsConfig": {
         "github": {
