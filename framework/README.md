@@ -1,7 +1,7 @@
 # Framework
 
-- [Vue](vue/README.md)
+[Vue](vue/README.md)
 
-- [Angular](angular/README.md)
+[Angular](angular/README.md)
 
-- [React](react/README.md)
+[React](react/README.md)

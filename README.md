@@ -1,6 +1,9 @@
 # Introduction
 
-## Editor
+> 本文档主要记录了工作中常用的工具及其使用、以及前端知识学习笔记，
+> 记录只是个人的习惯！
+
+## 编辑器
 
 [Sublime](codeEditor/sublime/README.md)
 
@@ -10,27 +13,21 @@
 
 [webStorm](codeEditor/webStorm/README.md)
 
-## Tools
+## 工具
 
-[VersionControl](VersionControl/README.md)
+[版本控制](VersionControl/README.md)
 
-[Precompile](Precompile/README.md)
+[预编译](Precompile/README.md)
 
-[Automation](Automation/README.md)
+[自动化](Automation/README.md)
 
-## Base
+## 语法
 
-[JsNative](jsNative/README.md)
+[ES6](grammar/es6/README.md)
 
-[ES6](es6/README.md)
+[TypeScript](grammar/typeScript/README.md)
 
-[MobileWeb](mobileWeb/README.md)
-
-[H5&C3](h5c3/README.md)
-
-[wx](wx/README.md)
-
-## Frame
+## 框架
 
 [Vue](vue/README.md)
 
@@ -38,15 +35,15 @@
 
 [React](react/README.md)
 
-## Record
+## 记录
 
-[Interview](interview/README.md)
+[复习](interview/README.md)
 
-[Gitbook](gitbook/README.md)
+[原生](jsNative/README.md)
 
-[Others](others/README.md)
+[手机端](mobileWeb/README.md)
 
-## Backend
+## 后端
 
 [Node](backend/node/README.md)
 
@@ -56,3 +53,6 @@
 
 [Java](backend/java/README.md)
 
+## 其他
+
+[其他](others/README.md)

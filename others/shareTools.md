@@ -5,11 +5,11 @@
      + win下有良好显示界面的终端
      + ![cmder](./images/cmder.png)
 
-  - [Launchy]()
+  - [Launchy](http://www.launchy.net/)
      + win下好用的快捷打开软件的软件
      + ![launchy](./images/launchy.png)
 
-  - [FastStone Capture]()
+  - [FastStone Capture](http://www.faststone.org/FSCapturerDownload.htm)
      + 截图、取色、量尺寸、录视频、图片转pdf
      + ![fscapture](./images/fscapture.png)
 
@@ -25,15 +25,15 @@
      + 能够找出电脑中所有匹配搜索关键字的内容
      + ![everything](./images/everything.jpg)
 
-  - [7z]()
+  - [7z](http://www.7-zip.org/)
      + 高效率无广告解压缩软件
      + ![7z](./images/7z.png)
   
-  - [SumatraPDF]()
+  - [SumatraPDF](https://www.sumatrapdfreader.org/download-free-pdf-viewer.html)
      + 轻量级PDF阅读器
      + ![SumatraPDF](./images/SumatraPDF.png)
 
-  - [SwitchHosts]()
+  - [SwitchHosts](https://oldj.github.io/SwitchHosts/)
      + 快速切换hosts
      + ![switchhosts](./images/switchhosts.png)
 
@@ -49,15 +49,15 @@
      + `Git`版本控制的客户端软件
      + ![sourcetree](./images/sourcetree.png)
 
-  - [Beyond Compare4]()
+  - [Beyond Compare4](http://www.scootersoftware.com/download.php)
      + 文件对比工具，如：解决代码冲突时用
      + ![beyondcompare](./images/beyondcompare.png)
 
-  - [Axure RP]()
+  - [Axure RP](https://www.axure.com/download)
      + 设计产品原型的利器
      + ![axurerp](./images/axurerp.png)
 
-  - [Fiddler]()
+  - [Fiddler](https://www.telerik.com/download/fiddler)
      + 抓包工具
      + ![fiddler](./images/fiddler.png)
 
@@ -65,7 +65,7 @@
      + 翻墙....
      + ![lantern](./images/lantern.png)
 
-  - [f.lux]()
+  - [f.lux](https://justgetflux.com/)
      + 调节色温，缓解疲劳
      + ![flux](./images/flux.png)
 

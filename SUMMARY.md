@@ -1,9 +1,9 @@
 # Summary
 
-* [Introduction](README.md)
+* [内容概要](README.md)
 
 -----
-* [CodeEditor](codeEditor/README.md)
+* [编辑器](codeEditor/README.md)
     * [Sublime](codeEditor/sublime/README.md)
         * [安装](codeEditor/sublime/install.md)
         * [插件安装](codeEditor/sublime/pluginInstall.md)
@@ -38,12 +38,12 @@
         * [高级用法](codeEditor/webStorm/highuse.md)
 
 -----
-* [VersionControl](VersionControl/README.md)
+* [版本控制](VersionControl/README.md)
     * [Hg](VersionControl/hg.md)
     * [Git](VersionControl/git.md)
     * [Hg-Git](VersionControl/Hg-Git.md)
     * [Shell-Vi-SSH](VersionControl/Shell-Vi-SSH.md)
-* [Precompile](Precompile/README.md)
+* [预编译](Precompile/README.md)
     * [Sass](Precompile/Sass/README.md)
         * [语法](Precompile/Sass/grammar.md)
         * [用例](Precompile/Sass/usage.md)
@@ -56,7 +56,7 @@
     * [PostCSS](Precompile/PostCSS/README.md)
         * [语法](Precompile/PostCSS/grammar.md)
         * [用例](Precompile/PostCSS/usage.md)
-* [Automation](Automation/README.md)
+* [自动化](Automation/README.md)
     * [Grunt](Automation/Grunt/README.md)
         * [API](Automation/Grunt/API.md)
         * [用例](Automation/Grunt/usage.md)
@@ -68,11 +68,11 @@
         * [用例](Automation/Webpack/usage.md)
 
 -----
-* [Grammar](grammar/README.md)
+* [语法](grammar/README.md)
     * [ES6](grammar/es6/README.md)
-        * [Introduce](grammar/es6/introduce.md)
+        * [简介](grammar/es6/introduce.md)
         * [let&const](grammar/es6/let&const.md)
-        * [Arrows函数](grammar/es6/Arrows.md)
+        * [箭头函数](grammar/es6/Arrows.md)
         * [模板字符串](grammar/es6/TplStr.md)
         * [不定参数&默认参数](grammar/es6/Varargs&Default.md)
         * [变量的解构赋值](grammar/es6/deconstruction.md)
@@ -89,7 +89,7 @@
         * [references](grammar/es6/references.md)
         * [Babel&Traceur](grammar/es6/babelTraceur.md)
     * [TypeScript](grammar/typeScript/README.md)
-        * [Introduce](grammar/typeScript/introduce.md)
+        * [简介](grammar/typeScript/introduce.md)
         * [基础类型](grammar/typeScript/basicType.md)
         * [接口](grammar/typeScript/interface.md)
         * [类](grammar/typeScript/classes.md)
@@ -99,13 +99,13 @@
         * [装饰器](grammar/typeScript/decorator.md)
 
 -----
-* [Framework](framework/README.md)
+* [框架](framework/README.md)
     * [Vue](framework/vue/README.md)
-        * [Introduce](framework/vue/Introduce.md)
+        * [简介](framework/vue/Introduce.md)
         * [API](framework/vue/API.md)
         * [Practice](framework/vue/Practice.md)
     * [Angular](framework/angular/README.md)
-        * [Introduce](framework/angular/introduce.md)
+        * [简介](framework/angular/introduce.md)
         * [启动](framework/angular/quickStart.md)
         * [核心](framework/angular/core/README.md)
             * [显示数据](framework/angular/core/displayingData.md)
@@ -131,12 +131,12 @@
     * [React](framework/react/README.md)
 
 -----
-* [Interview](interview/README.md)
-* [JsNative](jsNative/README.md)
+* [复习](interview/README.md)
+* [原生](jsNative/README.md)
     * [API](jsNative/API.md)
     * [拔高](jsNative/Advanced.md)
     * [代码片段](jsNative/codeSnippet.md)
-* [MobileEnd](mobileEnd/README.md)
+* [手机端](mobileEnd/README.md)
     * [H5C3](mobileEnd/h5c3/README.md)
         * [HTML5](mobileEnd/h5c3/HTML5.md)
         * [CSS3](mobileEnd/h5c3/CSS3.md)
@@ -145,7 +145,7 @@
         * [JS-SDK](mobileEnd/wx/JS-SDK.md)
 
 -----
-* [Backend](backend/README.md)
+* [后端](backend/README.md)
     * [Node](backend/node/README.md)
         * [npm](backend/node/npm.md)
         * [packagejson](backend/node/packagejson.md)
@@ -158,7 +158,7 @@
     * [Java](backend/java/README.md)
 
 -----
-* [Others](others/README.md)
+* [其他](others/README.md)
     * [实用工具分享](others/shareTools.md)
     * [书签站点](others/bookmark.md)
     * [chrome](others/chrome.md)

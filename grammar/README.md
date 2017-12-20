@@ -1,5 +1,5 @@
 # Grammar
 
-- [ES6](es6/README.md)
+[ES6](es6/README.md)
 
-- [TypeScript](typeScript/README.md)
+[TypeScript](typeScript/README.md)

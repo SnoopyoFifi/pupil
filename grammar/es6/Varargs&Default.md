@@ -68,7 +68,8 @@
     - 展开运算符在解构赋值中是将多个数组项组合成一个新数组
       ```js
         let [arg1, arg2, ...arg3] = [1, 2, 3, 4];
-        arg3 // ['3', '4']
+        arg3 
+        // ['3', '4']
       ```
 
   - 类数组对象变成数组
@@ -81,16 +82,35 @@
 ## 默认参数
   - 用于指定任意参数的默认值
     ```js
+      // es5中模拟参数默认值
+      function makeRequest(url, tiemout, callback){
+        // timeout = timeout || 2000;
+        // callback = callback || function(){}
+        timeout = (typeof timeout !== "undefined") ? timeout : 2000;
+        callback = (typeof callback !== "undefined") ? callback : function(){};
+      }
+
+      // es6中的参数默认值
       function test(name1 = 'snoopy', name2 = 'fifi') {
         return `${name1} love ${name2} !`;
       }
+      // 使用默认的name2
+      test("jack");
+      // 使用默认的name1
+      test(undefined, "rose");
+      // 不使用默认值
+      test("jack", null);
 
       function test2(name1 = 'snoopy', 
         name2 = (name1=='jack' ? 'rose' : 'fifi')) {
         return `${name1} love ${name2} !`;
       }
+      
+
     ```
+  
   - 注意：
     - 传递`undefined`等效于不传值，没有默认值的参数隐式默认为`undefined`。
     - 默认值表达式在函数调用时自左向右求值，默认表达式可以使用该参数之前已经填充好的其他参数值。
+    - 参数默认值中，`null`值被认为是有效的。
     

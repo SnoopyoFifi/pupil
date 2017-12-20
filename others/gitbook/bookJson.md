@@ -14,15 +14,19 @@
     "structure": {
         "readme": "README.md"
     },
+    "styles": {
+        "website": "styles/style.css"
+    },
     "links": {
         "sidebar": {
-            "Home": "https://github.com/SnoopyoFifi"
+            "[GitHub]": "https://github.com/SnoopyoFifi",
+            "[网易云音乐]": "https://music.163.com/#/user/home?id=246533247"
         }
     },
     "plugins": [
+        "-highlight",
         "-lunr",
         "-search",
-        "-highlight",
         "-livereload",
         "-sharing",
         "sharing-plus@0.0.2",
@@ -39,9 +43,9 @@
         "include-codeblock@^3.0.2",
         "ace@^0.3.2",
         "emphasize@^1.1.0",
-        "katex@^1.1.3",
+        "-katex@^1.1.3",
         "splitter@^0.0.8",
-        "mermaid@^0.0.9",
+        "-mermaid@^0.0.9",
         "tbfed-pagefooter@^0.0.1",
         "expandable-chapters-small@^0.1.7",
         "sectionx@^3.1.0",
@@ -51,17 +55,11 @@
         "favicon@^0.0.2",
         "todo@^0.1.3",
         "3-ba@^0.9.0",
-        "anchor-navigation-ex"
+        "anchor-navigation-ex",
+        "copy-code-button",
+        "book-summary-scroll-position-saver"
     ],
     "pluginsConfig": {
-        "theme-default": {
-            "showLevel": true
-        },
-        "prism": {
-            "css": [
-                "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
-            ]
-        },
         "github": {
             "url": "https://github.com/SnoopyoFifi"
         },
@@ -118,7 +116,7 @@
             "label": "Edit This Page"
         },
         "sitemap-general": {
-            "prefix": "http://gitbook.zhangjikai.com"
+            "prefix": "https://github.com/SnoopyoFifi/"
         },
         "anchor-navigation-ex": {
             "float": {
@@ -134,10 +132,23 @@
         "favicon": {
             "shortcut": "favicon.ico",
             "bookmark": "favicon.ico"
+        },
+        "prism": {
+            "css": [
+                "prismjs/themes/prism-solarizedlight.css"
+            ],
+            "lang": {
+                "flow": "typescript"
+            },
+            "ignore": [
+                "mermaid",
+                "eval-js"
+            ]
         }
 
     }
 }
+
 ```
 
 ## title
