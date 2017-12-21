@@ -1,61 +1,64 @@
 # Routing Navigation
 
 > 路由是`Angular`应用程序的核心，它加载与所请求路由相关联的组件，以及获取特定路由的相关数据。
+>
 > 可通过控制不同的路由，获取不同的数据，从而渲染不同的页面。
 
-- 在原有项目的基础上添加路由，需要通过命令`npm i --save @angular/router`安装`angular router`
+- 项目中使用路由模块的方式
+  + 在原有项目的基础上添加路由，需要通过命令`npm i --save @angular/router`安装`angular router`
 
-- 或者直接使用命令`ng new router --routing`生成包含路由模块的项目
+  + 或者直接使用命令`ng new router --routing`生成包含路由模块的项目
 
-  ![app-routing.module.ts](./images/app-routing.module.png)
+    ![app-routing.module.ts](./images/app-routing.module.png)
 
-  > 在根模块`app.modules.ts`中会自动引入路由模块`app-routing.module.ts`，并将`AppRoutingModule`类添加到根模块的`imports`数组中。
+    > 在根模块`app.modules.ts`中会自动引入路由模块`app-routing.module.ts`，并将`AppRoutingModule`类添加到根模块的`imports`数组中。
 
-  ![app.module.ts](./images/app.module.png)
+    ![app.module.ts](./images/app.module.png)
+
+  - 在`index.html`中定义应用程序的基础路径`<base href="/">`
+    
+    > 路由根据这个基础路径来确定应用程序的根目录是`/`
+
+    ```html
+    <!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Router</title>
+      <!-- 基础路径 -->
+      <base href="/">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" type="image/x-icon" href="favicon.ico">
+    </head>
+    <body>
+      <app-root></app-root>
+    </body>
+    </html>
+    ```
 
 - 路由的相关对象
 
   ![router](./images/router.png)
 
-  - Routes: 路由数组，数组中的每一项都会把一个URL路径映射到一个组件
+  - `Routes`: 路由数组，数组中的每一项都会把一个URL路径映射到一个组件。
 
-  - RouteOutlet: 路由出口，通过`<router-outlet></router-outlet>`来指示当前导航到的路由的显示位置。
+  - `RouteOutlet`: 路由出口，通过`<router-outlet></router-outlet>`来指示当前导航到的路由的显示位置。
 
-  - Router: 路由器，为激活的URL显示应用组件。管理从一个组件到另一个组件的导航。如：`{path: 'home', component: HomeComponent}`
+  - `Router`: 路由器，为激活的URL显示应用组件。管理从一个组件到另一个组件的导航。如：`{path: 'home', component: HomeComponent}`。
 
-  - RouterLink: 路由链接，在模板中添加`routerLink`属性指向某个路由。如：`<a [routerLink]="['/home']">`
+  - `RouterLink`: 路由链接，在模板中添加`routerLink`属性指向某个路由。如：`<a [routerLink]="['/home']">`。
 
-  - ActivatedRoute: 激活的路由，为每个路由组件提供一个服务，它包含特定于路由的信息，比如路由参数、静态数据、解析数据、全局查询参数等。
+  - `ActivatedRoute`: 激活的路由，为每个路由组件提供一个服务，它包含特定于路由的信息，比如路由参数、静态数据、解析数据、全局查询参数等。
 
-  - RouterLinkActive: 活动路由链接，当`HTML`元素或元素内的`routerLink`变为激活或非激活状态时，该指令为这个`HTML`元素添加或移除`css`类。
+  - `RouterLinkActive`: 活动路由链接，当`HTML`元素或元素内的`routerLink`变为激活或非激活状态时，该指令为这个`HTML`元素添加或移除`css`类。
 
-  - RouteState: 路由器状态，路由器的当前状态包含了一颗由程序中激活的路由构成的树。它包含一些用于遍历路由树的快捷方法。
+  - `RouteState`: 路由器状态，路由器的当前状态包含了一颗由程序中激活的路由构成的树。它包含一些用于遍历路由树的快捷方法。
 
-
-- 在`index.html`中定义应用程序的基础路径`<base href="/">`
-  > 路由根据这个基础路径来确定应用程序的根目录是`/`
-
-  ```html
-  <!doctype html>
-  <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Router</title>
-    <!-- 基础路径 -->
-    <base href="/">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-  </head>
-  <body>
-    <app-root></app-root>
-  </body>
-  </html>
-  ```
-
+下面通过一个示例，展示**路由**在ng中的使用:
 - `app-routing.module.ts`(路由模块)中配置路由
 
-  ```typescript
+  ```js
   import { NgModule } from '@angular/core';
   import { Routes, RouterModule } from '@angular/router';  // 导入RouterModules和Routes对象
 
@@ -99,7 +102,7 @@
   ```
 
 - `product.component.ts`中使用`ActivateRoute`参数快照或参数订阅功能来获取路由中传递的参数
-  ```typescript
+  ```js
   import { Component, OnInit } from '@angular/core';
   import { ActivatedRoute, Params } from '@angular/router';   // 导入`ActivatedRoute`
   import { ProductResolve } from '../guard/product.resolve';
@@ -131,9 +134,11 @@
   ```
 
 - `app.component.html`中使用`router-outlet`展示路由
-  > 配置完路由信息后，就要使用`router-outlet`的指令告诉`Angular`在哪里加载组件。当`Angular`路由匹配到响应路径，并成功找到需要加载的组件时，将动态创建对应的组件，并将其作为兄弟元素插入到`router-outlet`之后。
+  > 配置完路由信息后，就要使用`router-outlet`的指令告诉`Angular`在哪里加载组件。
+  > 
+  > 当`Angular`路由匹配到响应路径，并成功找到需要加载的组件时，将动态创建对应的组件，并将其作为兄弟元素插入到`router-outlet`之后。
 
-  ```typescript
+  ```html
    <div class="handler-wrap">
     <a [routerLink]="['/home']" routerLinkActive="active">home</a>  //路径必须使用‘/’标识导航到根路由 
     <a [routerLink]="['/product']" [queryParams]="{id: 1}" routerLinkActive="active">商品详情</a> // 在查询参数中传递参数
@@ -151,7 +156,7 @@
 
 - `app.component.ts`中使用`navigate()`方法
 
-  ```typescript
+  ```js
   import { Component } from '@angular/core';
   import { Router } from "@angular/router";  
 
@@ -204,9 +209,9 @@
 
 - 子路由
 
-    * 在主路由下`children`参数，配置子路由。
+  + 在主路由下`children`参数，配置子路由。
 
-    * 需要在主路由引用的组件模板中添加`router-outlet`指令。
+  + 需要在主路由引用的组件模板中添加`router-outlet`指令，以标识显示子路由的位置。
 
 - 路由中的`data`属性用来存放每个具体路由相关的任意信息。该数据可以被任何一个激活路由访问，并能用来保存如：页标题、面包屑及其他静态只读数据，使用`resolve守卫`来获取动态数据。
 
@@ -255,11 +260,45 @@
 - 在路由时传递数据的方式
 
   + 在查询参数中传递数据
+    
+  ```
+    // 第一步: 添加queryParams查询参数
+    <a [routerLink]="['/product']" [queryParams]="{id: 1}" routerLinkActive="active">商品详情</a>
+
+    // 第二步: 获取查询参数中的数据
+    private productId: number;
+    constructor(private routeInfo: ActivatedRoute) { }
+    this.productId = this.routeInfo.snapshot.queryParams["id"]; 
+  ```
 
   + 在路由路径中传递数据
+    
+  ```
+    // 第一步: 修改路由中的path属性，使其可以携带参数
+    {path: 'product/:id', component: ProductComponent}
+    
+    // 第二步：修改路由链接的参数来传递参数 
+    <a [routerLink]="['/product', 1]" routerLinkActive="active">商品详情</a> 
+    
+    // 第三步：获取路由中传递的数据
+    private productId: number;
+    constructor(private routeInfo: ActivatedRoute) { }
+    // 参数快照与参数订阅
+    // 通过订阅`ActivatedRoute`对象的`params`属性来获取路由参数。
+    // this.productId = this.routeInfo.snapshot.params["id"]; 
+    this.routeInfo.params.subscribe((params: Params) => this.productId = params["id"])  
+  ```
 
-  + 在路由配置中传递数据
++ 在路由配置中传递数据
 
+  ```
+    // 第一步: 在路由配置中传递对象数组
+    {path:/product, component: ProductComponent, data:[{isProd: true}]}
+
+    // 第二步: 获取在路由配置中传递数据
+    constructor(private routeInfo: ActivatedRoute) { }
+    this.routeInfo.data[0][isProd]
+  ```
 
 
 
