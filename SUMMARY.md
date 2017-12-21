@@ -123,6 +123,7 @@
         * [NgModules](framework/angular/NgModule.md)
         * [HttpClient](framework/angular/HttpClient.md)
         * [表单](framework/angular/form/README.md)
+            * [快速使用](framework/angular/form/quickUse.md)
             * [用户输入](framework/angular/form/userInput.md)
             * [模板驱动](framework/angular/form/deivenForms.md)
             * [表单验证](framework/angular/form/formValidation.md)
