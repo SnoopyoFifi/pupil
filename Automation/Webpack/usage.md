@@ -1,9 +1,9 @@
 # usage
 - `webpack.config.js`
+  
   ```js
     'use strict';
     const path = require('path');
-
     const fs = require('fs');
     const version =JSON.parse(fs.readFileSync('./package.json','utf8')).version;
     const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -14,7 +14,6 @@
     //压缩js插件
     const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
     module.exports = {
-
         //入口(也可以是多入口)
         entry:{
             main:'./src/main.js',
@@ -70,7 +69,6 @@
                     test: /vue-preview.src.*?js$/,
                     loader: 'babel-loader'
                 }
-
             ]
         },
         plugins:[
@@ -84,10 +82,7 @@
                 template:'./src/index.html'
             })
         ]
-
-
     }
-
     console.log(process.argv);
     //做判断，究竟当前运行的是npm run build 还是run dev
     if(process.argv.length === 2){ 
