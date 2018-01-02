@@ -4,40 +4,13 @@
 >
 > 可通过控制不同的路由，获取不同的数据，从而渲染不同的页面。
 
-- 项目中使用路由模块的方式
-  + 在原有项目的基础上添加路由，需要通过命令`npm i --save @angular/router`安装`angular router`
+## 使用路由模块的方式
+  - 在原有项目的基础上添加路由，需要通过命令`npm i --save @angular/router`安装`angular router`
 
-  + 或者直接使用命令`ng new router --routing`生成包含路由模块的项目
+  - 或者直接使用命令`ng new router --routing`生成包含路由模块的项目
 
-    ![app-routing.module.ts](./images/app-routing.module.png)
 
-    > 在根模块`app.modules.ts`中会自动引入路由模块`app-routing.module.ts`，并将`AppRoutingModule`类添加到根模块的`imports`数组中。
-
-    ![app.module.ts](./images/app.module.png)
-
-  - 在`index.html`中定义应用程序的基础路径`<base href="/">`
-    
-    > 路由根据这个基础路径来确定应用程序的根目录是`/`
-
-    ```html
-    <!doctype html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title>Router</title>
-      <!-- 基础路径 -->
-      <base href="/">
-
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="icon" type="image/x-icon" href="favicon.ico">
-    </head>
-    <body>
-      <app-root></app-root>
-    </body>
-    </html>
-    ```
-
-- 路由的相关对象
+## 路由的相关对象
 
   ![router](./images/router.png)
 
@@ -55,7 +28,9 @@
 
   - `RouteState`: 路由器状态，路由器的当前状态包含了一颗由程序中激活的路由构成的树。它包含一些用于遍历路由树的快捷方法。
 
-下面通过一个示例，展示**路由**在ng中的使用:
+## 路由的使用
+> 在`index.html`中定义应用程序的基础路径`<base href="/">`，路由根据这个基础路径来确定应用程序的根目录是`/`
+
 - `app-routing.module.ts`(路由模块)中配置路由
 
   ```js
@@ -135,7 +110,7 @@
 
 - `app.component.html`中使用`router-outlet`展示路由
   > 配置完路由信息后，就要使用`router-outlet`的指令告诉`Angular`在哪里加载组件。
-  > 
+  >
   > 当`Angular`路由匹配到响应路径，并成功找到需要加载的组件时，将动态创建对应的组件，并将其作为兄弟元素插入到`router-outlet`之后。
 
   ```html
@@ -213,15 +188,21 @@
 
   + 需要在主路由引用的组件模板中添加`router-outlet`指令，以标识显示子路由的位置。
 
+- 路由API
+
+  + `navigate()`: 在组件类中注入`router`对象，利用其`navigate()`方法(参数和传入routerLink中的一样)，当调用该方法时页面会跳转到对应的路由地址。
+
+  + `navigateByUrl()`: 与`navigate()`类似，都是实现页面导航的。
+
 - 路由中的`data`属性用来存放每个具体路由相关的任意信息。该数据可以被任何一个激活路由访问，并能用来保存如：页标题、面包屑及其他静态只读数据，使用`resolve守卫`来获取动态数据。
 
-- 重定向路由，路由中的空路径`''`表示应用的默认路径，当URL为空时会访问那里。这个默认路由会重定向到URL`/home`，并显示`HomeComponent`。
+- 重定向路由，在用户访问一个特定的地址时，将其重定向到另一个指定的地址。路由中的空路径`''`表示应用的默认路径，当URL为空时会访问那里。这个默认路由会重定向到URL`/home`，并显示`HomeComponent`。`{path: '', redirectTo: '/home', pathMatch: 'full'}`
 
-- 路由中的`**`是一个通配符，表示通用路由。当所请求的URL不匹配前面定义的路由表中的任何路径时，路由器就会选择此路由。 这个特性可用于显示“404 - Not Found”页，或自动重定向到其它路由。
+- 通用路由，路由中的`**`是一个通配符。当所请求的URL不匹配前面定义的路由表中的任何路径时，路由器就会选择此路由。 这个特性可用于显示“404 - Not Found”页，或自动重定向到其它路由。
 
 - 需要注意路由的定义顺序。路由器使用先匹配者优先的策略来匹配路由，所以，具体路由应该放在通用路由的前面。
 
-- 路由守卫
+## 路由守卫
 
   + 用`CanActivate`来处理导航到某路由的情况，检查路由的访问权限。
 
@@ -246,45 +227,34 @@
     * 如果任何一个守卫返回`false`，其他尚未完成的守卫会被取消，这样整个导航就被取消了。
 
   + 使用路由守卫步骤:
-    
+
     * 创建`Token`。
-    
+
     * 根据实际需求选择依赖对象的创建方式。
 
     * 在`NgModule`或`Component`中注册`providers`。
 
     * 使用构造注入的方式，注入与`Token`关联的依赖对象。
 
-
-
-- 路由指令
-
-  + `routerLink`: 可以链接到已设置的路由，当链接到动态路由时，需要添加配置额外的路由变量。
-
-  + `routerLinkActive`: 当路由处于激活状态时，使用该指令会向激活的链接添加一个`class`来实现功能。
-
-- 路由API
-
-  + `navigate()`: 在组件类中注入`router`对象，利用其`navigate()`方法(参数和传入routerLink中的一样)，当调用该方法时页面会跳转到对应的路由地址。
-
-  + `navigateByUrl()`: 与`navigate()`类似，都是实现页面导航的。
-
-- 在路由时传递数据的方式
+## 在路由时传递数据的方式
 
   + 在查询参数中传递数据
-    
+
   ```
     // 第一步: 添加queryParams查询参数
     <a [routerLink]="['/product']" [queryParams]="{id: 1}" routerLinkActive="active">商品详情</a>
 
     // 第二步: 获取查询参数中的数据
     private productId: number;
-    constructor(private routeInfo: ActivatedRoute) { }
-    this.productId = this.routeInfo.snapshot.queryParams["id"]; 
+    constructor(private routeInfo: ActivatedRoute) { } 
+    ngOnInit(){
+      this.productId = this.routeInfo.snapshot.queryParams["id"]; 
+    }
+
   ```
 
   + 在路由路径中传递数据
-    
+
   ```
     // 第一步: 修改路由中的path属性，使其可以携带参数
     {path: 'product/:id', component: ProductComponent}
