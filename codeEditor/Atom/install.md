@@ -1,3 +1,3 @@
 # 安装
 
-- [安装地址](https://atom.io/)
+- [https://atom.io/](https://atom.io/)

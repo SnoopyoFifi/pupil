@@ -18,7 +18,7 @@
    - `@` 根据分类跳转 `symbol`，查找属性或函数，也可以 `Ctrl+Shift+O` 后输入:进入
    - `#` 根据名字查找 `symbol`，也可以 `Ctrl+T`
 
-## VsCode 快捷键有五种组合方式（科普）
+## VsCode 快捷键有五种组合方式
 
 1. `Ctrl + Shift + ?` : 这种常规组合按钮
 2. `Ctrl + V Ctrl +V` : 同时依赖一个按键的组合

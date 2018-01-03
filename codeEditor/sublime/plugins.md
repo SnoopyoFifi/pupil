@@ -136,4 +136,5 @@
 [Typescript](http://www.interoperabilitybridges.com/media/155452/typescript_support_for_sublime_text.zip)
 
 24. **auto Prefixer**
-    - Prefixr，CSS3 私有前缀自动补全插件，显然也很有用哇
+  
+  > Prefixr，CSS3 私有前缀自动补全插件，显然也很有用哇

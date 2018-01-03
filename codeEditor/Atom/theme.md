@@ -1,9 +1,6 @@
 # 主题
-
-主题推荐
-
-  - isotope-ui        
+  - isotope-ui
  
   - seti-UI 
  
-  - monokai-flat   
+  - monokai-flat

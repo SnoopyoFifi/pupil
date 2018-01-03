@@ -1,43 +1,71 @@
 # 常用插件介绍
+- Sync Setting: 搭配`github`同步插件信息及配置信息，可多设备共享。
 
-- Emmet — 用过都说好,神器;有个别快捷键会和 Markdown preview 快捷键冲突，改下就好了
+- Emmet: 不解释。
 
-- autoprefixer — 用来补充 css 前缀的，会自动生成多个浏览器的前缀
+- Atom Beauty: 代码格式化工具，可设置在保存时自动格式化。
 
-- color-picker — 取色器,太赞了有木有，比 sublime 那个好用，不卡，启动超快
+- Autocomplete Paths: 自动补全文件路径。
 
-- linter — 这货默认可以识别多门语言的错误,但是不细致，属于主插件，可以针对性的安装更细致的检查插件(太多，不一一列出，下面是前端可能用到的)
+- Auto close HTML: 自动输入对应的html关闭标签。
 
-  - linter-jshint, for JavaScript and JSON, using jshint
-  - linter-coffeelint, for CoffeeScript, using coffeelint
-  - linter-tslint, for Typescript, using tslint
-  - linter-php, for PHP using php -l
-  - linter-pylint, for Python, using pylint
-  - linter-scss-lint, for SASS/SCSS, using scss-lint
-  - linter-less, for LESS, using less
-  - linter-csslint, for CSS, using csslint
-  - linter-stylint, for Stylus, using stylint
-  - linter-stylus, for Stylus, using stylus
+- autoprefixer: 会自动生成多个浏览器的前缀。
 
-- autocomplete-plus — 完善自带 autocomplete,有二度设置，接下来列出的一些有二度设置
+- color-picker: 取色器。
 
-  - autocomplete-python — 你懂得，更加细致
-  - autocomplete-paths — 实用派，路径补全
-  - autocomplete-html — 你懂得，更加细致
-  - autocomplete-bibtex — Github 的 markdown 语法
-  - autocomplete-snippets — 如名字
-  - autocomplete-css — 你懂得，更加细致
+- Linter Jshint: js开发必备。
 
-- less-autocompile — 实时编译
+- less-autocompile: 实时编译less
 
-- docblockr — 注释插件，非常的实用
+- docblockr: 文档化注释。
 
-- file-icons — 增加许多图标,在侧边蓝文件名前面的 icon。
+- file-icons: 为不同类型的文件添加漂亮的图标。
 
-- filetype-color — amazing,,在标签栏不同格式文件显示不同的颜色的标题，支持二度设置
+- filetype-color: 在标签栏不同格式文件显示不同的颜色的标题，支持二度设置。
 
-- git-plus — 与Sublime Text 的 sublimegit 功能基本一致
+- git-plus: 各种常用的git功能。
 
-- vim-mode — 用过 vim 的都知道好,基本实现了大部分的功能，不过造成许多快捷键冲突，慢慢排除吧
+- minimap: 编辑区域右侧展示一个代码图，类似sublime。
 
-- minimap — 用过 Sublime Text 的友友们都知道有一个很实用的功能，就是内部编辑那里有一个小小的代码图,这货就是补全 Atom 这个功能的,支持高亮代码,还可控，具体看内部设置。
+- atom-html-preview: 实时预览HTML页面。
+  ```
+    'atom-text-editor': 
+      'ctrl-F12':'atom-html-preview:toggle'
+  ```
+
+- tree-view-finder
+
+- linter: 检查插件，常用的包括
+  + linter-jshint, for JavaScript and JSON, using jshint
+  
+  + linter-coffeelint, for CoffeeScript, using coffeelint
+  
+  + linter-tslint, for Typescript, using tslint
+  
+  + linter-php, for PHP using php -l
+  
+  + linter-pylint, for Python, using pylint
+  
+  + linter-scss-lint, for SASS/SCSS, using scss-lint
+  
+  + linter-less, for LESS, using less
+  
+  + linter-csslint, for CSS, using csslint
+  
+  + linter-stylint, for Stylus, using stylint
+  
+  + linter-stylus, for Stylus, using stylus
+
+
+- autocomplete-plus: 完善自带 autocomplete功能，可自定义设置
+  + autocomplete-paths: 路径补全
+  
+  + autocomplete-bibtex: Github 的 markdown 语法
+  
+  + autocomplete-snippets
+
+  + autocomplete-html
+  
+  + autocomplete-css
+  
+  + autocomplete-python

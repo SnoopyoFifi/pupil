@@ -1,6 +1,6 @@
 # 安装
 
-- [网址](http://www.sublimetext.com/3)
+- [http://www.sublimetext.com/3](http://www.sublimetext.com/3)
 
 - 注册码
 

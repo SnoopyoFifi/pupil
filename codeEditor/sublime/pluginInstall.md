@@ -28,13 +28,13 @@
     + 生成`.gitignore`文件
 
       ```
-       Package Control.last-run
+        Package Control.last-run
         Package Control.ca-list
         Package Control.ca-bundle
         Package Control.system-ca-bundle
         Package Control.cache/
         Package Control.ca-certs/
-        encoding_cache.json提交远程仓库
+        encoding_cache.json
       ```
 
     + 提交远程仓库
