@@ -23,27 +23,27 @@
 
   - Postman(fhbjgbiflinjbdggehcddcbncdddomop): 接口调试工具。
 
-  - PerfectPixel(): 像素级UI稿还原。
+  - PerfectPixel(dkaagdgjmgdmbnecmcefdhjekcoceebi): 像素级UI稿还原。
 
   - LastPass(hdokiejnpimakedhajhdlcegeplioahd): 管理页面密码。
 
-  - Full Page Screen Capture(): 整屏截取。
+  - Full Page Screen Capture(fdpohaocaechififmbbbbbknoalclacl): 整屏截取。
 
-  - Chrome Sniffer Plus(): 查看页面所用技术库、框架。
+  - Library Sniffer for Google Chrome(fhhdlnnepfjhlhilgmeepgkhjmhhhjkh): 查看页面所用技术库、框架。
   
-  - BuiltWith(): 方便的查看正在访问的网站使用什么构建的。
+  - BuiltWith Technology Profiler(dapjbgnjinbpoindlpdmhochffioedbn): 方便的查看正在访问的网站使用什么构建的。
 
-  - Allow-Control-Allow-Origin(): 解决跨域访问的问题。 
+  - Allow-Control-Allow-Origin(nlfbmbojpeacfghkpbjhddihlkkiljbi): 解决跨域访问的问题。 
 
-  - EditThisCookie(): 修改cookie的快捷工具。
+  - EditThisCookie(fngmhnnpilhplaeedifhccceomclgfbg): 修改cookie的快捷工具。
 
-  - JSONView(hdmbdioamgdkppmocchpkjhbpfmpjiei): 方便的查看接口返回的json结构的数据。
+  - JSON Viewer(gbmdgpbipfallnflgajpaliibnhdgobh): 方便的查看接口返回的json结构的数据。
 
-  - Validity(): 快速验证HTML文档明显的错误。
+  - Validity(bbicmjjbohdfglopkidebfccilipgeif): 快速验证HTML文档明显的错误。
 
-  - Panda 5 | News & Inspiration Dashboard(): 优秀的资源阅读器。
+  - Panda 5 | News & Inspiration Dashboard(haafibkemckmbknhfkiiniobjpgkebko): 优秀的资源阅读器。
 
-  - AngularJS Batarang / React Developer Tools / Vue.js devtools(): Angular/React/Vue调试工具。
+  - AngularJS Batarang / React Developer Tools / Vue.js devtools(ighdmehidhipcmcojjgiloacoafjmpfk / fmkadmapgofadopljbjfkapdkoienihi / nhdogjmejiglipccpnnnanhbledajbpd ): Angular/React/Vue调试工具。
 
   - 广告终结者(fpdnjdlbdmifoocedhkighhlbchbiikl): 清除网页上所有广告。
   
@@ -51,15 +51,13 @@
   
   - FeHelper(pkgccpejnmalmdinmhkkfafefagiiiad): WEB前端助手。
   
-  - Dribbble New Tab(): 设计师必备，打开空白tab时，会展示每日精选作品。
+  - Dribbble New Tab(hmhjbefkpednjogghoibpejdmemkinbn): 设计师必备，打开空白tab时，会展示每日精选作品。
   
-  - Alexa Traffic Rank Alexa(): 查看网站的世界排名，适用于查看博客的流行程度。
+  - Alexa Traffic Rank( cknebhggccemgcnbidipinkifmmegdel): 查看网站的世界排名，适用于查看博客的流行程度。
   
-  - Page Ruler(): 查看网页一些图片的详细像素大小、具体位置等。
+  - Page Ruler(jlpkojjdgbllmedoapgfodplfhcbnbpn): 查看网页一些图片的详细像素大小、具体位置等。
   
-  - Save to Packet(): 收藏喜欢的网页，可同步至手机。
-  
-  - Momentum(): 每天一副精美的图片(与Dribbble New Tab不可同时使用)。
+  - Momentum(laookkfknpbbblfpciffpaejjkokdgca): 每天一副精美的图片(与Dribbble New Tab不可同时使用)。
   
   - Devtools Terminal(): 浏览器终端。
   
@@ -67,31 +65,31 @@
   
   - WhatFont(jabopobgcpjmedljpbcaablpmlmfcogm): 方便的识别网页上的字体。
   
-  - Font Changer(): 改变网站的字体。
+  - Font Changer(jgjhhoglgjdklldfgoffdiaceffijeke): 改变网站的字体。
   
-  - Image Downloader(): 浏览和下载网页上的图像。
+  - Image Downloader(cnpniohnfphhjihaiiggeabnkjhpaldj): 浏览和下载网页上的图像。
   
-  - Responsive Inspector(): 查看正在访问网站的媒体查询。
+  - Responsive Inspector(memcdolmmnmnleeiodllgpibdjlkbpim): 查看正在访问网站的媒体查询。
   
   - SelectorGadget(): 能够让CSS选择器生成和发现于复杂网站。
   
-  - CSS Shapes Editor(): 使用交互式编辑器来创建并调整CSS Shapes值，重叠所选元素。
+  - CSS Shapes Editor(nenndldnbcncjmeacmnondmkkfedmgmp): 使用交互式编辑器来创建并调整CSS Shapes值，重叠所选元素。
   
-  - Pesticide(): 插入Pesticide CSS 到当前页，形成每个元素的示意图以便于更好地看到该元素在页面上的位置。
+  - Pesticide for Chrome(bblbgcheenepgnnajgfpiicnbbdmmooh): 插入Pesticide CSS 到当前页，形成每个元素的示意图以便于更好地看到该元素在页面上的位置。
   
-  - Eye Dropper(): 从网页、拾色器和个人色彩历史中选取颜色。
+  - Eye Dropper(hmdcmlfkchdmnmnmheododdhjedfccka): 从网页、拾色器和个人色彩历史中选取颜色。
   
-  - YSlow(): 分析网页，并提出改进网页性能的方法。
+  - YSlow(ninejjcohidippngpapiilnmkgllmakh): 分析网页，并提出改进网页性能的方法。
   
-  - User-Agent Switcher(): 模拟用户代理(User-Agent)字符串，通过设置每次要冒名的特定URL，方便的在用户代理之间切换。
+  - User-Agent Switcher(lkmofgnohbedopheiphabfhfjgkhfcgf): 模拟用户代理(User-Agent)字符串，通过设置每次要冒名的特定URL，方便的在用户代理之间切换。
   
-  - LiveReload(): 为官方LiveReload应用程序和第三方，提供Chorme浏览器集成。
+  - LiveReload(jnihajbhpnppcggbcgedagnkighmdlei): 为官方LiveReload应用程序和第三方，提供Chorme浏览器集成。
   
-  - Web Developer(): 添加了一个拥有各种web开发工具的工具栏按钮。
+  - Web Developer(bfbameneiokkgbdmiekhjnmfkcnldhhm): 添加了一个拥有各种web开发工具的工具栏按钮。
   
-  - Corporate Ipsum(): 生成随机的企业公关说辞。
+  - Corporate Ipsum(lfmadckmfehehmdnmhaebniooenedcbb): 生成随机的企业公关说辞。
   
-  - Responsive Web Design Tester(): 在移动设备上测试移动网站，反映了移动设备的大小及其浏览器。
+  - Responsive Web Design Tester(elmekokodcohlommfikpmojheggnbelo): 在移动设备上测试移动网站，反映了移动设备的大小及其浏览器。
 
 
 ## 代码调试
