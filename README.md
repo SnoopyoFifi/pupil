@@ -56,3 +56,13 @@
 ## 其他
 
 [其他](others/README.md)
+
+
+## Targets
+1. JS Framework: [Vue.js](https://github.com/vuejs/vue)
+2. JavaScript Standard & Superset & Compile: [ES6+](http://es6.ruanyifeng.com/#docs/intro) 、[TypeScript](https://github.com/Microsoft/TypeScript)、[Babel](https://github.com/babel/babel)
+3. Modularization: [Webpack](https://github.com/webpack/webpack)、[Parcel](https://github.com/parcel-bundler/parcel)
+4. Dependency Management: [Bower](https://github.com/bower/bower)
+5. CSS Layout: [flexbox1](http://www.webhek.com/apps/flex-cheatsheet/)、[flexbox2](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)、[grid](https://css-tricks.com/snippets/css/complete-guide-grid/)、[rem]()
+6. UI Framework: [Bootstrap](https://github.com/twbs/bootstrap)
+7. CSS pre-processor: [PostCSS](https://github.com/postcss/postcss)
