@@ -495,5 +495,98 @@
   ```
 
 ## `flexbox`
+- 基本概念  
 
+> flex布局，通常被称为弹性布局。。
+
+**注意**： 在设置flex布局后，子元素的float、clear、vertical-align属性将失效。
+
+> 可以从<b>容器</b>(采用flex布局的元素)和<b>子项目</b>(容器内部直接子元素)去理解弹性布局。
+
+  ![flexbox](./images/flexbox.png)
   
+  - main axis和cross axis表示flex的主轴与交叉轴，类似坐标系的x、y轴
+  - main start和main end表示项目到容器的开始和结束的位置
+  - cross start和cross end表示交叉轴上项目到容器的开始和结束的位置
+  - main size和crose size表示项目占据主轴和交叉轴的空间
+
+
+- 容器的属性
+
+  - `display` 表示容器的布局类型，可以为flex和inline-flex
+    ```css
+      .container {
+        display: -webkit-flex;
+        display: flex; 
+      }
+    ```
+  
+  - `flex-direction` 表示容器内部子项目的展示方向
+    ```css
+      .container {
+        flex-direction: row || row-reverse || column || column-reverse;
+                        默认 行正序 || 行倒序 || 列正序 || 列倒序
+      }
+    ```
+
+  - `flex-wrap` 表示容器内部内容超出容器时，容器是否分行展示
+    ```css
+      .container {
+        flex-wrap: nowrap || wrap || wrap-reverse;
+                   默认 不分行 || 超出的部分分行处理 || 分行逆序
+      }
+    ```
+
+  - `flex-flow` 可以将上述两个属性合写
+    ```css
+      .container {
+        flex-flow: row wrap;
+                   行正序 超出的部分分行显示
+      }
+    ```
+
+  - `justify-content` 表示容器内部的子项目水平对齐方式
+    ```css
+      .container {
+        justify-content: flex-start || flex-end || center || space-between || space-around || space-evenly;
+      }
+    ```
+    + `flex-start` 默认 水平向左对齐
+    + `flex-end` 水平向右对齐
+    + `center` 水平居中对齐
+    + `space-between` 每个元素之间留出的间隙是一样的，两边无间隙
+    + `space-around` 每个元素周围的间隙是一样的，两边的间隙比中间小一半
+    + `space-evenly` 每个元素之间的间隙大小一致
+  
+  - `align-items` 表示容器内部的子项目垂直对齐方式
+    ```css
+      .container {
+        align-items: flex-start || flex-end || center || stretch || baseline;
+      }
+    ```
+    + `flex-start` 交叉轴的起点对齐
+    + `flex-end` 交叉轴的终点对齐
+    + `center` 交叉轴的中点对齐
+    + `stretch` 默认 项目未设置高度或设为auto，将占满整个容器的高度
+    + `baseline` 项目的第一行文字的基线对齐
+  
+  - `align-content` 表示对行的情况下，每行所对应的垂直方向上的对齐方式
+    ```css
+      .container {
+        align-content: flex-start || flex-end || center || stretch || space-between || space-around;
+      }
+    ```
+    + `flex-start` 每一行在垂直方向上向上对齐的方式
+    + `flex-end` 每一行在垂直方向上向下的对齐方式
+    + `center` 每一行在垂直方向上居中对齐的方式
+    + `stretch` 每一行延展到铺满整个垂直方向。
+    + `space-between` 每行之间留有空隙，而两边没有空隙
+    + `space-around` 每行周围的空隙均相等
+
+- 子项目的属性
+  - `order` 表示子项目的排列顺序。默认为0，数值越小，排列越靠前。
+  - `flex-grow` 表示元素所占空间的比例。默认为0，在设置每个元素的`flow-grow`为1时，一行内的子元素都是均分的。
+  - `flex-shrink` 表示子项目的伸缩。默认为1，空间不足时，该项目将缩小。当空间不足时，为0的子项目不缩小。
+  - `flex-basis` 表示子项目的长度。默认为auto，即当设置`flex-grow`时，长度就为`flex-grow`的`value`，如果没有，就是块本身内容的大小。
+  - `flex` 表示`flex-grow`、`flex-shrink`、`flex-basis`的集合写法，默认为0, 1, auto。
+  - `align-self` 表示子项目在垂直轴线上的放置方式。默认为auto，它的值和`align-items`一样。
