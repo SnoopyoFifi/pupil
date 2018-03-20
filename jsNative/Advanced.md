@@ -942,118 +942,155 @@ e.initUIEvent("click", true, true, window, 1);
 
 
 ## `this` 的指向
+[javascript_this](http://www.cnblogs.com/isaboy/p/javascript_this.html)
 
-- JavaScript `this` 决策树 (非严格模式)
+> `Javascript`的 `this`总是指向一个对象，而具体指向哪个对象是<b>在运行时基于函数的执行环境动态绑定的</b>，而非函数被声明时的环境。
 
-![JavaScript this 决策树](./images/JavaScript this决策树.jpg)
+- `this`的四种指向
+  + 作为对象的方法调用。
+  + 作为普通函数调用。
+  + 构造器调用。
+  + `Function.prototype.call`或`Function.prototype.apply`调用。
 
-js中 `this` 在运行期进行绑定，这是js中的 `this` 关键字具备多重含义的本质原因。
+- 作为对象的方法调用
 
-`this` 指向可能是： 全局对象、当前对象或者任意对象，这取决于函数的调用方式。
+> 当函数作为对象的方法被调用时，`this` 指向该对象。
+  
+  ```js
+    var obj = {
+      name: 'snoopy',
+      getName: function() {
+        alert(this === obj);
+        alert(this.name);
+      }
+    }
 
-函数的调用方式有：作为对象方法调用、作为函数调用、作为构造函数调用、使用 `apply` 和 `call` 调用。
+    obj.getName();
+  ```
 
-- 举个栗子
+- 作为普通函数调用
 
+> 当函数作为普通函数方式调用时，此时的`this`总是指向全局对象(浏览器环境中是`window`)。
+
+  ```js
+    window.name = 'snoopy';
+    var getName = function() {
+      return this.name;
+    }
+    console.log(getName());
+  
+    // or
+    
+    window.name = 'snoopy';
+    var myObject = {
+      name: 'fifi',
+      getName: function() {
+        return this.name;
+      }
+    }
+
+    var getName = myObject.getName;
+    console.log(getName()); // snoopy
+  ```
+
+- 构造器调用
+
+> js中函数都可以当作构造器使用来创建对象。当用`new`运算符调用函数时，该函数总会返回一个对象，构造器里的`this`就指向返回的这个对象。
+> 
+> 如果构造器显式的返回了一个`object`类型的对象，那么此次运算结果最终返回这个对象，而非`this`。
+
+  ```js
+    var myClass = function() {
+      this.name = 'snoopy';
+    }
+    var obj = new myClass();
+    alert(obj.name); // snoopy
+
+    // 构造器显示返回一个对象
+    var myClass = {
+      this.name = 'snoopy';
+      return {
+        name: 'fifi'
+      }
+    }
+    var obj = new myClass();
+    alert(obj.name);// fifi
+  ```
+
+- `Function.prototype.call`或`Function.prototype.apply`调用
+
+> 跟普通的函数调用相比，用`call`或`apply`可以动态的改变传入函数的`this`
+
+  ```js
+    var obj1 = {
+      name: 'snoopy',
+      getName: function() {
+        return this.name;
+      }
+    }
+
+    var obj2 = {
+      this.name = 'fifi'
+    }
+
+    console.log(obj1.getName()); // snoopy
+    console.log(obj2.getName.call(obj2)); // fifi
+  ```
+
+- 丢失的`this`
+
+> 对象的方法当作了普通函数调用，`this`指向了全局`window`
 ```js
-
-// this 指向方法调用对象
-  var point = { 
-   x : 0, 
-   y : 0, 
-   moveTo : function(x, y) { 
-       this.x = this.x + x; 
-       this.y = this.y + y; 
-       } 
-   };
-  //决策树解释：point.moveTo(1,1)函数不是new进行调用，进入否决策，
-  //是用dot(.)进行调用，则指向.moveTo之前的调用对象，即point
-  point.moveTo(1,1); //this 绑定到当前对象,即point对象
-
-// this 指向全局对象
-  function func(x) { 
-    this.x = x; 
-  } 
-  func(5); //this是全局对象window，x为全局变量
-  //决策树解析：func()函数是用new进行调用的么？为否，进入func()函数是用dot进行调用的么？为否，则 this指向全局对象window
-  x;//x => 5
-
-// this指向全局对象
-  var point = { 
-    x : 0, 
-    y : 0, 
-    moveTo : function(x, y) { 
-       // 内部函数
-      var moveX = function(x) { 
-        this.x = x;//this 指向什么？window
-      }; 
-      // 内部函数
-      var moveY = function(y) { 
-        this.y = y;//this 指向什么？window
-      }; 
-      moveX(x); 
-      moveY(y); 
-    } 
-  }; 
-  point.moveTo(1,1); 
-  point.x; //=>0 
-  point.y; //=>0 
-  x; //=>1 
-  y; //=>1
-
-// this 指向new关键字创建的实例对象
-  function Point(x,y){ 
-    this.x = x; // this ?
-    this.y = y; // this ?
+  var obj = {
+    name: 'snoopy',
+    getName: function() {
+      return this.name;
+    }
   }
-  var np=new Point(1,1);
-  np.x;//1
-  var p=Point(2,2);
-  p.x;//error, p是一个空对象undefined
-  window.x;//2
 
-// apply 强制改变 this 指向
-  function Point(x, y){ 
-    this.x = x; 
-    this.y = y; 
-    this.moveTo = function(x, y){ 
-      this.x = x; 
-      this.y = y; 
-    } 
-  } 
+  console.log(obj.getName()); // snoopy
 
-  var p1 = new Point(0, 0); 
-  var p2 = {x: 0, y: 0}; 
-  p1.moveTo.apply(p2, [10, 10]);//apply实际上为p2.moveTo(10,10)
-  p2.x//10
+  var getName2 = obj.getName;
+  console.log(getName2()); // undefine
+```
 
+
+> 使用短函数替换`document.getElementById`
+```js
+  var getId = function(id) {
+    return document.getElementById(id);
+  }
+  // 使用以下方式会报错，
+  // 原因是`document.getElementById`方法内部实现需要用到`this`，本来`this`的指向是`document`
+  // 但是使用getId引用再调用，此时成了普通函数调用。
+  var getId = document.getElementById;
+  getId('test');
+
+  // 使用`apply`把`document`当作`this`传入getId函数，重新更改`this`指向
+  document.getElementById = (function(func){
+    return function() {
+      return func.apply(document, arguments);
+    }  
+  })(document.getElementById);
+  var getId = document.getElementById;
 
 ```
 
 - 函数的执行过程
 
-JavaScript 中的函数既可以被当作普通函数执行，也可以作为对象的方法执行，这是导致 this 含义如此丰富的主要原因。
-
-一个函数被执行时，会创建一个执行环境（ExecutionContext），函数的所有的行为均发生在此执行环境中，构建该执行环境时，JavaScript 首先会创建 arguments变量，其中包含调用函数时传入的参数。
-
-接下来创建作用域链。
-
-然后初始化变量，首先初始化函数的形参表，值为 arguments变量中对应的值，如果 arguments变量中没有对应值，则该形参初始化为 undefined。
-
-如果该函数中含有内部函数，则初始化这些内部函数。
-
-如果没有，继续初始化该函数内定义的局部变量，需要注意的是此时这些变量初始化为 undefined，其赋值操作在执行环境（ExecutionContext）创建成功后，函数执行时才会执行，这点对于理解 JavaScript 中的变量作用域非常重要。
-
-最后为 this变量赋值，如前所述，会根据函数调用方式的不同，赋给 this全局对象，当前对象等。
-
-至此函数的执行环境（ExecutionContext）创建成功，函数开始逐行执行，所需变量均从之前构建好的执行环境（ExecutionContext）中读取。
-
-
-- 引用标明出处
-
-[javascript_this](http://www.cnblogs.com/isaboy/p/javascript_this.html)
-
-
-
-
+  >JavaScript 中的函数既可以被当作普通函数执行，也可以作为对象的方法执行，这是导致 this 含义如此丰富的主要原因。
+  >
+  >一个函数被执行时，会创建一个执行环境（`ExecutionContext`），函数的所有的行为均发生在此执行环境中，构建该执行环境时，JavaScript 首先会创建 >arguments变量，其中包含调用函数时传入的参数。
+  >
+  >接下来创建作用域链。
+  >
+  >然后初始化变量，首先初始化函数的形参表，值为 arguments变量中对应的值，如果 arguments变量中没有对应值，则该形参初始化为 undefined。
+  >
+  >如果该函数中含有内部函数，则初始化这些内部函数。
+  >
+  >如果没有，继续初始化该函数内定义的局部变量，需要注意的是此时这些变量初始化为 `undefined`，其赋值操作在执行环境（`ExecutionContext`>）创建成功后，函数执行时才会执行，这点对于理解 JavaScript 中的变量作用域非常重要。
+  >
+  >最后为 this变量赋值，如前所述，会根据函数调用方式的不同，赋给 this全局对象，当前对象等。
+  >
+  >至此函数的执行环境（`ExecutionContext`）创建成功，函数开始逐行执行，所需变量均从之前构建好的执行环境（`ExecutionContext`）中读取。
 

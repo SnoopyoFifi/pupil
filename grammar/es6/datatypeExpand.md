@@ -74,9 +74,8 @@
   > `Object.is(x,y)`只有在x、y的类型和值都相等时，才返回`true`。
 
 - `Object.asign()` 方法
-  > 一个对象从另一个对象接收属性和方法，会使用混入的方式(浅复制，当属性值为对象时，仅复制其引用
+  > 一个对象从另一个对象接收属性和方法，会使用混入的方式(浅复制，当属性值为对象时，仅复制其引用)，
   > 
-  > )，
 
 ```js
   // minx()函数 在supplier对象的属性上进行迭代，并讲这些属性复制到receiver对象
@@ -86,7 +85,20 @@
     })
     return receiver;
   }
+  // 使用mixin()完成对象属性的复制
+  function EventTarget(){}
+  EvcentTarget.prototype = {
+    constructor: EventTarget,
+    emit: function(){},
+    on: function(){}
+  }
+  var myObject = {},
+  mixin(myObject, EventTarget.prototype);
+  myObject.emit("somethingChanged");
+  
 ```
+
+
 
 
 

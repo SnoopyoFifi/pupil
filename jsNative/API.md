@@ -62,6 +62,23 @@
 
 ## 给操作`DOM`起别名
 
+> 大部分高级浏览器都实现了内置的`Function.prototype.bind`，用来指定函数内部的`this`指向。
+> 没有原生的，下面实现了该方法:
+
+```js
+  Function.prototype.bind = Function.prototype.bind || function(){
+    var self = this,  // 保存原函数
+        context = [].shift.call(arguments), // 需要绑定的this上下文
+        args = [].slice.call(arguments);  // 剩余的参数转成数组
+    return function() {  // 返回一个新数组
+      return self.apply(context, [].concat.call(args, [].slice.call(arguments)));
+      // 执行新的函数的时候，会把之前传入的context当作新函数体内的this
+      // 并组合两次分别传入参数，作为新函数的参数。
+    }
+  }
+```
+
+
 ```js
   document.getElementById
   document.getElementsByClass
