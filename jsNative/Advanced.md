@@ -1040,6 +1040,7 @@ e.initUIEvent("click", true, true, window, 1);
 - 丢失的`this`
 
 > 对象的方法当作了普通函数调用，`this`指向了全局`window`
+
 ```js
   var obj = {
     name: 'snoopy',
@@ -1076,7 +1077,8 @@ e.initUIEvent("click", true, true, window, 1);
 
 ```
 
-- 函数的执行过程
+
+**注意**： 函数的执行过程
 
   >JavaScript 中的函数既可以被当作普通函数执行，也可以作为对象的方法执行，这是导致 this 含义如此丰富的主要原因。
   >
@@ -1093,4 +1095,194 @@ e.initUIEvent("click", true, true, window, 1);
   >最后为 this变量赋值，如前所述，会根据函数调用方式的不同，赋给 this全局对象，当前对象等。
   >
   >至此函数的执行环境（`ExecutionContext`）创建成功，函数开始逐行执行，所需变量均从之前构建好的执行环境（`ExecutionContext`）中读取。
+
+
+## `call` & `apply`
+
+> `call` & `apply`是在`ECAMScript 3`中给`Function`的原型定义的两个方法。
+
+- `call`和`apply`的区别
+  + 二者作用一样，区别在于传入参数的形式不同。
+  + `apply`接受两个参数：一个参数指定了函数体内`this`对象的指向；第二个参数为一个带下标的集合(数组、类数组)，`apply`方法把集合中的元素作为参数传递给被调用的函数。
+    ```js
+      var func = functiong(a, b, c) {
+        alert([a, b, c]); // [2, 3, 4]
+      };
+      func.apply(null, [2, 3, 4]);
+    ```
+  
+  + `call`传入的参数不固定：第一个参数也是代表函数体内的`this`指向；从第二个参数开始往后，每个参数被依次传入函数。
+    ```js
+      var func = function(a, b, c) {
+        alert([a, b, c]); // [2, 3, 4]
+      }
+      func.call(null, 2, 3, 4)
+    ```
+  
+  + 如果传入的一个参数为`null`，函数体内的`this`会指向默认的宿主对象，在浏览器中就是`window`；但是在严格模式下，`this`为`null`。
+    ```js
+      var func = function(a, b, c) {
+        alert(this === window); // true
+      };
+      func.apply(null, [1, 2, 3])
+
+      var func = function(a, b, c) {
+        "use strict";
+        alert(this === null); // true
+      };
+      func.apply(null, [1, 2, 3]);
+    ```
+ 
+  + 同时，传入`null`另有用途，比如借用其他对象的方法，传入`null`来代替某个具体的对象。
+    ```js
+        Math.max.apply(null, [1, 2, 3, 4])
+    ```
+
+  + 注意：
+    
+    > 当调用一个函数时，`JavaScript`的解释器并不会计较形参和实参在数量、类型以及顺序上的区别，`JavaScript`的参数在内部就是用一个数组来表示的。
+    > 
+    > 从这个意义上说， `apply` 比 `call` 的使用率更高，我们不必关心具体有多少参数被传入函数，只要用 `apply` 一股脑地推过去就可以了。
+    > 
+    > `call` 是包装在 apply 上面的一颗语法糖，如果我们明确地知道函数接受多少个参数，而且想一目了然地表达形参和实参的对应关系，那么也可以用 `call` 来传送参数。
+  
+
+- `call`和`apply`的用法
+  + 改变`this`指向 
+    ```js
+      var obj1 = {
+        name: 'snoopy'
+      };
+      var obj2 = {
+        name: 'fifi'
+      };
+      window.name = 'window';
+
+      var getName = function(){
+        alert(this.name);
+      }
+      getName(); // window
+      getName.call(obj1); // snoopy 
+      getName.call(obj2); // fifi
+    ```
+
+  + 修正不经意间更改的`this`指向
+    ```js
+      // 问题：
+      document.getElementById('div1').onclick = function() {
+        alert(this.id); // div1
+        var func = function(){
+          alert(this.id); // undefined
+        }
+        func();
+      };
+
+      // 使用call修正func函数内的this
+      document.getElementById('div1').onclick = function() {
+        var func = function() {
+          alert(this.id); // div1
+        }
+        func.call(this);
+      };
+
+      // 使用apply修正document.getElementById函数内部丢失的this
+      document.getElementById = (function(func){
+        return function() {
+          return func.apply(document, arguments);// this重新指向document
+        }  
+      })(document.getElementById)
+    ```
+
+  + `Function.prototype.bind`
+  
+    ```js
+      // `Function.prototype.bind`用来指定函数内部的`this`指向,在大部分高级浏览器都内置了，下面模拟一个：
+      Function.prototype.bind = function(context) {
+        var self = this;
+        return function() {
+          return self.apply( context, arguments );
+        }
+      }
+
+      var obj = {
+        name: 'snoopy'
+      };
+
+      var func = function() {
+        alert(this.name);  // snoopy
+      }.bind(obj);
+      func();
+      // 终结版
+      Function.prototype.bind = function() {
+        var self = this, // 保存原函数
+            context = [].shift.call(arguments), // 需要绑定的this上下文
+            args = [].slice.call(arguments);  // 剩余的参数转成数组 
+        return function() {  // 返回一个新函数
+          return self.apply( context, [].concat.call(args, [].slice.call(arguments)) );
+            // 执行新的函数的时候，会把之前传入的context作为新函数体内的this
+            // 并且组合两次分别传入的参数，作为新函数的参数
+        }
+      };
+
+      var obj = {
+        name: 'snoopy'
+      };
+
+      var func = function(a, b, c, d) {
+        alert(this.name);  // snoopy
+        alert([a, b, c, d]);  // [1, 2, 3, 4]
+      }.bind(obj, 1, 2);
+      func(3, 4);
+    ```
+
+  + 借用其他对象的方法
+    
+    > 借用构造函数，类似继承的效果
+    
+    ```js
+        var A = function(name) {
+          this.name = name;
+        };
+        var B = function() {
+          A.apply(this, arguments)
+        };
+        B.prototype.getName = function() {
+          return this.name;
+        };
+
+        var b = new B('snoopy');
+        console.log(b.getName()); // snoopy
+
+    ```
+
+    > 给像函数的参数列表`arguments`一样的类数组对象添加一个新元素，通常会借用`Array.prototype.push`。
+    > 类似的，使用`Array.prototype.slice`将`arguments`转为真正的数组；
+    > 使用`Array.prototype.shift`截去`arguments`列表中头一个元素；
+    
+    ```js
+      (function(){
+        Array.prototype.push.call(arguments, 3);
+        console.log(arguments); // [1, 2, 3] 
+      })(1, 2)
+    ```
+    
+  **注意**: Array.prototype.push`在V8引擎中的具体实现
+    
+    ```js
+      function ArrayPush() {
+        var n = TO_UINT32( this.length ); // 被 push 的对象的 length
+        var m = %_ArgumentsLength(); // push 的参数个数
+        for (var i = 0; i < m; i++) {
+        this[ i + n ] = %_Arguments( i ); // 复制元素 (1)  对象本身要可以存取属性；
+      }
+      this.length = n + m; // 修正 length 属性的值 (2) 对象的 length 属性可读写。
+        return this.length;
+      };
+    ```
+
+    > 可以看到， `Array.prototype.push` 实际上是一个属性复制的过程，
+    > 
+    > 把参数按照下标依次添加到被 `push` 的对象上面，顺便修改了这个对象的 `length` 属性。
+    > 
+    > 至于被修改的对象是谁，到底是数组还是类数组对象，这一点并不重要。只要满足上述(1)(2)两点就可以使用`push`。
 
