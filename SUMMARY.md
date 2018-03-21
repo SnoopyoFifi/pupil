@@ -129,10 +129,9 @@
     * [React](framework/react/README.md)
 
 -----
-* [复习](interview/README.md)
 * [原生](jsNative/README.md)
     * [API](jsNative/API.md)
-    * [拔高](jsNative/Advanced.md)
+    * [核心概念](jsNative/Advanced.md)
     * [代码片段](jsNative/codeSnippet.md)
 * [手机端](mobileEnd/README.md)
     * [H5C3](mobileEnd/h5c3/README.md)
@@ -169,4 +168,4 @@
         * [常用插件](others/gitbook/commonPlugins.md)
         * [生成pdf](others/gitbook/pdf.md)
         * [生成gitpages](others/gitbook/gitpages.md)
-
+* [复习](interview/README.md)

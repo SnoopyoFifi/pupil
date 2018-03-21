@@ -1,6 +1,7 @@
 # InterviewQuestion
 
 ## 闭包
+- [闭包面试题解析](https://segmentfault.com/a/1190000004187681)
 
 ```js
 function fun(n, o){
