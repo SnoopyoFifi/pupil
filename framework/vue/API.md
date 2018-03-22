@@ -151,6 +151,43 @@
 
   + `props`验证。可以为组件的`props`指定验证规则。开发供他人使用的组件时用。
 
+- `watch`
+  > `watch`<b>是一个对象</b>，键是需要观察的表达式(可以是`data`中的变量、对象或数组，甚至是当前组件的`$route`)；值就是观察的表达式发生变化时，要执行的函数(可以是函数、方法名或包含选项的对象)。
+  
+  + `watch`的值是函数时，这个函数有两个形参，第一形参为被观察的对象之前的值，第二个参数为其现在的值。
+  + `watch`的值是方法名时，该方法名需要用单引号包裹。
+  + `watch`的值是包括选项的对象时，该选项包括: 
+    * `handler`：其值是一个回调函数。即监听到变化时应该执行的函数。
+    * `deep`：其值是`true`时，表示深度监听，即对象内部的属性监听。
+    * `immediate`：其值是`true`时，该回调将会在监听开始之后被立即调用，即以当前的初始值执行回调。
+
+  ```js
+    export default {
+      data() {
+        return {
+          user: {
+            phone: '',
+            codeMsg: '',
+            name: ''
+          }
+        }
+      },
+
+      watch {
+        user: {  
+          deep: true,
+          handler: function(val, oVal) {
+            console.log(val.phone);  
+          }
+        },
+        'user.name': function(val, oVal) { // 键路径必须加上引号
+          console.log('new': val);
+        },
+
+      }
+    }
+  ```
+
 ### 生命周期钩子
 ![vue-lifecycle](./images/vue-lifecycle.jpg)
 - `created`
@@ -247,8 +284,8 @@
 
 ### 事件
 - `vm.$on`&`vm.$emit`
-  + 用来监听当前实例上的自定义事件。事件可以由`vm.$emit`触发。回调函数会接收所有传入事件触发函数的额外参数。
-  + `vm.$emit`触发当前实例上的事件。附加参数都会传给监听器回调。
+  + `vm.$on`用来监听当前实例上的自定义事件。
+  + `vm.$emit`用来触发当前实例上的事件。附加参数都会传给监听器回调，即回调函数会接收所有传入事件触发函数的额外参数。
   +  示例：
     * 父组件使用`@select-type="onSelectType"`监听由子组件`vm.$emit`触发的事件，通过`onSelectType()`接受从子组件传递过来的数据，通知父组件数据改变了
     * 子组件通过`$emit`来触发事件，将参数传递出去。
@@ -257,7 +294,9 @@
     
     // 父组件
     <template>
-      <ratingselect @select-type="onSelectType"></ratingselect>
+      <ratingselect @select-type="onSelectType"></ratingselect> 
+      // 2. 用在自定义元素组件上时，可以监听子组件(ratingselect)触发的自定义事件(select-type)；
+            父组件可以在使用子组件的地方直接用v-on来监听子组件触发的事件。
     </template>
     <script>
       data(){
@@ -266,7 +305,8 @@
         }
       },
       methods:{
-        onSelectType (type) {
+        onSelectType (type) { 
+          // 回调函数会接收所有传入事件触发函数的额外参数`type`
           this.selectType = type
         }
       }
@@ -275,7 +315,9 @@
     // 子组件
     <template>
       <div>
-        <span @click="select(0, $event)" :class="{'active': selectType===0}"></span>
+        <span @click="select(0, $event)" :class="{'active': selectType===0}"></span> 
+        // 1. 用在普通元素上时，只能监听原生DOM事件；
+              如果使用内联语句时，可以传入特殊变量$event，在方法中访问原生事件对象。
         <span @click="select(1, $event)" :class="{'active': selectType===1}"></span>
         <span @click="select(2, $event)" :class="{'active': selectType===2}"></span>
       </div>
@@ -288,13 +330,16 @@
       },
       methods: {
         select(type, event) {
+          if(event) event.preventDefault();
           this.selectType = type;
-          this.$emit('select-type',type)
+          this.$emit('select-type',type); 
+          // `$emit`触发当前实例上的自定义事件`select-type`，并传入了额外参数`type`
         }
       }
     </script>
   ```
-
+  
 
 ## 指令
+  
   
