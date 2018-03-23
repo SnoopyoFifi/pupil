@@ -3,6 +3,38 @@
 
 ## 变量的作用域
 
+## 立即执行函数
+```js
+  var a = 2;
+  (function IIFE(){
+    var a = 3;
+    console.log(a);  
+  })();
+  console.log(a)
+
+  var a = 2;
+  (function IIEF(global){
+    var a = 3;
+    console.log(a);
+    console.log(global.a);
+  })(window);
+  console.log(a);
+
+  var a = 2;
+  (function (){
+    var a = 3;
+    console.log(a);
+  }());
+  console.log(a);
+
+  (function IIFE(def){
+    def(window);
+  })(function def(global){
+    var a = 3; 
+    console.log(a);
+    console.log(global.a);  
+  })
+```
 
 ## 闭包
 
