@@ -131,6 +131,8 @@
 -----
 * [原生](jsNative/README.md)
     * [API](jsNative/API.md)
+    * [原理解析](jsNative/theoryAnalysis.md)
+    * [设计模式](jsNative/designMode.md)
     * [核心概念](jsNative/Advanced.md)
     * [代码片段](jsNative/codeSnippet.md)
 * [手机端](mobileEnd/README.md)
@@ -169,3 +171,4 @@
         * [生成pdf](others/gitbook/pdf.md)
         * [生成gitpages](others/gitbook/gitpages.md)
 * [复习](interview/README.md)
+

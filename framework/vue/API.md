@@ -189,7 +189,7 @@
   ```
 
 ### 生命周期钩子
-![vue-lifecycle](./images/vue-lifecycle.jpg)
+![vue-lifecycle](./images/lifecycle.jpg)
 - `created`
   + 在实例创建完成后被立即调用。
   + 实例完成以下配置：数据观测、属性和方法运算、watch/event事件回调。
