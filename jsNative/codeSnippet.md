@@ -1,5 +1,20 @@
 # CodeSnippet
 
+## 对象的深层合并
+[什么是递归](https://www.cnblogs.com/Pushy/p/8455862.html)
+[递归就这么简单](https://www.jianshu.com/p/104187c62e15)
+```js
+  function deepObjectMerge(target, source) {
+    for (var key in source) {
+      target[key] = target[key]
+        && target[key].toString() === "[object Object]"
+        ? deepObjectMerge(target[key], source[key])
+        : target[key] = source[key];
+    }
+    return target;
+  }
+```
+
 ##  判断字符串长度
 
 > 英文占1个字符，中文汉字占2个字符
